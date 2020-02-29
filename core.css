@@ -16,12 +16,12 @@
 }
 
 :root {
-	font-family: 'Open Sans', sans-serif;
 	background-color: hsl(0deg, 0%, 90%);
+	font-family: sans-serif;
 }
 
 h1, h2, h3, h4 {
-	font-family: 'Quicksand', serif;
+	font-family: serif;
 	margin-top: .4em;
 	margin-bottom: 1em;
 }
