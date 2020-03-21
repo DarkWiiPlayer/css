@@ -1,0 +1,45 @@
+/*
+Be it reasons for using a product or service or
+reasons why you should be hired; this component
+allows you to present a series of reasons and
+explanations why the message of your website
+should be heared.
+
+──root element : .reasons
+  └─row element : *
+    ├─summary : *
+    └─explanation : *
+
+*/
+.reasons {
+	display: grid;
+	align-items: center;
+	grid-template-columns: 1fr auto 1fr;
+	grid-gap: 1.61em;
+	font-size: 1.4em;
+}
+.reasons > * {
+	grid-column: 2 / 3;
+	align-self: flex-start;
+	display: grid;
+	grid-template-columns: repeat(3, 20vw);
+	grid-gap: 1em;
+	grid-template-areas: "image text text";
+	margin: 0;
+}
+.reasons > *:nth-child(even) {
+	grid-template-areas:
+		"text text image";
+}
+.reasons > * > *:nth-child(1) {
+	grid-area: image;
+}
+.reasons > * > *:nth-child(2) {
+	grid-area: text;
+	padding: 1em 2em;
+}
+.reasons > * > * {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

@@ -55,9 +55,6 @@ header {
 }
 
 /* Automatic spacing in some semantic containers */
-main > *+* {
-	margin-top: 3em;
-}
-article > *+* {
-	margin-top: 1em;
-}
+body    > *+* { margin-top: 2em; }
+main    > *+* { margin-top: 1em; }
+article > *+* { margin-top: .8em; }
