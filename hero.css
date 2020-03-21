@@ -1,0 +1,20 @@
+/*
+A very standard hero element without much to it.
+All items are centered and displayed as a column.
+
+──hero : .hero
+  ├─element : *
+  ├─element : *
+  └─...
+
+*/
+
+.hero {
+	min-height: 40vh;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+}
+
+.hero > *+* { margin-top: .6em; }
