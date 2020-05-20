@@ -1,0 +1,24 @@
+nav {
+  display: flex;
+  flex-flow: row nowrap;
+  font-size: 1.2em;
+}
+
+nav> * {
+  display: block;
+  padding: .4em;
+  transition:
+    color .3s,
+    background .3s,
+    text-shadow .3s,
+    box-shadow .3s; 
+}
+
+nav> a:hover {
+  text-shadow: .2em .2em .3em hsla(0, 0, 0, .4);
+  box-shadow: .2em .2em .3em hsla(0, 0, 0, .1) inset;
+}
+
+nav> *+* {
+  margin-left: .2em;
+}
