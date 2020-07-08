@@ -1,0 +1,26 @@
+[rows], [columns], .grid {
+  display: grid;
+  grid-template-rows: repeat(attr('rows'), 1fr); /* Experimental */
+  grid-template-columns: repeat(attr('columns'), 1fr); /* Experimental */
+}
+
+/* attr fallbacks */
+[rows="2"] { grid-template-rows: repeat(2, 1fr); }
+[rows="4"] { grid-template-rows: repeat(4, 1fr); }
+[rows="6"] { grid-template-rows: repeat(6, 1fr); }
+[rows="8"] { grid-template-rows: repeat(8, 1fr); }
+
+.full-width {
+  grid-columns: 1/-1;
+}
+
+[gap] {
+  grid-gap: attr(gap)em; /* Experimental */
+}
+
+/* attr fallbacks */
+[gap=".2"] { grid-gap: .2em; }
+[gap=".4"] { grid-gap: .4em; }
+[gap=".6"] { grid-gap: .6em; }
+[gap=".8"] { grid-gap: .8em; }
+[gap="1"]  { grid-gap:  1em; }
