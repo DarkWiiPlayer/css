@@ -1,4 +1,4 @@
-.flex {
+flex-box, .flex {
   display: flex;
   justify-content: center;
   flex-flow: row no-wrap;
