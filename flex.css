@@ -1,0 +1,23 @@
+.flex {
+  display: flex;
+  justify-content: center;
+  flex-flow: row no-wrap;
+}
+.flex.column {
+  flex-direction: column;
+}
+.flex.reverse {
+  flex-direction: row-reverse;
+}
+.flex.column.reverse {
+  flex-direction: column-reverse;
+}
+.flex.wrap {
+  flex-wrap: wrap;
+}
+.flex.wrap>* {
+  width: max-content;
+}
+.flex>* {
+  flex: 1 1 0;
+}
