@@ -1,12 +1,6 @@
 /*
 A very standard hero element without much to it.
 All items are centered and displayed as a column.
-
-──hero : .hero
-  ├─element : *
-  ├─element : *
-  └─...
-
 */
 
 .hero {
@@ -15,6 +9,10 @@ All items are centered and displayed as a column.
 	flex-flow: column nowrap;
 	align-items: center;
 	justify-content: center;
+}
+
+.hero.full-height {
+  min-height: 100vh;
 }
 
 .hero > *+* { margin-top: .6em; }
