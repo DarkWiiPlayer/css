@@ -4,6 +4,10 @@ nav {
   font-size: 1.2em;
 }
 
+nav.center { justify-content: center; }
+nav.stretch { justify-content: stretch; }
+nav.end { justify-content: flex-end; }
+
 nav> * {
   display: block;
   padding: .4em;
