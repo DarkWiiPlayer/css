@@ -3,31 +3,24 @@
 */
 
 .alternating {
-	display: grid;
-	align-items: center;
-	grid-template-columns: 1fr auto 1fr;
-	grid-gap: 1.61em;
+	display: flex;
+	align-content: center;
+  flex-flow: column nowrap;
 	font-size: 1.4em;
+  max-width: max(60vw, min(100vw, 40em));
+  margin: auto;
 }
 .alternating > * {
+	display: grid;
 	grid-column: 2 / 3;
 	align-self: flex-start;
-	display: grid;
-	grid-template-columns: repeat(3, 20vw);
+	grid-template-columns: 1fr 2fr;
 	grid-gap: 1em;
 	grid-template-areas: "image text text";
 	margin: 0;
 }
 .alternating > *:nth-child(even) {
-	grid-template-areas:
-		"text text image";
-}
-.alternating > * > *:nth-child(1) {
-	grid-area: image;
-}
-.alternating > * > *:nth-child(2) {
-	grid-area: text;
-	padding: 1em 2em;
+  direction: rtl;
 }
 .alternating > * > * {
 	display: flex;
