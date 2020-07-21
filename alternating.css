@@ -8,7 +8,8 @@ Series of alternating elements; usually image-text, text-image, image-text, etc.
 	flex-flow: column nowrap;
 	font-size: 1.4em;
 	max-width: max(60vw, min(100vw, 40em));
-	margin: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 .alternating > * {
 	display: grid;
