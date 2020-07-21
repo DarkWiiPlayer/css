@@ -1,3 +1,5 @@
+/* This file contains general resets and axiomatic styling rules */
+
 /* ============ */
 /* STYLE RESETS */
 /* ============ */
@@ -16,7 +18,6 @@
 }
 
 :root {
-	background-color: hsl(0deg, 0%, 90%);
 	font-family: sans-serif;
 }
 
