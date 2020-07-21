@@ -25,6 +25,7 @@ Series of alternating elements; usually image-text, text-image, image-text, etc.
 	direction: rtl;
 }
 .alternating > * > * {
+	direction: initial;
 	display: flex;
 	justify-content: center;
 	align-items: center;
