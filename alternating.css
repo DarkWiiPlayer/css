@@ -1,17 +1,18 @@
 /*
-  Series of alternating elements; usually image-text, text-image, image-text, etc.
-*/
+Series of alternating elements; usually image-text, text-image, image-text, etc.
+ */
 
 .alternating {
 	display: flex;
 	align-content: center;
-  flex-flow: column nowrap;
+	flex-flow: column nowrap;
 	font-size: 1.4em;
-  max-width: max(60vw, min(100vw, 40em));
-  margin: auto;
+	max-width: max(60vw, min(100vw, 40em));
+	margin: auto;
 }
 .alternating > * {
 	display: grid;
+	width: 100%;
 	grid-column: 2 / 3;
 	align-self: flex-start;
 	grid-template-columns: 1fr 2fr;
@@ -20,7 +21,7 @@
 	margin: 0;
 }
 .alternating > *:nth-child(even) {
-  direction: rtl;
+	direction: rtl;
 }
 .alternating > * > * {
 	display: flex;
