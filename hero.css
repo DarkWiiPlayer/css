@@ -19,7 +19,9 @@ All items are centered and displayed as a column.
 .hero[cover="40"] { min-height: 40vh; }
 .hero[cover="50"] { min-height: 50vh; }
 .hero[cover="60"] { min-height: 60vh; }
+.hero[cover="70"] { min-height: 70vh; }
 .hero[cover="80"] { min-height: 80vh; }
+.hero[cover="90"] { min-height: 90vh; }
 .hero[cover="100"] { min-height: 100vh; }
 
 .hero > *+* { margin-top: .6em; }
