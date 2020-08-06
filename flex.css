@@ -1,23 +1,20 @@
-flex-box, .flex {
+[column], [row], .flex {
   display: flex;
   justify-content: center;
   flex-flow: row no-wrap;
 }
-.flex.column {
+.flex.column, [column] {
   flex-direction: column;
 }
-.flex.reverse {
+.flex.reverse, [row] {
   flex-direction: row-reverse;
 }
-.flex.column.reverse {
+.flex.column.reverse, [column][reverse] {
   flex-direction: column-reverse;
 }
-.flex.wrap {
+.flex.row.reverse, [row][reverse] {
+  flex-direction: row-reverse;
+}
+.flex.wrap, [wrap] {
   flex-wrap: wrap;
-}
-.flex.wrap>* {
-  width: max-content;
-}
-.flex>* {
-  flex: 1 1 0;
 }
