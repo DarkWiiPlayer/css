@@ -12,7 +12,7 @@ All items are centered and displayed as a column.
 }
 
 .hero[cover] {
-  min-height: attr(cover)vh;
+	min-height: attr(cover)vh;
 }
 
 /* Fallbacks until attr is widely supported */
@@ -24,4 +24,4 @@ All items are centered and displayed as a column.
 .hero[cover="90"] { min-height: 90vh; }
 .hero[cover="100"] { min-height: 100vh; }
 
-.hero > *+* { margin-top: .6em; }
+.hero > :nth-child(n+1) { margin-top: .6em; }

@@ -10,19 +10,19 @@ Series of alternating elements; usually image-text, text-image, image-text, etc.
 	max-width: max(60vw, min(100vw, 40em));
 	margin-left: auto;
 	margin-right: auto;
-  gap: .6em;
+	gap: .6em;
 }
 .alternating > * {
 	display: flex;
-  flex-flow: row wrap;
+	flex-flow: row wrap;
 	width: 100%;
 	grid-column: 2 / 3;
 	align-self: flex-start;
 	grid-template-columns: 2fr;
-  grid-auto-columns: 1fr;
+	grid-auto-columns: 1fr;
 	grid-gap: 1em;
 	margin: 0;
-  gap: .6em;
+	gap: .6em;
 } .alternating > *:nth-child(even) {
 	flex-direction: row-reverse;
 }
@@ -31,9 +31,9 @@ Series of alternating elements; usually image-text, text-image, image-text, etc.
 	display: flex;
 	justify-content: center;
 	align-items: center;
-  flex: 1 1 0;
-  border: .1em dashed purple;
+	flex: 1 1 0;
+	border: .1em dashed purple;
 }
 .alternating>*>*:first-child {
-  flex-grow: var(--first-element-multiplier, 2);
+	flex-grow: var(--first-element-multiplier, 2);
 }

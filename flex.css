@@ -1,20 +1,17 @@
-[column], [row], .flex {
-  display: flex;
-  justify-content: center;
-  flex-flow: row no-wrap;
+.flex {
+	display: flex;
+	justify-content: center;
+	flex-flow: row no-wrap;
 }
-.flex.column, [column] {
-  flex-direction: column;
+.flex.column {
+	flex-direction: column;
 }
-.flex.reverse, [row] {
-  flex-direction: row-reverse;
+.flex.reverse {
+	flex-direction: row-reverse;
 }
-.flex.column.reverse, [column][reverse] {
-  flex-direction: column-reverse;
+.flex.reverse.column {
+	flex-direction: column-reverse;
 }
-.flex.row.reverse, [row][reverse] {
-  flex-direction: row-reverse;
-}
-.flex.wrap, [wrap] {
-  flex-wrap: wrap;
+.flex.wrap {
+	flex-wrap: wrap;
 }
