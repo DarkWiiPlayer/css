@@ -1,0 +1,34 @@
+/*
+	Variables:
+	--box-corner-radius: .3rem
+	--box-stripe-color: transparent
+	--box-label: empty
+*/
+
+.box {
+	font-style: italic;
+	border-radius: var(--corner-radius, .3rem);
+	background-color: hsla(0deg, 0%, 50%, .2);
+	box-shadow: .0em .1em .2em inset hsla(0deg, 0%, 0%, .2);
+	padding: 1em 2em;
+	position: relative;
+	margin: 2em 0em;
+	line-height: 1.2em;
+}
+
+.box::after {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: .4em;
+	background-color: var(--box-stripe-color, transparent);
+	border-radius: var(--box-corner-radius, .3rem) 0 0 var(--box-corner-radius, .3rem);
+	content: '';
+}
+
+.box::before {
+	content: var(--box-label)':';
+	font-weight: bold;
+}
