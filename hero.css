@@ -1,6 +1,11 @@
 /*
-A very standard hero element without much to it.
-All items are centered and displayed as a column.
+description: A very standard hero element without much to it.  All items are centered and displayed as a column.
+classes:
+- name: hero
+	description: a hero element
+	attributes:
+	- name: cover
+		description: What percentage of the viewport height the hero should cover
 */
 
 .hero {

@@ -1,3 +1,16 @@
+/*
+description: Adds helper classes for flex boxes
+classes:
+	- name: flex
+		description: Turns an element into a flex box
+		classes:
+		- name: column
+			description: Aligns a flex box as columns
+		- name: reverse
+			description: Reverses the order of a flex box
+		- name: wrap
+			description: allows the flex box to wrap
+*/
 .flex {
 	display: flex;
 	justify-content: center;

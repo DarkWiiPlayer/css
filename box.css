@@ -1,8 +1,9 @@
 /*
-	Variables:
-	--box-corner-radius: .3rem
-	--box-stripe-color: transparent
-	--box-label: empty
+description: A box with extra information like warnings, hints, etc.
+variables:
+	box-corner-radius: .3rem
+	box-stripe-color: transparent
+	box-label: empty
 */
 
 .box {
