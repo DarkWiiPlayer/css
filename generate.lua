@@ -4,7 +4,9 @@ local skooma = require 'skooma'
 local warn = require 'warn.compatible'
 local yaml = require 'lyaml'
 
-local env = skooma.env:proxy(_G)
+local env = setmetatable({}, {__index=function(self, key)
+	return _G[key] or skooma.env[key]
+end})
 
 local function foreachfile(fn, pattern, dir)
 	for name in lfs.dir(dir) do
