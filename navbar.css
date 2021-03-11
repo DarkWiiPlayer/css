@@ -1,11 +1,14 @@
 /*
-description: A navigation bar
 elements:
 - name: nav
+	description: A generic navigation bar
 	classes:
 	- name: center
+		description: Centers the items of the navbar
 	- name: stretch
+		description: Stretches the items to cover the whole navbar
 	- name: end
+		description: Puts the items at the end of the navbar
 */
 
 nav {

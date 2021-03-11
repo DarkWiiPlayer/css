@@ -1,5 +1,11 @@
 /*
 description: Series of alternating elements; usually image-text, text-image, image-text, etc.
+classes:
+- name: alternating
+	description: A box of alternating elements
+	properties:
+		- name: first-element-multiplier
+			description: How much bigger the first element should be proportionally.
 */
 
 .alternating {

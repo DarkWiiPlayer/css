@@ -1,13 +1,17 @@
 /*
 description: A box with extra information like warnings, hints, etc.
-variables:
-	box-corner-radius: .3rem
-	box-stripe-color: transparent
-	box-label: empty
+classes:
+- name: box
+	properties:
+	- name: 'box-corner-radius: .3rem'
+		description: Rouns corners
+	- name: 'box-stripe-color: transparent'
+		description: The colour of the left margin
+	- name: 'box-label: empty'
+		description: A label for the box
 */
 
 .box {
-	font-style: italic;
 	border-radius: var(--corner-radius, .3rem);
 	background-color: hsla(0deg, 0%, 50%, .2);
 	box-shadow: .0em .1em .2em inset hsla(0deg, 0%, 0%, .2);

@@ -3,12 +3,12 @@ description: Adds helper classes for grid containers
 classes:
 	- name: grid
 		description: Turns an element into a flex box
-		properties:
+		attributes:
 		- name: columns
 			description: The number of columns of a grid
 		- name: gap
 			description: Changes the grid gap in em
-properties:
+attributes:
 	- name: span
 		description: Controls how many columns an element spans
 */
