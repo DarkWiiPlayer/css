@@ -6,31 +6,28 @@ description: This file contains general resets and axiomatic styling rules.
 /* STYLE RESETS */
 /* ============ */
 
-* {
-	box-sizing: border-box;
+:root {
+	font-family: sans-serif;
 	line-height: 1em;
+}
+
+* {
+	line-height: inherit;
+	box-sizing: border-box;
 
 	margin: 0;
 	padding: 0;
 
 	color: inherit;
 	font-family: inherit;
-	font-weight: normal;
+	font-weight: inherit;
 	text-decoration: inherit;
-}
-
-:root {
-	font-family: sans-serif;
-}
-
-h1, h2, h3, h4 {
-	font-family: serif;
 }
 
 h1 { font-size: 2em; }
 h2 { font-size: 1.6em; }
-h3 { font-size: 1.4em; }
-h4 { font-size: 1.2em; }
+h3 { font-size: 1.2em; }
+h4 { font-size: 1.1em; }
 h5, h6 { font-size: 1em; }
 
 table {
@@ -51,13 +48,3 @@ main { grid-area: main; }
 header { grid-area: header; }
 footer { grid-area: footer; }
 aside { grid-area: aside; }
-
-/* Make everything larger in the header */
-header {
-	font-size: 1.4em;
-}
-
-/* Automatic spacing in some semantic containers */
-body    > :nth-child(n+1) { margin-top: 2em; }
-main    > :nth-child(n+1) { margin-top: 1em; }
-article > :nth-child(n+1) { margin-top: .8em; }
