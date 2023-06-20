@@ -1,0 +1,30 @@
+@layer quote {
+	/* BLOCK */
+
+	blockquote {
+		--stripe-width: var(--line-width, .2rem);
+		--padding: 1em;
+		padding: var(--padding);
+		padding-left: calc(var(--padding) + var(--stripe-width));
+		position: relative;
+		background: linear-gradient(
+			to right,
+			var(--color, orange) 0%,
+			var(--color, orange) var(--stripe-width),
+			transparent var(--stripe-width)
+		);
+	}
+
+	blockquote cite {
+		display: block;
+		margin-top: 1em;
+		opacity: .8;
+		font-size: .8em;
+	}
+
+	/* INLINE */
+
+	q {
+		font-style: italic;
+	}
+}

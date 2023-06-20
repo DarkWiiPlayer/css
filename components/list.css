@@ -1,0 +1,11 @@
+@layer lists {
+	:is(ul, ol) {
+		padding-left: 3ch;
+	}
+	li {
+		line-height: 1.8em;
+	}
+	li::marker {
+		color: var(--color);
+	}
+}

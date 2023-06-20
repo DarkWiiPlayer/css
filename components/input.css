@@ -1,0 +1,113 @@
+@layer input {
+	@layer reset {
+		input {
+			all: unset;
+		}
+		input::placeholder {
+			all: unset;
+			opacity: .6;
+		}
+	}
+
+	@layer text {
+		input {
+			--focus-outline: .2rem solid color-mix(in srgb, var(--color, orange) 40%, transparent);
+		}
+		input:is(
+			[type="date"],
+			[type="datetime-local"],
+			[type="email"],
+			[type="month"],
+			[type="number"],
+			[type="password"],
+			[type="search"],
+			[type="tel"],
+			[type="text"],
+			[type="time"],
+			[type="week"],
+		) {
+			padding: .6em;
+			border-radius: var(--corner-radius);
+			border: var(--border-width, .1em) solid var(--hr-color, #6662);
+		}
+		input:is(
+			[type="date"],
+			[type="datetime-local"],
+			[type="email"],
+			[type="month"],
+			[type="number"],
+			[type="password"],
+			[type="search"],
+			[type="tel"],
+			[type="text"],
+			[type="time"],
+			[type="week"],
+		):focus-within {
+			border-color: var(--color, orange);
+			outline: var(--focus-outline);
+		}
+	}
+
+	@layer check {
+		input:is(
+			[type="checkbox"],
+			[type="radio"],
+		) {
+			--radius: max(var(--corner-radius), .2em);
+			--size: 1.2em;
+			border-radius: var(--radius);
+			vertical-align: text-bottom;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: var(--size);
+			height: var(--size);
+			border: var(--border-width, .1em) solid var(--hr-color, #6662);
+			position: relative;
+		}
+		input:is(
+			[type="checkbox"],
+			[type="radio"],
+		):focus {
+			border-color: var(--color, orange);
+			outline: var(--focus-outline);
+		}
+		input:is(
+			[type="checkbox"],
+			[type="radio"],
+		):checked {
+			border-color: var(--color, orange);
+		}
+		input:is(
+			[type="checkbox"],
+			[type="radio"],
+		)::before {
+			--ratio: .7;
+			width: calc(var(--size) * var(--ratio));
+			height: calc(var(--size) * var(--ratio));
+			content: '';
+			border-radius: calc(var(--radius) * .6);
+			position: absolute;
+			background: transparent;
+			transition:
+				background var(--transition-duration-hover, .2s);
+		}
+		input:is(
+			[type="checkbox"],
+			[type="radio"],
+		):checked::before {
+			background: var(--color, orange);
+		}
+		input[type="radio"], input[type="radio"]::before {
+			--ratio: .5;
+			border-radius: 100%;
+		}
+
+		label:has(input:is([type="checkbox"], [type="radio"])) {
+			cursor: pointer;
+		}
+
+		label-checked:not(:checked ~ *) { display: none; visibility: hidden; }
+		label-unchecked:is(:checked ~ *) { display: none; visibility: hidden; }
+	}
+}

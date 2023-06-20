@@ -1,0 +1,108 @@
+@property --info-columns-outer-width {
+	syntax: "<length>";
+	inherits: true;
+	initial-value: 100vw;
+}
+
+* { box-sizing: border-box; }
+
+info-columns {
+	/* Positioning */
+	width: 100%;
+	max-height: 100vh;
+	/* Layout */
+	container-type: size;
+	container-name: infocolumns;
+	display: flex;
+	flex-flow: row nowrap;
+	/* Styling */
+
+	> * { --info-columns-outer-width: 100cqw; }
+
+	--column-count: 0;
+	&:has(> :nth-child(1)) { --column-count: 1 }
+	&:has(> :nth-child(2)) { --column-count: 2 }
+	&:has(> :nth-child(3)) { --column-count: 3 }
+	&:has(> :nth-child(4)) { --column-count: 4 }
+	&:has(> :nth-child(5)) { --column-count: 5 }
+	&:has(> :nth-child(6)) { --column-count: 6 }
+	&:has(> :nth-child(7)) { --column-count: 7 }
+	&:has(> :nth-child(8)) { --column-count: 8 }
+	&:has(> :nth-child(9)) { --column-count: 9 }
+
+	> * {
+		all: unset;
+		> :not(:is(img:first-child, when-large, when-small)) { display: none; }
+
+		--transition: .4s ease-in-out;
+		/* Positioning */
+		flex: 1 1 0;
+		position: relative;
+
+		/* Layout */
+		container-type: size;
+		container-name: info-column;
+		contain: paint;
+		display: grid;
+		grid-template-columns: 100%;
+		align-items: stretch;
+		justify-items: center;
+
+		/* Styling */
+		transition: flex var(--transition);
+		color: white;
+		background: black;
+
+		&:is(:hover, :focus, :focus-within) {
+			flex: 2 1 0
+		}
+
+		>img { transition: opacity var(--transition); }
+
+		> * {
+			object-fit: cover;
+			grid-row: 1;
+			grid-column: 1;
+		}
+
+		when-small, when-large {
+			text-align: center;
+			padding: 1em;
+			display: flex;
+			flex-flow: column nowrap;
+			align-content: center;
+			align-items: center;
+			justify-content: center;
+			transition:
+				width var(--transition),
+				display var(--transition),
+				opacity var(--transition);
+
+			p { text-wrap-style: balance; }
+		}
+
+		@container info-column (min-height: 1px) {
+			> img {
+				height: 100cqh;
+				width: 100cqw;
+			}
+		}
+
+		@container infocolumns (min-height: 1px) {
+			when-small { opacity: 1; width: calc(var(--info-columns-outer-width) / var(--column-count)) }
+			&:is(:hover, :focus, :focus-within)>when-small { opacity: 0; }
+
+			when-large { opacity: 0; width: calc(var(--info-columns-outer-width) / calc(var(--column-count) + 1) * 2) }
+			&:is(:hover, :focus, :focus-within)>when-large { opacity: 1; }
+		}
+
+		when-small > * {
+			text-shadow: .02em .02em .02em #000c;
+		}
+
+		when-large {
+			background-color: #0008;
+			backdrop-filter: blur(4px);
+		}
+	}
+}

@@ -1,0 +1,34 @@
+@layer hr {
+	hr, hr-label {
+		--width: var(--hr-width, 0.2rem);
+		--padding: 0em;
+		border: unset;
+		display: block;
+		width: calc(100% - calc(var(--padding) / 2));
+		margin: 2em var(--padding);
+		border-bottom: var(--hr-width, .2rem) solid var(--hr-color, #6662);
+	}
+
+	hr-label {
+		--text-padding: .4em;
+		display: flex; align-items: center;
+		white-space: nowrap;
+	}
+	hr-label::after, hr-label::before {
+		content: '';
+		display: block;
+		border-bottom: var(--hr-width, .2rem) solid var(--hr-color, #6662);
+	}
+	hr-label::before {
+		margin-right: var(--text-padding);
+		width: 1.4em;
+	}
+	hr-label::after {
+		width: 100%;
+		margin-left: var(--text-padding);
+	}
+
+	:is(ul, ol)>:is(hr, hr-label) {
+		margin: .4em var(--padding);
+	}
+}

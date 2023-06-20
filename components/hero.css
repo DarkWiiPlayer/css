@@ -1,0 +1,63 @@
+@layer hero {
+	page-hero {
+		font-size: 1.4em;
+		min-height: 40vh;
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: center;
+		justify-content: center;
+		min-height: attr(cover vh, 40vh)
+	}
+
+	@media (max-width: 60rem) {
+		page-hero {
+			font-size: 1.2em;
+		}
+	}
+
+	page-hero+* {
+		margin-top: 2rem;
+	}
+
+	/* Fallbacks until attr is widely supported */
+	page-hero[cover="40"] { min-height: 40vh; }
+	page-hero[cover="50"] { min-height: 50vh; }
+	page-hero[cover="60"] { min-height: 60vh; }
+	page-hero[cover="70"] { min-height: 70vh; }
+	page-hero[cover="80"] { min-height: 80vh; }
+	page-hero[cover="90"] { min-height: 90vh; }
+	page-hero[cover="100"] { min-height: 100vh; }
+	/* Special override for HEADER+HERO combinations */
+	header:not(.fixed)+page-hero[cover="100"] { min-height: calc(100vh - var(--header-height, 5rem)); }
+
+	page-hero > *+* { margin-top: 1.2em; }
+
+	page-hero { z-index: 0; position: relative; }
+
+	page-hero>img:first-child {
+		position: absolute;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		margin: 0;
+		object-fit: cover;
+	}
+
+	page-hero>img:first-child+* {
+		margin-top: 0;
+	}
+
+	page-hero hgroup {
+		display: flex;
+		flex-flow: column;
+		align-items: center;
+
+		text-align: center;
+		text-wrap: balance;
+	}
+
+	page-hero+header {
+		margin-top: 0;
+	}
+}

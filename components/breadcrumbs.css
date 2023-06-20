@@ -1,0 +1,36 @@
+@layer breadcrumbs {
+	nav.breadcrumbs {
+		display: flex;
+		flex-flow: row wrap;
+		line-height: 1.4em;
+		align-items: center;
+	}
+
+	nav.breadcrumbs :is(ul, ol) {
+		display: contents;
+	}
+
+	nav.breadcrumbs > * {
+		margin: 0;
+		padding: 0;
+	}
+
+	nav.breadcrumbs *+* {
+		--spacing: calc(var(--breadcrumb-spacing, 1.4rem) / 2);
+		margin-left: var(--spacing);
+	}
+
+	nav.breadcrumbs *+*::before {
+		content: '/';
+		font-size: 1.4em;
+		font-weight: normal;
+		line-height: 1em;
+		margin: 0 var(--spacing);
+		opacity: .4;
+	}
+
+	nav.breadcrumbs a {
+		border: none;
+		padding: 0;
+	}
+}

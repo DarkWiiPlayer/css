@@ -1,0 +1,965 @@
+<!doctype html>
+<html lang="en" class="sticky-header-scroll-padding">
+	<title>DarkWiiPlayer/CSS</title>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+
+	<script type="module" src="https://cdn.jsdelivr.net/gh/darkwiiplayer/components@3f72d6a/TypeWriter.js"></script>
+	<script type="module">
+		import {html, empty} from 'https://cdn.jsdelivr.net/gh/darkwiiplayer/js@bef3fc5/skooma.js'
+		import element from 'https://cdn.jsdelivr.net/gh/darkwiiplayer/js@bef3fc5/element.js'
+
+		const mutationNotifier = new MutationObserver(
+			mutations => mutations.forEach(
+				({target}) => target.dispatchEvent(new Event("mutation", {bubbles: true}))
+			)
+		)
+		element(class HtmlShowcase extends HTMLElement {
+			constructor() {
+				super()
+				mutationNotifier.observe(this, {subtree: true, childList: true})
+				this.attachShadow({mode: "open"}).replaceChildren(
+					...Array.from(document.styleSheets).map(style => style.ownerNode.cloneNode(true)),
+					html.style("pre { position: relative; }"),
+					html.style("button { font-size: .6em; padding: .2em .4em; }"),
+					html.style("button:not(:hover) { opacity: .6; }"),
+					html.div (
+						html.slot(),
+						html.pre(
+							this.code = html.code(),
+							html.floatingActionButton({top: true, right: true},
+								html.button("copy", {click: event => {
+									navigator.clipboard.writeText(this.code.innerText)
+								}})
+							)
+						)
+					)
+				)
+				this.addEventListener("mutation", event => this.update())
+				this.update()
+			}
+
+			update() {
+				const indent = this.innerHTML
+					.split("\n")
+					.find(line => line.match(/[^\s]/))
+					.match(/^[\s]*/)[0]
+				const code = this.innerHTML
+					.split("\n")
+					.map(line => line.replace(new RegExp(`^${indent}`), ''))
+					.slice(1, -1)
+					.join("\n")
+				this.code.replaceChildren(code)
+			}
+		})
+
+		element(class AutoNav extends HTMLElement {
+			connectedCallback() {
+				this.update()
+			}
+			update() {
+				this.replaceChildren(html.nav(
+					this.list(document.body)
+				))
+			}
+			list(root) {
+				const sections = Array.from(root.querySelectorAll('section[id]:not(:scope section[id] *)'))
+				if (sections.length > 0) {
+					return html.ul(sections.map(section => html.li(
+						html.a(
+							section.querySelector(`:scope>:is(h1,h2,h3,h4,h5,h6)`)?.innerText ?? section.id,
+							{href: `#${section.id}`}
+						),
+						this.list(section)
+					)))
+				} else {
+					return empty
+				}
+			}
+		})
+	</script>
+	<script>
+		if (localStorage?.getItem("color-scheme"))
+			document.documentElement.setAttribute("color-scheme", localStorage?.getItem("color-scheme"))
+	</script>
+	<script async type="module">
+		import SchemeSwitcher from 'https://cdn.jsdelivr.net/gh/darkwiiplayer/components@0d56a57/ColorSchemeSwitcher.js'
+		customElements.define("scheme-switcher", SchemeSwitcher)
+	</script>
+	<!-- Multitone effect for hero image (Currently disabled because not sure tbh)
+	<script type="module">
+		import {svg} from 'https://darkwiiplayer.github.io/js/skooma.js'
+		import multitone from 'https://cdn.jsdelivr.net/gh/darkwiiplayer/multitone@fb8c430/multitone.js'
+		document.body.append(svg.svg(multitone("multitone", [.1, .1, .2], [.4, .6, .8], [.8, .5, 1])))
+	</script>
+	-->
+
+	<style>
+		@import url('all.css') layer(framework);
+		@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
+		:root { container: style; }
+		:is(h1, h2, h3, h4, h5, h6) { font-family: "Raleway", sans-serif; }
+		:is(code, kbd, var, samp) { font-family: "Fira Code", monospace; }
+		.badge { font-family: "Open Sans", sans-serif }
+
+		/* body { --color: #824 } */
+
+		html-showcase {
+			display: block;
+			margin: 1em 0em;
+		}
+
+		html-showcase.box {
+			--stripe-width: var(--line-width, .2rem);
+			--stripe-color: var(--hr-color, var(--neutral-5));
+		}
+
+		[class|="blob"] { font-size: 1.4em; width: 3em; background: var(--color); color: var(--neutral-9); }
+	</style>
+
+	<page-hero cover=60>
+		<img src="https://picsum.photos/1920/600" style="opacity: 0.2;"></img>
+		<hgroup>
+			<h1>DarkWiiPlayer/CSS <span class="small badge">WIP</span></h1>
+			<p>A <type-writer loop>
+				<span><b style="color: blueviolet">modular 📦</b></span>
+				<template><b style="color: orange">small 🐭</b></template>
+				<template><b style="color: cornflowerblue">pretty ✨</b></template>
+				<template><b style="color: teal">hackable 🖮</b></template>
+				<template><b style="color: salmon">vanilla 🍦</b></template>
+			</type-writer> CSS framework &amp; component library</p>
+		</hgroup>
+		<p><small>(Still very much work in progress)</small></p>
+		<div>
+			<a href="#getting-started" class="button">Get Started!</a>
+		</div>
+	</page-hero>
+
+	<header class="sticky">
+		<h1>DarkWiiPlayer/CSS</h1>
+		<nav class="underlined bar right">
+			<ul>
+				<li class="no-mobile"><a href="playground.html">Playground</a></li>
+				<li class="no-mobile">
+					<scheme-switcher>
+						<button onclick="this.parentElement.toggle()">Theme</button>
+					</scheme-switcher>
+				</li>
+				<li>
+					<details>
+						<summary>
+							<a class="button">Menu</a>
+						</summary>
+						<drawer-box right>
+							<only-mobile>
+								<nav>
+									<ul>
+										<li><a href="playground.html">Playground</a></li>
+									</ul>
+								</nav>
+								<vertical-spacer></vertical-spacer>
+								<scheme-switcher>
+									<button onclick="this.parentElement.toggle()">Theme</button>
+								</scheme-switcher>
+								<hr>
+							</only-mobile>
+							<auto-nav></auto-nav>
+						</drawer-box>
+					</details>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<article>
+		<section>
+			<p>
+				DarkWiiPlayer/CSS is a small CSS component library or "framework"
+				that aims to provide good enough styling when just dropped into an
+				existing website along with a collection of opt-in styles and
+				utility components.
+			</p>
+		</section>
+		<section id="features">
+			<h2><a href="#features">Features</a></h2>
+			<ul class="big">
+				<li> <strong>Modular.</strong> Use it all, or just one module.
+				<li> <strong>Small.</strong> (insert size at some point) <span class="secondary small badge">Fixme</span>
+				<li> <strong>Pretty.</strong> Admittedly subjective, but I like it. <span class="secondary small badge">Rephrase!</span>
+				<li> <strong>Hackable.</strong> Built with customisation in mind. Resilient to overrides.
+				<li> <strong>Vanilla.</strong> No pre-processor needed; not even for theming.
+			</ul>
+		</section>
+
+		<section id="getting-started">
+			<h2><a href='#getting-started'>Getting Started</a></h2>
+			<p>
+				DarkWiiPlayer/CSS is a collection of plain CSS files that can
+				easily be loaded from a CDN or served directly without any
+				compilation or pre-processing steps.
+			</p>
+
+			<h3>Import from CDN</h3>
+			<pre><code>
+@import
+	url('https://cdn.jsdelivr.net/gh/darkwiiplayer/css@main/all.css')
+	layer(framework);
+@import
+	url('https://cdn.jsdelivr.net/gh/darkwiiplayer/css@main/schemes/talia.css')
+	layer(theme);
+			</code></pre>
+			<p>
+				Or serve the files yourself from a git submodule
+			</p>
+			<h3>Clone into your project</h3>
+			<pre><code>
+git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
+			</code></pre>
+			<vertical-spacer></vertical-spacer>
+
+			<div class="info box">
+				<floating-action-button top right>
+					<span class="badge">Warning</span>
+				</floating-action-button>
+				<strong>Layers</strong>
+				<p>
+					The <code>all.css</code> file makes use of import statements
+					with layers, which have less than ideal support in some CSS
+					preprocessors. If something is broken, check that any bundled
+					CSS is actually importing the files correctly.
+				</p>
+			</div>
+		</section>
+
+		<section id="layout">
+			<h2><a href="#layout">Layout</a></h2>
+			<section id="flex">
+				<h3><a href="#flex">Flex Containers</a></h3>
+				<p>
+					Simple flex containers can be created using the
+					<code>&lt;flex-column&gt;</code> and <code>&lt;flex-grid&gt;</code>
+					custom elements.
+				</p>
+				<ul>
+					<li> The <code>gap</code> attribute can be used to set the
+						CSS gap attribute on the container to space items.
+					<li> The <code>reverse</code> attribute, when present,
+						reverses the flow of the flex items.
+					<li> The <code>break</code> attribute controls the minimum
+						<strong>viewport width</strong> below which a
+						<code>flex-row</code> will turn into a column.
+					<li> Refer to
+						<a href="layout/flex.css"><code>flex.css</code></a>
+						for possible values of these attributes.
+				</ul>
+				<h4>Row</h4>
+				<p>Use <code>flex-row</code> to arrange items horizontally.</p>
+				<html-showcase>
+					<flex-row wrap gap=2>
+						<div class="blob">1</div>
+						<div class="blob">2</div>
+						<div class="blob">3</div>
+						<div class="blob">4</div>
+						<div class="blob">5</div>
+					</flex-row>
+				</html-showcase>
+				<h4>Column</h4>
+				<p>Use <code>flex-column</code> to arrage items vertically in a column.</p>
+				<html-showcase>
+					<flex-column center gap=1>
+						<div class="blob">1</div>
+						<div class="blob">2</div>
+						<div class="blob">3</div>
+					</flex-column>
+				</html-showcase>
+				<h4>Flex-Grid</h4>
+				<p>
+					Use <code>flex-grid</code> to arrange items into a grid using <code>display: flex</code>.
+					<br>
+					This allows for a more out-of-the-box responsiveness than the
+					more specialised <code>display: grid</code> used in the <code>grid-box</code> element.
+					<br>
+					Use this element when you want to keep column-<strong>width</strong> consistent across resolutions.
+					<code>grid-box</code> element.
+					<ul>
+						<li> The <code>columns</code> attribute describes the target column count at a reference width.
+							<ul>
+								<li> The value <code>6@1920</code>, for example, means that at 1920px available space, the grid should have 6 columns.
+								<li> The value <code>3@content</code> means that at the default width of an <code>&lt;article&gt;</code> the grid should have 3 columns.
+							</ul>
+						<li> <code>gap</code> acts the same as with the other flex and grid layours.
+						<li> The <code>--column-width</code> can be used to specify a fixed column width.
+					</ul>
+				</p>
+				<html-showcase>
+					<flex-grid gap=1 columns=5@content>
+						<div><span class="blob-1">1</span></div>
+						<div><span class="blob-2">2</span></div>
+						<div><span class="blob-3">3</span></div>
+						<div><span class="blob-4">4</span></div>
+						<div><span class="blob-5">5</span></div>
+						<div><span class="blob-6">6</span></div>
+						<div><span class="blob-7">7</span></div>
+						<div><span class="blob-8">8</span></div>
+						<div><span class="blob-9">9</span></div>
+					</flex-grid>
+				</html-showcase>
+			</section>
+
+			<section id="grid">
+				<h3><a href="#grid">Grid Containers</a></h3>
+				<section>
+					<p>
+						Use <code>&lt;grid-box&gt;</code> to create native CSS grids with <code>display: grid</code>.
+						<br>
+						Use this element when you want to keep column-<strong>count</strong> consistent across resolutions.
+					</p>
+					<ul>
+						<li> The <code>columns</code> attribute sets a fixed number of columns for the grid.
+						<li> The <code>gap</code> attribute works exactly like for flex containers.
+						<li> The <code>break</code> attribute works like for <code>flex-grid</code>s.
+					</ul>
+					<vertical-spacer></vertical-spacer>
+					<html-showcase>
+						<grid-box center columns=4 gap=1 break=mobile>
+							<div class="blob">1</div>
+							<div class="blob">2</div>
+							<div class="blob">3</div>
+							<div class="blob">4</div>
+							<div class="blob">5</div>
+							<div class="blob">6</div>
+						</grid-box>
+					</html-showcase>
+					<div class="info box">
+						<floating-action-button top right><span class="badge">Warning</span></floating-action-button>
+						<p>
+							Native CSS grids are relatively static in their layout and
+							not as suited to generic responsive layouts. For grids with
+							dynamic column counts, use
+							<a href="#flex-grid"><code>flex-grid</code></a>
+							instead.
+						</p>
+					</div>
+				</section>
+			</section>
+
+			<section id="layout-helpers">
+				<h3><a href="#layout-helpers">Layout Helpers</a></h3>
+
+				<ul>
+					<li><b>Only Mobile</b>: The <code>only-mobile</code> custom element and the <code>.only-mobile</code> class will hide an element on dipsplays <strong>wider than 500px</strong></li>
+					<li><b>No Mobile</b>: Similarly, the <code>no-mobile</code> element and class hide elements below this resolution.</li>
+					<li><b>No Desktop</b>: The element and class <code>no-desktop</code> hide elements at screen widths <strong>above 1500px</strong>.</li>
+					<li><b>Only Desktop</b>: The <code>only-desktop</code> class and element are hidden at any smaller screen-width.</li>
+					<li><b>Only Portrait</b>: The <code>only-portrait</code> class and element are hidden in landscape aspect ratio.</li>
+					<li><b>Only Landscape</b>: Likewise, <code>only-landscape</code> are hidden in portrait aspect ratio.</li>
+					<vertical-spacer></vertical-spacer>
+					<li><b>Full Width</b>: The <code>.full-width</code> class sets an elements <code>width</code> to 100%.</li>
+					<vertical-spacer></vertical-spacer>
+					<li><b>Vertical overflow</b>: The classes <code>.scroll-x</code> and <code>.hidden-x</code> set the <code>overflow-x</code> attribute of the element.</li>
+					<li><b>Horizontal overflow</b>: The classes <code>.scroll-y</code> and <code>.hidden-y</code> set the <code>overflow-y</code> attribute of the element.</li>
+					<li><b>Rounded Corners</b>: The <code>.round</code> class sets an elements <code>border-radius</code> to the <code>--border-radius</code> variable.</li>
+				</ul>
+			</section>
+		</section>
+
+		<section id="components">
+			<h2><a href="#components">Components</a></h2>
+			<section id="badge">
+				<h3><a href="#badge">Badge</a></h3>
+				<p>
+					<span class="badge">Badges</span> are a generic way of adding short (usually one-word) tags to other elements.<br>
+					They are colourful and attract attention, and should be used carefully and sparingly.<br>
+					Use them to display informationt hat might be of priority to a user next to the element this hint applies to.
+				</p>
+
+				<h4>Usage examples</h4>
+
+				<p>Counter next to the name of some entity</p>
+				<html-showcase class="floating box">
+					Users <span class="small badge">315</span>
+				</html-showcase>
+				<p>Listing tags</p>
+				<html-showcase class="floating box">
+					<b>An Article about CSS</b>
+					<div>
+						Tags:
+						<span class="badge">#Beginner</span>
+						<span class="badge secondary">#Tutorial</span>
+						<span class="badge contrast">#CSS</span>
+					</div>
+				</html-showcase>
+			</section>
+
+			<section id="blob">
+				<h3><a href="#blob">Blob</a></h3>
+				<p>
+					The <code>.blob</code> utility class makes an element blob-shaped and fixes is aspect-ratio to <code>1 / 1</code>.
+				</p>
+				<html-showcase class="floating box">
+					<div class="blob"></div>
+				</html-showcase>
+				<p>
+					There are 9 different blob-shapes which will be picked based on the element's child count inside its parent element.
+					To manually set the shape of a blob, the classes <var>.blob-1</var> through <var>.blob-9</var> are available.
+					The CSS file also exposes the <var>--blob-1</var> through <var>--blob-9</var> custom properties which can be used in an elements <var>border-radius</var> property to make it blob-shaped.
+				</p>
+			</section>
+
+			<section id="box">
+				<style>.inline.box { padding: .3em .4em; }</style>
+				<h3><a href="#box">Box</a></h3>
+				<p>
+					Boxes are the main generic container element.
+					By default they appear <span class="inline box">inset</span> into the document.
+					This can be changed by also adding the <var>floating</var> class which will <span class="floating inline box">elevate</span> the box from the document.
+				</p>
+				<p>
+					Boxes can also have a <span class="inline info box">coloured bar</span> at their right edge to make them more attention seeking and help distinguish them vertically from their surrounding content.
+				</p>
+				<p>
+					Boxes also take their corner radius from the <var>--corner-radius</var> variable.
+				</p>
+				<html-showcase>
+					<div class="box">
+						Content in a box
+					</div>
+				</html-showcase>
+				<html-showcase>
+					<div class="floating box" style="--stripe-width: .3em; --stripe-color: rebeccapurple;">
+						Content in a box
+					</div>
+				</html-showcase>
+			</section>
+
+			<section id="button">
+				<h3><a href="#button">Button</a></h3>
+				<p>
+					Buttons, button-like input elements and anchors (links) with the <var>button</var> class all have the same styling.
+				</p>
+				<html-showcase>
+					<button>Click Me!</button>
+				</html-showcase>
+				<p>
+					Buttons can be grouped using the <code>button-group</code> custom element
+				</p>
+				<html-showcase>
+					<button-group>
+						<button>Click Me!</button>
+						<button>Or me!</button>
+						<button>Or how about me?</button>
+					</button-group>
+				</html-showcase>
+			</section>
+
+			<section id="card">
+				<h3><a href="#card">Card</a></h3>
+				<p>
+					Like boxes, cards are a generic container for website content.
+					They act as containers so their contents will not overflow and have no effect on their width.
+					They are flashier than boxes and less suitable for large amounts of text and should be used more sparingly to draw attention to more important items.
+				</p>
+				<p>
+					Images have negtive padding applied to ignore the card's horizontal padding, and if they are the first or last child, they also ignore the top or bottom padding respectively.
+				</p>
+				<html-showcase>
+					<flex-row break="desktop">
+						<item-card style="width: 20em">
+							<img src="https://picsum.photos/600/300?random=ksjfh"></img>
+							<p>This is a card representing some item among many.</p>
+						</item-card>
+						<item-card style="width: 20em">
+							<img src="https://picsum.photos/600/300?random=kfjbh"></img>
+							<p>Cards could represent users, products, features, etc.</p>
+						</item-card>
+						<item-card style="width: 20em">
+							<img src="https://picsum.photos/600/300?random=kwhah"></img>
+							<p>They draw more attention than other elements, specially if they have images.</p>
+						</item-card>
+					</flex-row>
+				</html-showcase>
+				<div class="info box">
+					<p>
+						<span class="badge">TODO</span>
+						Script-controller drawers are not currently supported.
+					</p>
+				</div>
+			</section>
+
+			<section id="info-columns">
+				<h3><a href="#info-columns">Info Columns Component</a></h3>
+				<html-showcase class="no-number">
+					<info-columns style="height: 40vh">
+						<section tabindex="0">
+							<img src="https://picsum.photos/1200/1200?random=1">
+							<when-small>
+								<h2>Cool Column</h2>
+							</when-small>
+							<when-large>
+								<h2>Multi-Column Component</h2>
+								<p>Present different pieces of information in a multi-column layout where hovering over a column reveals more detailed information.</p>
+							</when-large>
+						</section>
+						<section tabindex="0">
+							<img src="https://picsum.photos/1200/1200?random=2">
+							<when-small>
+								<h2>Cool Information</h2>
+							</when-small>
+							<when-large>
+								<h2>Expands for extra space</h2>
+								<p>So you can fit all the important information you need on each column.</p>
+								<p>Because images and slogans work best when you can back them up with facts.</p>
+							</when-large>
+						</section>
+						<section tabindex="0">
+							<img src="https://picsum.photos/1200/1200?random=3">
+							<when-small>
+								<h2>Cool Website</h2>
+							</when-small>
+							<when-large>
+								<h2>Cool Component for a Cool Site</h2>
+								<p>Use it to capture the user's attention in the first few seconds after opening your page.</p>
+							</when-large>
+						</section>
+					</info-columns>
+				</html-showcase>
+			</section>
+
+			<section id="drawer">
+				<h3><a href="#drawer">Drawer</a></h3>
+				<p>
+					Drawer elements are used to hide content from the page like a navigation menu.
+				</p>
+				<html-showcase>
+					<details>
+						<summary>
+							<a class="button">Open</a>
+						</summary>
+						<drawer-box>
+							<p class="box">
+								Click anywhere outside the drawer to cose it again.
+							</p>
+						</drawer-box>
+					</details>
+				</html-showcase>
+				<div class="info box">
+					<p>
+						<span class="badge">TODO</span>
+						Script-controller drawers are not currently supported.
+					</p>
+				</div>
+			</section>
+
+			<section id="fab">
+				<h3><a href="#fab">Floating Action Button</a></h3>
+				<p>
+					The <code>floating-action-button</code> custom element can be used to position an element in one of the corners of its parent element.
+					The button itself will still have to be styled separately though.
+				</p>
+				<html-showcase>
+					<div class="box">
+						<p>Content in a box, button in the bottom right.</p>
+						<floating-action-button bottom right>
+							<button class="circle">
+								F
+							</button>
+						</floating-action-button>
+						<vertical-spacer triple></vertical-spacer>
+					</div>
+				</html-showcase>
+			</section>
+
+			<section id="header">
+				<h3><a href="#header">Header</a></h3>
+				<p>
+					Headers are rendered as a full-width horizontal bar.
+					The height is statically set to <var>--header-height</var> which defaults to <code>4rem</code>.
+				</p>
+				<p>
+					A header can be made sticky by applying the <code>.sticky</code> class to it, which will also give it a Z-index of 10.
+				</p>
+				<p>
+					Documents with a sticky header automatically have their scroll-padding set to the <var>--header-height</var> property,
+					but this only works in browsers that support <code>:has()</code> selectors.
+					The utility class <code>.sticky-header-scroll-padding</code> can be used to add this manually, ensuring compatibility with other browsers.
+				</p>
+			</section>
+
+			<section id="hero">
+				<h3><a href="#hero">Hero</a></h3>
+				<p>
+					The <code>page-hero</code> custom element is a large, full-width box at the beginning of the page.
+				</p>
+				<p>
+					Items in the hero section are arranged as a centered column.
+					Items are centered vertically and horizontally.
+					A single image that's the first child element of the hero section will be displayed as a background image to the box.
+				</p>
+				<p>
+					The minimum height of the page hero can be adjusted using the <var>cover</var> attribute,
+					which currently supports values in % of screen height from 40 to 100 in steps of 10.
+					Developers should generally aim to keep content within this range and avoid growing the hero beyond its intended size.
+				</p>
+				<p>
+					A special rule makes <em>full-height</em> hero elements <em>preceded</em> by a header shorter by the value of <var>--header-height</var> to ensure that both elements combined will cover the sreen entirely.
+				</p>
+				<p>
+					Please note that this element only provides a good baseline for a generic hero section.
+					It does not cover (nor could it) any more elaborate design, but should still provide a good foundation to add more interesting styling on top of.
+				</p>
+			</section>
+
+			<section id="lists">
+				<h3><a href="#lists">Lists</a></h3>
+				<grid-box break=mobile gap=1 columns=2>
+					<div>
+						<h4>Ordered</h4>
+						<html-showcase>
+							<ol>
+								<li>First list item</li>
+								<li>Second item on the list</li>
+								<li>Third thing being listed</li>
+							</ol>
+						</html-showcase>
+					</div>
+					<div>
+						<h4>Unordered</h4>
+						<html-showcase>
+							<ul>
+								<li>First list item</li>
+								<li>Second item on the list</li>
+								<li>Third thing being listed</li>
+							</ul>
+						</html-showcase>
+					</div>
+				</grid-box>
+			</section>
+
+			<section id="navigation">
+				<h3><a href="#navigation">Navigation</a></h3>
+				<p class="contrast info box">
+					<span class="badge">Warning</span>
+					Until native CSS scoping becomes available in browsers, it is near-impossible to reliably style nested navigations without writing insanely unmaintainable code.
+					As soon as this feature becomes available and somewhat widely supported, most of this framework will be updated to use it, but until then, nested nav elements might behave a bit weird.
+				</p>
+
+				<html-showcase class="floating box">
+					<nav>
+						<ul>
+							<li> <a href="#navigation">Foo</a>
+							<li> <a href="#navigation" class="active">Bar</a>
+							<li> <a href="#navigation">Baz</a>
+						</ul>
+					</nav>
+				</html-showcase>
+
+				<section id="breadcrumbs">
+					<h4><a href="#breadcrumbs">Breadcrumbs</a></h4>
+					<p>
+						Navigation breadcrumbs provide a way for displaying the users current location in a document hierarchy.
+					</p>
+					<html-showcase class="floating box">
+						<nav class="breadcrumbs">
+							<ul>
+								<li><a href="#breadcrumbs">DarkWiiPlayer</a></li>
+								<li><a href="#breadcrumbs">CSS</a></li>
+								<li class="active"><a href="#breadcrumbs">Documentation</a></li>
+							</ul>
+						</nav>
+					</html-showcase>
+				</section>
+
+				<section id="navbar">
+					<h4><a href="#navbar">Navbar</a></h4>
+					<p>
+						Navigation bars are horizontally arranged navigation items usually put in a header.
+					</p>
+					<html-showcase class="floating box">
+						<nav class="bar">
+							<ul>
+								<li> <a href="#navbar">Foo</a>
+								<li> <a href="#navbar">Bar</a>
+								<li> <a href="#navbar">Baz</a>
+							</ul>
+						</nav>
+					</html-showcase>
+					<html-showcase class="floating box">
+						<nav class="bar underlined overlined">
+							<ul>
+								<li> <a href="#navbar">Foo</a>
+								<li> <a href="#navbar">Bar</a>
+								<li> <a href="#navbar">Baz</a>
+							</ul>
+						</nav>
+					</html-showcase>
+				</section>
+			</section>
+
+			<section id="spacers">
+				<h3><a href="#spacers">Spacers</a></h3>
+				<p>
+					Vertical and Horizontal spacing can be added where needed using the <code>vertical-spacer</code> and <code>horizontal-spacer</code> custom elements.
+					Adding the attributes <code>double</code>, <code>triple</code> and <code>quadruple</code> increases the spacing.
+				</p>
+			</section>
+
+			<section id="tables">
+				<h3><a href="#tables">Tables</a></h3>
+				<p>
+					Basic HTML tables work out of the box.
+				</p>
+				<html-showcase class="box">
+					<table>
+						<thead>
+							<tr><th>Greeting</th><th>Name</th></tr>
+						</thead>
+						<tr><td>Hello</td><td>World</td></tr>
+						<tr><td>Greetings</td><td>Internet</td></tr>
+					</table>
+				</html-showcase>
+				<p>
+					Vertical tables also work
+				</p>
+				<html-showcase class="box">
+					<table borders="">
+						<tr><th scope=row>Name</th><td>Talia</td></tr>
+						<tr><th scope=row>Hobbies</th><td>Writing CSS</td></tr>
+					</table>
+				</html-showcase>
+				<p>
+					Lines can be added with the <code>borders</code> attribute:
+					<ul>
+						<li> <code>horizontal</code> adds horizontal ilnes
+						<li> <code>vertical</code> adds vertical ilnes
+						<li> <code>outline</code> adds a border around the table
+					</ul>
+					When the attribute is missing entirely, horizontal borders will be used.
+				</p>
+
+				<p>
+					Tables without horizontal lines will have every second row slightly lightened/darkened for easier reading.
+					This can be enabled explicitly by setting the <code>alternate</code> attribute to <code>rows</code>
+					and disabled by setting it to anything else (including the empty string).
+				</p>
+
+				<grid-box tab-size=2 gap=1 columns=2 break="mobile">
+					<flex-column class="box">
+						<table borders="vertical">
+							<thead>
+								<tr><th>Greeting</th><th>Name</th></tr>
+							</thead>
+							<tr><td>Hello</td><td>World</td></tr>
+							<tr><td>Greetings</td><td>Internet</td></tr>
+						</table>
+					</flex-column>
+
+					<flex-column class="box">
+						<table borders="horizontal">
+							<thead>
+								<tr><th>Greeting</th><th>Name</th></tr>
+							</thead>
+							<tr><td>Hello</td><td>World</td></tr>
+							<tr><td>Greetings</td><td>Internet</td></tr>
+						</table>
+					</flex-column>
+
+					<flex-column class="box">
+						<table borders="outline" alternate="">
+							<thead>
+								<tr><th>Greeting</th><th>Name</th></tr>
+							</thead>
+							<tr><td>Hello</td><td>World</td></tr>
+							<tr><td>Greetings</td><td>Internet</td></tr>
+						</table>
+					</flex-column>
+
+					<flex-column class="box">
+						<table borders="horizontal vertical outline">
+							<thead>
+								<tr><th>Greeting</th><th>Name</th></tr>
+							</thead>
+							<tr><td>Hello</td><td>World</td></tr>
+							<tr><td>Greetings</td><td>Internet</td></tr>
+						</table>
+					</flex-column>
+				</grid-box>
+			</section>
+
+			<section id="builtins">
+				<h3><a href="#builtins">Other built-in elements</a></h3>
+				<p>
+					Many other common HTML elements have received smaller styling changes.
+				</p>
+
+				<section id="code">
+					<h4><a href="#code">Code</a></h4>
+					<pre>
+						<code>Hello, World!</code>
+					</pre>
+				</section>
+
+				<section id="details">
+					<h4><a href="#details">Details</a></h4>
+
+					<html-showcase>
+						<details class="box">
+							<summary class="dim-open">Summary of the subject</summary>
+							<p>
+								Further explanation on the subject.
+							</p>
+						</details>
+					</html-showcase>
+
+					<p>
+						The <code>dim-open</code> class will become
+						transparent when the surrounding details element is opened.
+						Put this on a span to prevent the indicator from becoming transparent too.
+					</p>
+
+					<p>
+						With "slidy" <code>details</code> elements,
+						the indicator slides down to guide the user's attention
+						to the beginning of the revealed content.
+					</p>
+
+					<p class="secondary info box">
+						"Slidy" has limited <a href="https://caniuse.com/css-cascade-scope">support</a> due to <code>@scope</code> usage.
+					</p>
+
+					<html-showcase>
+						<details dim class="slidy">
+							<summary><span class="dim-open">Slidy?</span></summary>
+							<p>
+								Read this!
+							</p>
+						</details>
+					</html-showcase>
+				</section>
+
+				<section id="quotes">
+					<h4><a href="#quotes">Quotes</a></h4>
+					<html-showcase>
+						<p>This is a paragraph with an <q>inline quote</q>.</p>
+					</html-showcase>
+					<html-showcase>
+						<p>As a very dumb person once said:</p>
+						<blockquote>
+							<p>This is a longer quote with a citation at the bottom.</p>
+							<cite>Me, just now</cite>
+						</blockquote>
+					</html-showcase>
+				</section>
+			</section>
+		</section>
+
+		<section id="forms">
+			<h2><a href="#forms">Forms</a></h2>
+
+			<style>
+				mark.focus-like {
+					color: var(--color-text);
+					background: none;
+					border: .1rem solid var(--color);
+					outline: .2rem solid var(--color-focus);
+					border-radius: var(--corner-radius);
+				}
+			</style>
+			<p>
+				Forms &amp; form elements work out of the box and support tab navigation by <mark class="focus-like">highlighting</mark> focussed elements.
+			</p>
+
+			<vertical-spacer></vertical-spacer>
+
+			<code-smaple>
+				<form class="box secondary full-width">
+					<label>
+						<span>Name</span>
+						<input type="text" placeholder="Talia"></input>
+					</label>
+					<label>
+						<span>Email Address</span>
+						<input type="email" placeholder="talia@example.org"></input>
+					</label>
+					<label>
+						<span>Date of birth</span>
+						<input type="date"></input>
+					</label>
+					<hr>
+					<label>
+						<span>Password</span>
+						<input type="password"></input>
+					</label>
+					<div>
+						<label>
+							<input type="checkbox"></input>
+							<span>I have read nothing and accept even less</span>
+						</label>
+					</div>
+					<label>
+						<span>
+							Gender
+						</span>
+						<select>
+							<option>Male</opion>
+							<option>Female</opion>
+							<option>Come back with a warrant</opion>
+						</select>
+					</label>
+					<fieldset>
+						<legend>Size</legend>
+						<label>
+							<input name="size" type="radio"></input>
+							<span>Small</span>
+						</label>
+						<label>
+							<input name="size" type="radio"></input>
+							<span>Medium</span>
+						</label>
+						<label>
+							<input name="size" type="radio"></input>
+							<span>Big</span>
+						</label>
+						<hr>
+						<label>
+							<input type="checkbox"></input>
+							<span>With cheese</span>
+						</label>
+					</fieldset>
+				</form>
+			</code-smaple>
+
+			<vertical-spacer></vertical-spacer>
+			<div class="info box">
+				<floating-action-button top right>
+					<div class="badge">Hint</div>
+				</floating-action-button>
+				<p>You can use <code>flex-row</code> elements to break elements out of the two-column layout.</p>
+				<vertical-spacer double></vertical-spacer>
+				<code-smaple>
+					<form class="full-width box">
+						<label>
+							<span>First Input</span>
+							<input type="text"></input>
+						</label>
+						<label>
+							<span>Second Input</span>
+							<input type="text"></input>
+						</label>
+						<flex-row gap=1>
+							<input type="reset" class="left"></input>
+							<input type="submit" class="right"></input>
+						</flex-column>
+					</form>
+				</code-smaple>
+			</div>
+		</section>
+
+		<section id="typography">
+			<h2><a href='#typography'>Typography</a></h2>
+		</section>
+	</article>
+</html>

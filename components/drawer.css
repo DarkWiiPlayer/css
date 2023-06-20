@@ -1,0 +1,77 @@
+@layer drawer {
+	:root {
+		--drawer-animation: .5s;
+	}
+	@layer normal {
+		drawer-box {
+			--width: var(--drawer-width, min(60vw, 30em));
+			/* Placement */
+			position: fixed;
+			top: 0em;
+			height: 100vh;
+			width: var(--width);
+			overflow-x: hidden;
+			overflow-y: auto;
+			visibility: hidden;
+			z-index: 100;
+			right: 100vw;
+			margin: 0px;
+			/* Layout */
+			display: flex;
+			gap: 1em;
+			flex-flow: column;
+			/* Styling */
+			box-sizing: border-box;
+			padding: 2em 1em;
+			background: var(--background, white);
+			/* Animation */
+			transition:
+			right var(--drawer-animation),
+			visibility var(--drawer-animation) step-end;
+		}
+		drawer-box:is([open], details[open]>*) {
+			right: calc(100% - var(--width));
+			visibility: visible;
+			transition:
+			right var(--drawer-animation),
+			visibility var(--drawer-animation) step-start;
+		}
+		details>drawer-box { display: block; }
+		details:is(:has(>drawer-box), .drawer-wrapper) { all: unset; }
+		details:is(:has(>drawer-box), .drawer-wrapper) > summary {
+			all: unset;
+			cursor: pointer;
+		}
+		details[open]:is(:has(>drawer-box), .drawer-wrapper)>summary::after {
+			content: '';
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			left: 0;
+			z-index: 90;
+			background: #0004;
+			backdrop-filter: blur(2px);
+			cursor: initial;
+		}
+	}
+
+	@layer right {
+		drawer-box[right] {
+			/* Placement */
+			right: unset;
+			left: 100vw;
+			/* Animation */
+			transition:
+			left var(--drawer-animation),
+			visibility var(--drawer-animation) step-end;
+		}
+		drawer-box[right]:is([open], details[open]>*) {
+			right: unset;
+			left: calc(100% - var(--width));
+			transition:
+			left var(--drawer-animation),
+			visibility var(--drawer-animation) step-start;
+		}
+	}
+}

@@ -1,0 +1,58 @@
+@layer form {
+	form {
+		width: max-content;
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: .6em;
+		align-items: center;
+	}
+
+	form>.left { grid-column: 1 / 2; }
+	form>.right { grid-column: -2 / -1; }
+
+	form label {
+		display: flex;
+		gap: .5em;
+		align-items: middle;
+	}
+	form>label {
+		display: contents;
+	}
+	form>label>span:first-child {
+		text-align: right;
+	}
+	form>label>span:first-child::after {
+		content: ':'
+	}
+
+	form>:not(label) {
+		grid-column: 1 / -1;
+		margin: 0;
+	}
+	form>hr {
+		margin: .2em;
+	}
+
+	fieldset {
+		border: var(--border-width, .1em) solid var(--hr-color, #6662);
+		display: grid;
+		flex-flow: column;
+		gap: .6em;
+		padding: 1em;
+		grid-template-columns: auto 1fr;
+	}
+	fieldset>legend {
+		padding: 0 .4em;
+		opacity: .8;
+	}
+	fieldset:focus-within {
+		border-color: var(--color, orange);
+	}
+	fieldset>label {
+		display: contents;
+	}
+	fieldset>:not(label) {
+		grid-column: 1 / -1;
+	}
+	fieldset hr { margin: .4em 0em; }
+}

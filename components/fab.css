@@ -1,0 +1,46 @@
+@layer fab {
+	floating-action-button {
+		--spacing: .6em;
+		line-height: 1em;
+		position: absolute;
+		top: var(--spacing);
+		left: var(--spacing);
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		transition:
+			transform .5s,
+			opacity .5s;
+	}
+
+	floating-action-button.subtle {
+		opacity: .4;
+	}
+	floating-action-button.subtle:hover {
+		opacity: 1;
+	}
+
+	floating-action-button[bottom] {
+		top: unset;
+		bottom: var(--spacing);
+	}
+
+	floating-action-button[right] {
+		left: unset;
+		right: var(--spacing);
+	}
+
+	floating-action-button[hidden] {
+		opacity: 0;
+		transform: rotate(120deg) scale(0.4);
+	}
+
+	floating-action-button[spacing="0"] { --spacing: 0em; }
+	floating-action-button[spacing="1"] { --spacing: 1em; }
+	floating-action-button[spacing="2"] { --spacing: 2em; }
+	floating-action-button[spacing="3"] { --spacing: 3em; }
+
+	floating-action-button[fixed] { position: fixed; }
+}

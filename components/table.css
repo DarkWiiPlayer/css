@@ -1,0 +1,66 @@
+@layer table {
+	table {
+		all: unset;
+		--border: var(--border-width, .1em) solid var(--color, orange);
+		box-sizing: border-box;
+		border-collapse: collapse;
+		display: table;
+	}
+
+	table > caption {
+		padding: 1em 0;
+		opacity: .6;
+		line-height: 1.8em;
+	}
+
+	td, th {
+		padding: .6em .8em;
+	}
+
+	thead, tfoot {
+		color: white;
+		background: var(--color, orange);
+		text-shadow: .12em .16em .16em #0008;
+	}
+
+	th {
+		font-weight: bold;
+	}
+
+	th[scope="row"]:first-child {
+		text-align: right;
+	}
+
+	table:is([borders~="horizontal"], :not([borders])) tbody > tr:not(:last-child) {
+		border-bottom: var(--border);
+	}
+
+	table[borders~="vertical"] > tbody :is(td, th):not(:last-child) {
+		border-right: var(--border);
+	}
+
+	table[borders~="outline"] {
+		outline: var(--border);
+	}
+
+	table[borders~="outline"][borders~="vertical"] > :is(thead, tfoot) :is(td, th):not(:last-child) {
+		border-right: var(--border);
+	}
+
+	table[borders~="outline"][borders~="horizontal"] > :is(thead, tfoot):not(:last-child) {
+		border-bottom: var(--border);
+	}
+
+	/* No fucking clue how to make this work with borders */
+	/* Seems like tables just don't accept border-radius because of the border-collapse shenanigans */
+	table:not([borders~="outline"]) thead tr:not(tr ~ *) th:first-child { border-top-left-radius: var(--corner-radius); }
+	table:not([borders~="outline"]) thead tr:not(tr ~ *) th:last-child { border-top-right-radius: var(--corner-radius); }
+
+	/* TODO: @scope (table:is(...)) to (table) */
+	table:is(:not([borders~="horizontal"], :not([borders])):is(:not([alternate]), [alternate~="rows"]), [alternate~="rows"])>*>tr:nth-child(2n) {
+		background: var(--table-2n, #6661);
+	}
+	table[alternate~="columns"]>*>tr>td:nth-child(2n) {
+		background: var(--table-2n, #6661);
+	}
+}

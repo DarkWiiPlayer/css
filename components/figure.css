@@ -1,0 +1,16 @@
+@layer figure {
+	figure {
+		--padding: .6em;
+		padding: var(--padding);
+		border-radius: var(--corner-radius, 0px);
+		border: var(--hr-color, #6662) solid var(--border-width, .1em);
+		display: grid;
+		gap: var(--padding);
+	}
+
+	figure img {
+		width: 100%;
+		max-height: 60vh;
+		object-fit: contain;
+	}
+}

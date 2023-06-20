@@ -1,0 +1,196 @@
+@layer typography {
+	/* GLOBAL */
+
+	:root {
+		font-family: sans-serif;
+		line-height: 1.4em;
+	}
+
+	@media (max-width: 60rem) {
+		:root {
+			font-size: 0.8em;
+		}
+	}
+
+	@media (max-width: 40rem) {
+		:root {
+			font-size: 0.6em;
+		}
+	}
+
+	/* MARKUP ELEMENTS */
+
+	b, strong, .b { font-weight: bold; }
+	i, em, .i { font-style: italic; }
+	dfn { font-style: italic; }
+	u, .u { text-decoration: underline; }
+	del, .del { text-decoration: line-through }
+	ins, .ins { font-style: italic; }
+	mark, .mark { color: white; background: var(--color); padding: .2em .1em; line-height: 1.6em; }
+	sub, .sub { vertical-align: sub; font-size: smaller; }
+	sup, .sup { vertical-align: sup; font-size: smaller; }
+	small, .small { font-size: .8em; }
+	/* This element is deprecated */
+	big, .big { font-size: 1.2em; }
+
+	@layer headings {
+		h1 { font-size: 2.2em }
+		h2 { font-size: 2.0em }
+		h3 { font-size: 1.8em }
+		h4 { font-size: 1.6em }
+		h5 { font-size: 1.4em }
+		h6 { font-size: 1.2em }
+
+		h1, h2, h3, h4, h5, h6 {
+			letter-spacing: .04em; line-height: 1.2em;
+			position: relative;
+		}
+
+		/* If only nesting was a thing yet */
+		h1, h2, h3, h4, h5, h6 {
+			&:where(:not(:first-child)) {
+				margin-top: 1em;
+			}
+			&:where(:not(:last-child)) {
+				margin-bottom: .4em;
+			}
+			&:is(hgroup>*) {
+				margin: 0;
+			}
+		}
+
+		form h1 { font-size: 1.6em; }
+		form h2 { font-size: 1.5em; }
+		form h3 { font-size: 1.4em; }
+		form h4 { font-size: 1.3em; }
+		form h5 { font-size: 1.2em; }
+		form h6 { font-size: 1.1em; }
+
+		@layer numbering {
+			article { counter-set: h1 h2 h3 h4 h5 h6 }
+			article h1::before { counter-increment: h1; counter-set: h2 h3 h4 h5 h6 }
+			article h2::before { counter-increment: h2; counter-set: h3 h4 h5 h6 }
+			article h3::before { counter-increment: h3; counter-set: h4 h5 h6 }
+			article h4::before { counter-increment: h4; counter-set: h5 h6 }
+			article h5::before { counter-increment: h5; counter-set: h6 }
+			article h6::before { counter-increment: h6; }
+
+			article :is(h2, h3, h4, h5, h6)::before {
+				--padding: .8rem;
+				margin-right: var(--padding);
+				display: none;
+				opacity: .6;
+				color: var(--color, orange);
+				font-size: .8em;
+			}
+			article :is(h2, h3, h4, h5, h6):hover::before {
+				opacity: 1;
+			}
+
+			/* --content-width + a bit */
+			/* This sadly has to be hard-coded :( */
+			@media (min-width: 74em) {
+				article :is(h2, h3, h4, h5, h6)::before {
+					position: absolute;
+					bottom: -.1em;
+					width: 5em;
+					left: calc(-5em - var(--padding));
+					text-align: right;
+				}
+			}
+
+			article
+			:is(h2, h3, h4):not(.skip-number)::before { display: inline-block; }
+
+			article h2::before { content: counter(h2) "."; }
+			article h3::before { content: counter(h2) "." counter(h3) "."; }
+			article h4::before { content: counter(h2) "." counter(h3) "." counter(h4) "."; }
+			article h5::before { content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "."; }
+			article h6::before { content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) "."; }
+		}
+
+		@layer numbering-override {
+			:is(h2, h3, h4, h5, h6):is(
+				/* Disable numbering inside certain containers */
+				:is(flex-row, flex-column, flex-grid, grid-box) *,
+				/* Disable numbering manually */
+				.no-number, :is(no-number, .no-number) *
+			)::before { display: none; }
+		}
+	}
+
+	/* MAIN */
+
+	main {
+		padding-bottom: 2rem;
+	}
+
+	/* ARTICLE */
+
+	@layer base {
+		article {
+			margin-left: auto;
+			margin-right: auto;
+
+			font-size: 1.2rem;
+		}
+
+		article p {
+			line-height: 1.6em;
+		}
+	}
+
+	/* PARAGRAPHS */
+
+	@layer base {
+		p { line-height: 1.4em; }
+
+		p ~ :not(p) { margin-top: 1em; }
+
+		p:not(:first-child) {
+			margin-top: 1em;
+		}
+	}
+
+	/* INDENTATION */
+
+	* { tab-size: inherit; }
+	:root { tab-size: 4; }
+	[tab-size="2"] { tab-size: 2; }
+	[tab-size="3"] { tab-size: 3; }
+	[tab-size="4"] { tab-size: 4; }
+	[tab-size="8"] { tab-size: 8; }
+
+	@layer content {
+		:root {
+			--content-width: min(60rem, calc(100vw - 4rem));
+		}
+
+		:is(article, .content-width, content-width) {
+			max-width: var(--content-width);
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		section + section { margin-top: 3em; }
+		p + section { margin-top: 2em; }
+
+		article img {
+			max-width: var(--content-width);
+		}
+	}
+
+	/* OTHER BLOCK ELEMENT MARGINS */
+
+	@layer base {
+		:is(details, figure, pre):not(:first-child) {
+			margin-top: 1.2em;
+		}
+	}
+
+	@layer override {
+		details :is(:first-child:not(summary), summary~p) {
+			margin-top: .4rem;
+		}
+	}
+}

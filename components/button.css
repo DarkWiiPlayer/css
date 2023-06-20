@@ -1,0 +1,126 @@
+@layer button {
+	@layer base {
+		:is(
+			a.button,
+			button,
+			input[type="button"],
+			input[type="submit"],
+			input[type="reset"]
+		) {
+			all: unset;
+			text-decoration: none;
+
+			/* Positioning */
+
+			display: inline-block;
+			flex: max-content;
+
+			/* Layout */
+
+			--v-padding: .8em;
+			padding: .6em var(--v-padding);
+			text-align: center;
+
+			/* Styling */
+
+			--border: var(--button-border, max(2pt, .1em));
+			border: var(--border) solid var(--color, orange);
+			border-radius: var(--corner-radius, 0em);
+
+			cursor: pointer;
+
+			color: var(--color, orange);
+			font-weight: bold;
+			text-shadow: .04em .08em .14em #0002;
+
+			color: var(--color, orange);
+			background: transparent;
+
+			--duration: var(--transition-duration-hover, .2s);
+			transition:
+				background var(--duration),
+				border-color var(--duration),
+				color var(--duration),
+				filter var(--duration),
+				text-shadow var(--duration);
+			box-shadow: var(--button-shadow, .1em .2em .3em #0003);
+		}
+	}
+
+	:is(
+		a.button,
+		button,
+		input[type="button"],
+		input[type="submit"],
+		input[type="reset"]
+	):hover {
+		text-shadow: .1em .14em .2em #0004;
+		color: var(--color-contrast, white);
+		background: var(--color, orange);
+	}
+	:is(
+		a.button,
+		button,
+		input[type="button"],
+		input[type="submit"],
+		input[type="reset"]
+	):focus {
+		outline: .2em solid var(--color-focus, var(--color, orange));
+	}
+
+
+	@layer button-group {
+		button-group {
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: space-around;
+			width: max-content;
+			border-radius: var(--corner-radius, 0em);
+			box-shadow: var(--button-shadow, .1em .2em .3em #0003);
+		}
+
+		button-group>* {
+			box-shadow: none;
+		}
+
+		button-group>:is(
+			a.button,
+			button,
+			input[type="button"],
+			input[type="submit"],
+			input[type="reset"]
+		):nth-child(n+2) {
+			border-left-width: 0;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+
+		button-group>:is(
+			a.button,
+			button,
+			input[type="button"],
+			input[type="submit"],
+			input[type="reset"]
+		):nth-last-child(n+2) {
+			border-right-width: 0;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+	}
+
+	@layer button-disabled {
+		a.button:not([href]),
+		:is(
+			button,
+			input[type="button"],
+			input[type="submit"],
+			input[type="reset"]
+		)[disabled] {
+			cursor: unset;
+			text-shadow: none;
+			background: var(--color, orange);
+			filter: saturate(0%) opacity(0.6);
+			color: white;
+		}
+	}
+}

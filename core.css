@@ -1,0 +1,69 @@
+/* ============ */
+/* STYLE RESETS */
+/* ============ */
+
+@layer core {
+	:root, body {
+		scroll-behavior: smooth;
+	}
+
+	* {
+		/* Inherit all the things */
+		color: inherit;
+		font-family: inherit;
+		font-weight: inherit;
+		text-decoration: inherit;
+
+		/* Let the user do their own spacing */
+		padding: 0;
+		margin: 0;
+
+		/* This should be the default smh */
+		box-sizing: border-box;
+	}
+
+	p { margin: 0; }
+}
+
+:root {
+	--corner-radius: .5em;
+	--line-width: .3rem;
+}
+
+:root:not([color-scheme]), [color-scheme="light"] {
+	--color-scheme: light;
+	--color-text: black;
+	--background: #eee;
+	--background-float: #fff1;
+	--background-inset: #00000006;
+	--color: rebeccapurple;
+	--hr-color: #ccc;
+	background: var(--background);
+	color: var(--color-text);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([color-scheme]) {
+		--color-scheme: dark;
+		--color-text: white;
+		--color: rebeccapurple;
+		--background: #222;
+		--background-inset: #0002;
+		--background-float: #2221;
+		--hr-color: #333;
+		background: var(--background);
+		color: var(--color-text);
+	}
+}
+
+[color-scheme="dark"] {
+	--color-scheme: dark;
+	--color-text: white;
+	--color: color-mix(in hsl, rebeccapurple, 20% white);
+	--background: #111;
+	--background-inset: #0002;
+	--background-float: #2221;
+	--hr-color: #333;
+	background: var(--background);
+	color: var(--color-text);
+}

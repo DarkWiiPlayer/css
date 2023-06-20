@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en" class="sticky-header-scroll-padding">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<script type="module" src="https://cdn.jsdelivr.net/gh/darkwiiplayer/components@8c4fa3a/TypeWriter.js"></script>
+	<script>
+		if (localStorage?.getItem("color-scheme"))
+			document.documentElement.setAttribute("color-scheme", localStorage?.getItem("color-scheme"))
+	</script>
+	<script type="module">
+		import SchemeSwitcher from 'https://cdn.jsdelivr.net/gh/darkwiiplayer/components@0d56a57/ColorSchemeSwitcher.js'
+		customElements.define("scheme-switcher", SchemeSwitcher)
+	</script>
+
+	<script>
+		const scrollHook = () => {
+			document.body.setAttribute("scroll", window.scrollY)
+		}
+		window.addEventListener("scroll", scrollHook)
+		document.addEventListener("readystatechange", scrollHook)
+	</script>
+
+	<style>
+		@import url('all.css') layer(core);
+		/* @import url('schemes/talia.css') layer(theme); */
+	</style>
+
+	<header class="fixed">
+		<h1>DarkWiiPlayer/CSS</h1>
+		<nav class="underlined bar right" name="Navigation">
+			<ul>
+				<li> <a href="..">Back</a>
+				<li>
+					<scheme-switcher>
+						<button onclick="this.parentElement.toggle()">Theme</button>
+					</scheme-switcher>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<page-hero cover=100>
+		<img src="https://picsum.photos/1920/600" style="opacity: 0.2;"></img>
+		<hgroup style="width: 30em;">
+			<h1>DarkWiiPlayer/CSS <span class="small badge">New!</span></h1>
+			<p>A <type-writer loop>
+				<span><b style="color: purple">modular</b></span>
+				<template><b style="color: orange">flexible</b></template>
+				<template><b style="color: cornflowerblue">pretty ✨</b></template>
+				<template><b style="color: salmon">vanilla</b></template>
+				<template><b style="color: skyblue">hackable</b></template>
+			</type-writer> CSS framework / component library that does stuff lots of stuff so much stuff omg</p>
+			<p>
+				<a class="button" href="#content">
+					Call to action!
+				</a>
+			</p>
+		</hgroup>
+		<info-columns style="height: 40vh">
+			<section tabindex="0">
+				<img src="https://picsum.photos/1200/1200?random=1">
+				<when-small>
+					<h2>Cool Stuff</h2>
+				</when-small>
+				<when-large>
+					<p class="h2">This stuff is cool</p>
+					<p>The sleek design and vibrant colors of this gadget make it an instant favorite among tech-savvy enthusiasts worldwide instantly.</p>
+				</when-large>
+			</section>
+			<section tabindex="0">
+				<img src="https://picsum.photos/1200/1200?random=2">
+				<when-small>
+					<h2>Cool Stuff</h2>
+				</when-small>
+				<when-large>
+					<p class="h2">This stuff is cool</p>
+					<p>With its unique blend of style and functionality, this innovative product has captured the hearts of many young adults everywhere.</p>
+				</when-large>
+			</section>
+			<section tabindex="0">
+				<img src="https://picsum.photos/1200/1200?random=3">
+				<when-small>
+					<h2>Cool Stuff</h2>
+				</when-small>
+				<when-large>
+					<p class="h2">This stuff is cool</p>
+					<p>This extraordinary device boasts cutting-edge features that set a new standard for excellence in modern technology and innovation consistently.</p>
+				</when-large>
+			</section>
+			<section>
+				<img src="https://picsum.photos/1200/1200?random=4">
+				<when-small>
+					<h2>Cool Stuff</h2>
+				</when-small>
+				<when-large>
+					<p class="h2">This stuff is cool</p>
+					<p>The mesmerizing combination of form and function makes this remarkable item a must-have possession for anyone who values unique experiences.</p>
+				</when-large>
+			</section>
+			<section>
+				<img src="https://picsum.photos/1200/1200?random=5">
+				<when-small>
+					<h2>Cool Stuff</h2>
+				</when-small>
+				<when-large>
+					<p class="h2">This stuff is cool</p>
+					<p>This remarkable creation seamlessly integrates art and science to produce an unparalleled product that leaves onlookers awestruck with wonder always.</p>
+				</when-large>
+			</section>
+			<section>
+				<img src="https://picsum.photos/1200/1200?random=6">
+				<when-small>
+					<h2>Cool Stuff</h2>
+				</when-small>
+				<when-large>
+					<p class="h2">This stuff is cool</p>
+					<p>This remarkable creation seamlessly integrates art and science to produce an unparalleled product that leaves onlookers awestruck with wonder always.</p>
+				</when-large>
+			</section>
+		</info-columns>
+	</page-hero>
+
+	<main>
+		<no-desktop>
+			<nav class="breadcrumbs">
+				<ol>
+					<li><a href="https://darkwiiplayer.github.io/">DarkWiiPlayer</a>
+					<li><a href="https://darkwiiplayer.github.io/css">CSS</a>
+					<li class="active"><a>Playground</a>
+				</ol>
+			</nav>
+		</no-desktop>
+
+		<article id="content">
+			<h2>Introduction</h2>
+			<p>
+				Ladies and gentlemen, prepare to have your minds blown by the awe-inspiring innovation that is PiggieMigratePro™! It's not every day that you hear about a software solution that leverages the full potential of serverless block-chain technology to address the pressing issue of guinea pig transportation. But fret not, because we've cracked the code with this revolutionary solution that promises to change the game forever!
+			</p>
+
+			<p>
+				With PiggieMigratePro™, your guinea pigs are in for the most cutting-edge, efficient, and secure relocation experience of their lives. Our state-of-the-art blockchain network guarantees that every squeak, hop, and nibble is tracked with unmatched precision, ensuring the utmost safety and comfort for your fluffy friends. Gone are the days of uncertainty during guinea pig transfers!
+			</p>
+
+			<p>
+				But that's not all! PiggieMigratePro™ introduces a token-based reward system, where your guinea pigs earn "PiggyCoins" for their successful journeys. These blockchain-backed tokens can be traded within the global guinea pig community, making every relocation an exciting adventure for your beloved pets. Our serverless architecture ensures that these transactions are lightning-fast, so your guinea pigs can enjoy their new enclosures without delay.
+			</p>
+
+			<p>
+				In conclusion, PiggieMigratePro™ is not just a software solution; it's a testament to human ingenuity, a groundbreaking approach to guinea pig transport, and a game-changer in the world of blockchain-based pet logistics. Trust us, your guinea pigs will thank you for choosing the future of transport with PiggieMigratePro™!
+			</p>
+
+			<section>
+				<h3>Section</h3>
+				<p>
+					Est mollitia rerum doloremque ut minus est enim. Labore quidem vel similique. Animi eligendi sunt voluptatem quia ea cumque voluptates beatae. Reiciendis quas non ducimus velit amet exercitationem. Labore doloremque esse maiores vitae et nemo.<br>
+						Dignissimos <a href="#">architecto totam earum</a> ea magni est. Et officia doloribus vel. Voluptatem cumque expedita cupiditate molestias rem fuga omnis.
+				</p>
+				<p>
+					Et maxime et enim totam. Quo modi similique ducimus eos. Possimus fuga dolorem earum ipsum. Dolore sit nihil ipsa praesentium. Autem quas explicabo eos.<br>
+						Et maiores possimus sint laborum impedit non voluptas. Est mollitia sunt eos suscipit dolor sit. Et porro et enim saepe voluptas rerum voluptas. Harum et odit necessitatibus nihil qui beatae dicta.
+				</p>
+				<p>
+					Totam doloribus id aut voluptas necessitatibus consectetur. Sit occaecati id facilis eos. Eos molestiae ut tempore et alias id. Id aliquam quisquam natus et id asperiores. Placeat incidunt repellendus at hic quos autem.
+				</p>
+				<figure>
+					<img src="https://picsum.photos/1920/1080"></img>
+					<figcaption>A randomised free image from <a href="https://picsum.photos/">picsum.photos</a></figcaption>
+				</figure>
+			</section>
+
+			<h4>Lorem Ipsum</h4>
+			<p>
+				Est mollitia rerum doloremque ut minus est enim. Labore quidem vel similique. Animi eligendi sunt voluptatem quia ea cumque voluptates beatae. Reiciendis quas non ducimus velit amet exercitationem. Labore doloremque esse maiores vitae et nemo.<br>
+					Dignissimos <a href="#">architecto totam earum</a> ea magni est. Et officia doloribus vel. Voluptatem cumque expedita cupiditate molestias rem fuga omnis.
+			</p>
+			<p>
+				Et maxime et enim totam. Quo modi similique ducimus eos. Possimus fuga dolorem earum ipsum. Dolore sit nihil ipsa praesentium. Autem quas explicabo eos.<br>
+					Et maiores possimus sint laborum impedit non voluptas. Est mollitia sunt eos suscipit dolor sit. Et porro et enim saepe voluptas rerum voluptas. Harum et odit necessitatibus nihil qui beatae dicta.
+			</p>
+			<p>
+				Totam doloribus id aut voluptas necessitatibus consectetur. Sit occaecati id facilis eos. Eos molestiae ut tempore et alias id. Id aliquam quisquam natus et id asperiores. Placeat incidunt repellendus at hic quos autem.
+			</p>
+			<figure>
+				<img src="https://picsum.photos/1080/1920"></img>
+				<figcaption>
+					<p>
+						Another randomised free image from <a href="https://picsum.photos/">picsum.photos</a>,
+						But this time the image has portrait orientation.
+					</p>
+				</figcaption>
+			</figure>
+
+			<h5>Lorem Ipsum</h5>
+			<p>
+				Est mollitia rerum doloremque ut minus est enim. Labore quidem vel similique. Animi eligendi sunt voluptatem quia ea cumque voluptates beatae. Reiciendis quas non ducimus velit amet exercitationem. Labore doloremque esse maiores vitae et nemo.<br>
+					Dignissimos <a href="#">architecto totam earum</a> ea magni est. Et officia doloribus vel. Voluptatem cumque expedita cupiditate molestias rem fuga omnis.
+			</p>
+			<p>
+				Et maxime et enim totam. Quo modi similique ducimus eos. Possimus fuga dolorem earum ipsum. Dolore sit nihil ipsa praesentium. Autem quas explicabo eos.<br>
+					Et maiores possimus sint laborum impedit non voluptas. Est mollitia sunt eos suscipit dolor sit. Et porro et enim saepe voluptas rerum voluptas. Harum et odit necessitatibus nihil qui beatae dicta.
+			</p>
+			<p>
+				Totam doloribus id aut voluptas necessitatibus consectetur. Sit occaecati id facilis eos. Eos molestiae ut tempore et alias id. Id aliquam quisquam natus et id asperiores. Placeat incidunt repellendus at hic quos autem.
+			</p>
+
+			<img src="https://picsum.photos/1920/480"></img>
+		</article>
+
+	<nav>
+			<ol class="breadcrumbs">
+				<li><a href="#">First</a>
+				<li><a href="#">Second</a>
+				<li class="active"><a>Third</a>
+			</ol>
+		</nav>
+
+		<hr>
+
+		<div class="box">
+			<div class="floating info box">
+				<p>This is an info box <span class="badge">20</span></p>
+				<a href="components/link.css">Have this link</a>
+				<vertical-spacer double></vertical-spacer>
+				<div class="floating round warning box">
+					This is a warning with rounded corners. <span class="small badge">3</span>
+				</div>
+			</div>
+		</div>
+
+		<vertical-spacer double></vertical-spacer>
+
+		<style>
+		.blob { width: 5em; height: 5em; background: var(--color, orange); }
+		</style>
+		<div class="box">
+			<flex-row gap=1 wrap=mobile center>
+				<div class="blob"></div>
+				<div class="blob"></div>
+				<div class="blob"></div>
+				<div class="blob"></div>
+				<div class="blob"></div>
+				<div class="blob"></div>
+			</flex-row>
+		</div>
+
+		<vertical-spacer double></vertical-spacer>
+
+		<div class="floating box">
+			<h2>Here's some random quote:</h2>
+			<blockquote>
+				<p>
+					Improve code by removing it
+				</p>
+				<cite>Pete Goodliffe</cite>
+			</blockquote>
+			<p>
+				This test <q>quote</q> is inline.
+			</p>
+		</div>
+
+		<vertical-spacer double></vertical-spacer>
+
+		<div class="floating contrast box">
+			<p>Here is some code:</p>
+			<pre><code>
+				for key, value in ipairs {"World"} do
+				print("Hello, "..value.."!")
+				end
+			</code></pre>
+			<p>That was the code.</p>
+		</div>
+
+		<flex-row>
+			<item-card>
+				<img src="https://picsum.photos/600/300?random=ksjfh"></img>
+				<p>This should have no padding</p>
+			</item-card>
+		</flex-row>
+
+		<vertical-spacer double></vertical-spacer>
+
+		<flex-grid columns="4@1920" gap="1">
+			<div class="scroll-x floating box">
+				<table class="full-width" borders="horizontal">
+					<caption>
+						<h2>Superheros and sidekicks</h2>
+						This table shows you things that are very tabular, therefore the table.
+					</caption>
+					<thead>
+						<tr>
+							<td></td>
+						<th>Batman</th>
+							<th>Robin</th>
+						<th>The Flash</th>
+						<th>Kid Flash</th>
+						</tr>
+					</thead>
+					<tr>
+						<th scope="row">Skill</th>
+					<td>Smarts</td>
+						<td>Dex, acrobat</td>
+						<td>Super speed</td>
+						<td>Super speed</td>
+					</tr>
+					<tr>
+						<th scope="row">Skillz</th>
+					<td>Smarts</td>
+						<td>Dex, acrobat</td>
+						<td>Super speed</td>
+						<td>Super speed</td>
+					</tr>
+					<tr>
+						<th scope="row">Really wide</th>
+					<td>Smarts</td>
+						<td>Dex, acrobat</td>
+						<td>Super speed</td>
+						<td>Super speed</td>
+					</tr>
+					<tr>
+						<th scope="row">Skill</th>
+					<td>Smarts</td>
+						<td>Dex, acrobat</td>
+						<td>Super speed</td>
+						<td>Super speed</td>
+					</tr>
+				</table>
+			</div>
+			<div class="box">
+				<!-- lorem ipsum -->
+				<p>
+					Est mollitia rerum doloremque ut minus est enim. Labore quidem vel similique. Animi eligendi sunt voluptatem quia ea cumque voluptates beatae. Reiciendis quas non ducimus velit amet exercitationem. Labore doloremque esse maiores vitae et nemo.<br>
+						Dignissimos <a href="#">architecto totam earum</a> ea magni est. Et officia doloribus vel. Voluptatem cumque expedita cupiditate molestias rem fuga omnis.
+				</p>
+				<p>
+					Et maxime et enim totam. Quo modi similique ducimus eos. Possimus fuga dolorem earum ipsum. Dolore sit nihil ipsa praesentium. Autem quas explicabo eos.<br>
+						Et maiores possimus sint laborum impedit non voluptas. Est mollitia sunt eos suscipit dolor sit. Et porro et enim saepe voluptas rerum voluptas. Harum et odit necessitatibus nihil qui beatae dicta.
+				</p>
+				<p>
+					Totam doloribus id aut voluptas necessitatibus consectetur. Sit occaecati id facilis eos. Eos molestiae ut tempore et alias id. Id aliquam quisquam natus et id asperiores. Placeat incidunt repellendus at hic quos autem.
+				</p>
+			</div>
+			<div class="box">
+				<p>Here is some code:</p>
+				<pre><code class="full-width">
+					for key, value in ipairs {"World"} do
+					print("Hello, "..value.."!")
+					end
+				</code></pre>
+				<p>That was the code. You can copy it by <kbd>Ctrl+C</kbd></p>
+				<p>The <code>code</code> doesn't use the <var>key</var> variable.</p>
+			<details>
+					<summary>Unused Variables</summary>
+					<p>
+						Unused variables can cause confusion when reading code.<br>
+							Because of this, it is common to mark, often by prefixing them with <code>_</code>.
+					</p>
+				</details>
+			</div>
+			<img class="round" src="https://picsum.photos/1920/1080?random=ksjfh"></img>
+		</flex-grid>
+
+		<hr>
+
+		<grid-box columns="4@1920" gap="1">
+			<div style="--corner-radius: 10em">
+				<button>Do things</button>
+				<button>Do more things</button>
+
+				<vertical-spacer></vertical-spacer>
+
+				<button-group>
+					<button>Do foo</button>
+					<input type="button" value="Do bar"></button>
+					<a class="button" href="#baz">Take me to baz</a>
+				</button-group>
+			</div>
+
+			<div class="box" style="--corner-radius: .3em">
+				<button>Do things</button>
+				<button>Do more things</button>
+
+				<vertical-spacer></vertical-spacer>
+
+				<button-group class="full-width">
+					<button>Do foo</button>
+					<button>Do bar</button>
+					<button>Do baz</button>
+				</button-group>
+			</div>
+
+			<div style="--button-corner-radius: .5em" class="floating box">
+				<input type="button" disabled value="Do things">
+				<a class="button">Do more things</a>
+
+				<vertical-spacer></vertical-spacer>
+
+				<button-group>
+					<button disabled>Do foo</button>
+					<button disabled>Do bar</button>
+					<button disabled>Do baz</button>
+				</button-group>
+				<floating-action-button right>×</floating-action-button>
+			</div>
+
+		</grid-box>
+
+		<vertical-spacer double></vertical-spacer>
+
+		<grid-box columns="3" wrap=mobile gap="1">
+			<nav class="box">
+				<h2>Navigation</h2>
+				<ul>
+					<li>
+						<a href="/">Alpha</a>
+					</li>
+					<li>
+						<a href="/" class="active">Bravo</a>
+						<ul>
+							<li><a href="/">Bravo 1</a>
+								<ul>
+									<li><a href="/">Bravo 1-1</a>
+									<li><a href="/">Bravo 1-2</a>
+								</ul>
+							</li>
+							<li><a href="/">Bravo 2</a></li>
+							<li><a href="/">Bravo 3</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/">Charlie</a>
+					</li>
+				</ul>
+			</nav>
+			<div class="box">
+				<div class="floating warning box">
+					<ul class="line">
+						<li> Alpha
+						<li> Bravo
+						<li> Charlie
+					</ul>
+				</div>
+			</div>
+			<div class="floating box">
+				<ol class="line">
+					<li> Alpha
+					<li> Bravo
+					<li> Charlie
+				</ol>
+			</div>
+		</grid-box>
+
+		<vertical-spacer></vertical-spacer>
+	</main>
+
+	<footer class="box">
+		<grid-box columns="3" gap="1">
+			<flex-column align="center">
+				<table borders="horizontal">
+					<caption><h2>Contact</h2></caption>
+					<tr>
+						<th scope="row">Email</th>
+						<td>user@example.org</td>
+					</tr>
+					<tr>
+						<th scope="row">Phone</th>
+						<td>0123 456 789</td>
+					</tr>
+					<tr>
+						<th scope="row">Website</th>
+						<td>www.example.org</td>
+					</tr>
+				</table>
+			</flex-column>
+			<flex-column align="center">
+				Hello, World!
+			</flex-column>
+			<flex-column align="center">
+				Hello, World!
+			</flex-column>
+		</grid-box>
+	</footer>
+	<script>
+	document.querySelectorAll("pre>code").forEach(element => {
+	let indent = element.innerHTML
+	.split("\n")
+	.find(line => line.match(/[^\s]/))
+	.match(/^[\s]*/)[0]
+	element.innerHTML = element.innerHTML
+	.split("\n")
+	.map(line => line.replace(new RegExp(`^${indent}`), ''))
+	.slice(1, -1)
+	.join("\n")
+	})
+	</script>
+</html>

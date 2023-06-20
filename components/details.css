@@ -1,0 +1,39 @@
+@layer details {
+	details > summary {
+		all: unset;
+		display: block;
+		font-weight: bold;
+		cursor: pointer;
+	}
+	details > summary::before {
+		transition: transform .3s;
+		display: inline-block;
+		content: '\25B8';
+		margin-right: 1ch;
+	}
+	details[open] > summary::before {
+		transform: rotate(90deg);
+	}
+
+	.dim-open { transition: opacity .3s; }
+	@scope (details[open]) to (details) {
+		.dim-open {
+			opacity: var(--details-dim-opacity, .4);
+		}
+	}
+
+	:root {
+		--slidy-details-padding: 1.2em;
+	}
+	details.slidy {
+		padding-left: var(--slidy-details-padding, 1em);
+	}
+	details.slidy > summary::before {
+		--x-offset: calc(0px - var(--slidy-details-padding, 1em));
+		transform: translate(var(--x-offset), 0em);
+		position: absolute;
+	}
+	details[open].slidy > summary::before {
+		transform: translate(var(--x-offset), 1.6em);
+	}
+}

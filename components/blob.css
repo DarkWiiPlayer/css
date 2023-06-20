@@ -1,0 +1,52 @@
+@layer blob {
+	:root {
+		/*        Tl  Tr  Br  Bl  / Lt  Rt  Rb  Lb*/
+		--blob-1: 30% 70% 60% 40% / 30% 50% 50% 70%;
+		--blob-2: 60% 40% 65% 35% / 40% 55% 45% 60%;
+		--blob-3: 50% 50% 40% 60% / 40% 60% 40% 60%;
+		--blob-4: 70% 30% 40% 60% / 50% 50% 50% 50%;
+		--blob-5: 30% 70% 70% 30% / 60% 40% 60% 40%;
+		--blob-6: 60% 40% 50% 50% / 30% 50% 50% 70%;
+		--blob-7: 70% 30% 30% 70% / 30% 40% 60% 70%;
+		--blob-8: 40% 60% 40% 60% / 70% 70% 30% 30%;
+		--blob-9: 60% 40% 30% 70% / 60% 50% 50% 40%;
+
+		--blob-top-right: 50%;
+		--blob-bottom-right: 50%;
+		--blob-left-up: 50%;
+		--blob-right-up: 50%;
+
+		--blob-dynamic:
+			var(--blob-top-right) calc(100% - var(--blob-top-right)) calc(100% - var(--blob-bottom-right)) var(--blob-bottom-right) /
+			calc(100% - var(--blob-left-up)) var(--blob-right-up) calc(100% - var(--blob-right-up)) var(--blob-left-up);
+	}
+
+	.blob-1 { aspect-ratio: 1 / 1; border-radius: var(--blob-1); }
+	.blob-2 { aspect-ratio: 1 / 1; border-radius: var(--blob-3); }
+	.blob-3 { aspect-ratio: 1 / 1; border-radius: var(--blob-3); }
+	.blob-4 { aspect-ratio: 1 / 1; border-radius: var(--blob-4); }
+	.blob-5 { aspect-ratio: 1 / 1; border-radius: var(--blob-5); }
+	.blob-6 { aspect-ratio: 1 / 1; border-radius: var(--blob-6); }
+	.blob-7 { aspect-ratio: 1 / 1; border-radius: var(--blob-7); }
+	.blob-8 { aspect-ratio: 1 / 1; border-radius: var(--blob-8); }
+	.blob-9 { aspect-ratio: 1 / 1; border-radius: var(--blob-9); }
+
+	.blob { aspect-ratio: 1 / 1 }
+	.blob:nth-child(9n+1) { border-radius: var(--blob-1); }
+	.blob:nth-child(9n+2) { border-radius: var(--blob-2); }
+	.blob:nth-child(9n+3) { border-radius: var(--blob-3); }
+	.blob:nth-child(9n+4) { border-radius: var(--blob-4); }
+	.blob:nth-child(9n+5) { border-radius: var(--blob-5); }
+	.blob:nth-child(9n+6) { border-radius: var(--blob-6); }
+	.blob:nth-child(9n+7) { border-radius: var(--blob-7); }
+	.blob:nth-child(9n+8) { border-radius: var(--blob-8); }
+	.blob:nth-child(9n+9) { border-radius: var(--blob-9); }
+
+	:is(.blob, .blob-1, .blob-2, .blob-3, .blob-4, .blob-5, .blob-6, .blob-7, .blob-8, .blob-9) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.circle { border-radius: 50%; aspect-ratio: 1 / 1 }
+}
