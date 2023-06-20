@@ -1,0 +1,15 @@
+@layer details {
+	details {
+		border-radius: var(--corner-radius);
+		padding: 1em;
+		background-color: var(--background-inset, #66666606);
+		box-shadow: .1em .2em .4em .0em #0002;
+		color: var(--color, orange);
+		background-color: color-mix(in srgb, var(--color, orange) 30%, transparent);
+	}
+
+	details>summary {
+		font-weight: bold;
+		cursor: pointer;
+	}
+}

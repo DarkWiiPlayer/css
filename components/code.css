@@ -1,0 +1,18 @@
+code, var, samp, kbd {
+	all: unset;
+	box-sizing: border-box;
+	font-family: "Courier New", monospace;
+}
+
+pre>:is(code, var, samp) {
+	overflow-x: auto;
+	display: block;
+	border-radius: var(--corner-radius, 0px);
+	padding: 1em 2em;
+	box-shadow: .0em .1em .2em #0002 inset;
+	line-height: 1.6em;
+}
+
+var, kbd {
+	white-space: nowrap;
+}

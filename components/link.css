@@ -1,0 +1,32 @@
+@layer link {
+	@layer base {
+		:any-link {
+			text-decoration: underline var(--color, orange);
+			text-decoration-thickness: .1em;
+			transition:
+				color var(--transition-duration-hover, .2s);
+		}
+		:any-link:hover {
+			color: var(--color, orange);
+		}
+	}
+	@layer headings {
+		:is(h1, h2, h3, h4, h5, h6)>:any-link {
+			all: unset;
+			cursor: pointer;
+			position: relative;
+		}
+		:is(h1, h2, h3, h4, h5, h6)>:any-link::after {
+			position: absolute;
+			display: block;
+			content: '#';
+			top: 0;
+			right: -1.4ch;
+			opacity: 0;
+			color: var(--color, orange);
+		}
+		:is(h1, h2, h3, h4, h5, h6)>:any-link:hover::after {
+			opacity: .6;
+		}
+	}
+}
