@@ -1,0 +1,36 @@
+alternating-box {
+	display: flex;
+	flex-flow: column nowrap;
+	align-content: center;
+	font-size: 1.4em;
+	max-width: max(60vw, min(100vw, 40em));
+	margin-left: auto;
+	margin-right: auto;
+	gap: .6em;
+}
+alternating-box > * {
+	display: flex;
+	flex-flow: row wrap;
+	width: 100%;
+	grid-column: 2 / 3;
+	align-self: flex-start;
+	grid-template-columns: 2fr;
+	grid-auto-columns: 1fr;
+	grid-gap: 1em;
+	margin: 0;
+	gap: .6em;
+}
+alternating-box > *:nth-child(even) {
+	flex-direction: row-reverse;
+}
+alternating-box > * > * {
+	direction: initial;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1 1 0;
+	border: .1em dashed purple;
+}
+alternating-box > * > :first-child {
+	flex-grow: var(--first-element-multiplier, 2);
+}

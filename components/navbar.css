@@ -1,0 +1,41 @@
+@layer navbar {
+	header > nav.bar { height: var(--header-height) }
+
+	nav.bar {
+		--nav-border-style: unset;
+		all: unset;
+		/* Placement */
+		flex: max-content;
+		/* Layout */
+		display: flex;
+		align-items: center;
+	}
+
+	nav.bar a {
+		height: 100%;
+		padding: .6em;
+		margin: 0px;
+		display: flex;
+		align-items: center;
+	}
+
+	nav.bar.right {
+		justify-content: flex-end;
+	}
+
+	/* Dirty hack until @scope is a thing */
+	nav { --nav-underline-style: none; --nav-overline-style: none; }
+
+	nav.bar.underlined { --nav-underline-style: .2em solid var(--hr-color) }
+	nav.bar.overlined { --nav-overline-style: .2em solid var(--hr-color) }
+
+	nav.bar.underlined a { border-bottom: var(--nav-underline-style); }
+	nav.bar.underlined a:hover { border-bottom-color: var(--color); }
+
+	nav.bar.overlined a { border-top: var(--nav-overline-style); }
+	nav.bar.overlined a:hover { border-top-color: var(--color); }
+}
+
+@layer scroll {
+	:is(html,body)[scroll="0"] header nav.bar.underlined a:not(:hover) { border-bottom-color: transparent }
+}

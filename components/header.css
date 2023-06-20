@@ -1,0 +1,56 @@
+@layer header {
+	:root {
+		--header-height: 4rem;
+	}
+
+	header {
+		/* Placement */
+		height: var(--header-height, max-content);
+		/* Layout */
+		display: flex;
+		align-items: center;
+		flex-flow: row wrap;
+		gap: 1em;
+		padding: 0em 1em;
+		/* Styling */
+		border-bottom: var(--hr-width, .2rem) solid var(--hr-color, #6662);
+		background: var(--background, white);
+
+		transition:
+			background-color .3s,
+			border-bottom-color .3s;
+	}
+
+	header + :not(page-hero) {
+		margin-top: 2rem;
+	}
+
+	header :is(h1, h2, h3, h4, h5, h6) {
+		margin: 0;
+	}
+
+	header.sticky {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+	}
+
+	header.fixed {
+		position: fixed;
+		width: 100%;
+		top: 0;
+		z-index: 10;
+	}
+
+	:is(html,body)[scroll="0"] header {
+		background-color: transparent;
+		border-bottom-color: transparent;
+	}
+
+	:is(:root, body).sticky-header-scroll-padding {
+		scroll-padding: var(--header-height, 5rem);
+	}
+	:is(:root, body):has(header.sticky, header.fixed) {
+		scroll-padding: var(--header-height, 5rem);
+	}
+}

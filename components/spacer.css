@@ -1,0 +1,28 @@
+@layer spacer {
+	vertical-spacer, horizontal-spacer {
+		display: block;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	vertical-spacer {
+		width: 100%;
+		height: 1em;
+	}
+
+	vertical-spacer[fifth] { height: .2em; }
+	vertical-spacer[half] { height: .5em; }
+	vertical-spacer[double] { height: 2em; }
+	vertical-spacer[triple] { height: 3em; }
+
+	horizontal-spacer {
+		display: inline-block;
+		width: 1em;
+		height: 100%;
+	}
+
+	horizontal-spacer[fifth] { width: .2em; }
+	horizontal-spacer[half] { width: .5em; }
+	horizontal-spacer[double] { width: 2em; }
+	horizontal-spacer[triple] { width: 3em; }
+}

@@ -1,0 +1,92 @@
+@layer flex {
+	flex-row, flex-column {
+		display: flex;
+		justify-content: center;
+		flex-flow: row nowrap;
+	}
+	flex-row {
+		flex-direction: row;
+	}
+	flex-column {
+		flex-direction: column;
+	}
+	flex-row[reverse] {
+		flex-direction: row reverse;
+	}
+	flex-column[reverse] {
+		flex-direction: column reverse;
+	}
+	:is(flex-row, flex-column)[wrap] {
+		flex-wrap: wrap;
+	}
+	:is(flex-row, flex-column):is([center], [centre]) {
+		align-items: center;
+	}
+
+	@media (max-width: 40rem) { flex-row[break="40"] { flex-direction: column } }
+	@media (max-width: 60rem) { flex-row[break="60"] { flex-direction: column } }
+	@media (max-width: 80rem) { flex-row[break="80"] { flex-direction: column } }
+	@media (max-width: 100rem) { flex-row[break="100"] { flex-direction: column } }
+	@media (max-width: 120rem) { flex-row[break="120"] { flex-direction: column } }
+	@media (max-width: 500px) { flex-row[break="mobile"] { flex-direction: column } }
+	@media (max-width: 1500px) { flex-row[break="desktop"] { flex-direction: column } }
+	@media (orientation: portrait) { flex-row[break="portrait"] { flex-direction: column } }
+
+	/* FLEX GRID */
+
+	flex-grid {
+		--column-width: 20em;
+		display: flex;
+		flex-flow: row wrap;
+	}
+
+	flex-grid > * {
+		flex: var(--column-width);
+		flex-grow: 0;
+	}
+	flex-grid > img {
+		width: 100%;
+		max-width: var(--column-width);
+		height: auto;
+	}
+
+	flex-grid[column-width] { --column-width: attr(column-width); }
+
+	flex-grid[columns^="1@"] { --column-target-count: 1; }
+	flex-grid[columns^="2@"] { --column-target-count: 2; }
+	flex-grid[columns^="3@"] { --column-target-count: 3; }
+	flex-grid[columns^="4@"] { --column-target-count: 4; }
+	flex-grid[columns^="5@"] { --column-target-count: 5; }
+	flex-grid[columns^="6@"] { --column-target-count: 6; }
+	flex-grid[columns^="8@"] { --column-target-count: 8; }
+	flex-grid[columns^="10@"] { --column-target-count: 10; }
+
+	flex-grid[columns$="@1920"] { --column-target-at: 1920px; }
+	flex-grid[columns$="@content"] { --column-target-at: var(--content-width); }
+
+	flex-grid[columns*="@"] {
+		--column-width: calc(
+			calc(
+				var(--column-target-at) / var(--column-target-count)
+			) - calc(
+				var(--gap) * calc(var(--column-target-count) - 1)
+			)
+		);
+	}
+
+	:is(flex-row, flex-column, flex-grid)[gap] {
+		--gap: attr(gap)em; /* Experimental */
+	}
+
+	/* attr fallbacks */
+	:is(flex-row, flex-column, flex-grid)[gap=".1"] { --gap: .1em; }
+	:is(flex-row, flex-column, flex-grid)[gap=".2"] { --gap: .2em; }
+	:is(flex-row, flex-column, flex-grid)[gap=".4"] { --gap: .4em; }
+	:is(flex-row, flex-column, flex-grid)[gap=".6"] { --gap: .6em; }
+	:is(flex-row, flex-column, flex-grid)[gap=".8"] { --gap: .8em; }
+	:is(flex-row, flex-column, flex-grid)[gap="1"]  { --gap:  1em; }
+	:is(flex-row, flex-column, flex-grid)[gap="2"]  { --gap:  2em; }
+	:is(flex-row, flex-column, flex-grid)[gap="3"]  { --gap:  3em; }
+
+	:is(flex-row, flex-column, flex-grid)  { gap:  var(--gap, 0px); }
+}
