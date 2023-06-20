@@ -1,0 +1,21 @@
+@layer badge {
+	.badge {
+		color: white;
+		background: var(--color, orange);
+		padding: .3em .6em;
+		font-size: .6em;
+		vertical-align: top;
+		border-radius: var(--corner-radius, 0px);
+	}
+
+	.badge[title]::before { content: attr(title); }
+
+	.badge.small {
+		padding: .2em .4em;
+		font-weight: bold;
+		font-size: .5em;
+		vertical-align: top;
+		position: relative;
+		top: -.6em;
+	}
+}

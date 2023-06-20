@@ -1,0 +1,29 @@
+@layer box {
+	.box {
+		--stripe-color: var(--color, orange);
+		border-radius: var(--corner-radius, 0px);
+		background-color: var(--background-inset, #66666606);
+		box-shadow: .0em .1em .2em #0002 inset;
+		padding: 1em calc(var(--stripe-width, 0em) + 1em);
+		position: relative;
+		line-height: 1.2em;
+
+		contain: draw;
+
+		background-image: linear-gradient(
+			to right,
+			var(--stripe-color) 0%,
+			var(--stripe-color) var(--stripe-width),
+			transparent var(--stripe-width)
+		);
+	}
+
+	.box.floating {
+		background-color: var(--background-float, #fff8);
+		box-shadow: .1em .2em .4em .0em #0002;
+	}
+
+	.box[padding="0"] {
+		padding: 0;
+	}
+}

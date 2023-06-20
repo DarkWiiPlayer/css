@@ -1,0 +1,44 @@
+@layer presence {
+	@media not (max-width: 500px) {
+		only-mobile, .only-mobile { display: none; visibility: hidden; }
+	}
+	@media (max-width: 500px) {
+		no-mobile, .no-mobile {  display: none; visibility: hidden;  }
+	}
+	@media (min-width: 1500px) {
+		no-desktop, .no-desktop {  display: none; visibility: hidden;  }
+	}
+	@media not (min-width: 1500px) {
+		only-desktop, .only-desktop { display: none; visibility: hidden; }
+	}
+	@media (orientation: landscape) {
+		only-landscape, .only-landscape { display: none; visibility: hidden; }
+	}
+	@media (orientation: portrait) {
+		only-portrait, .only-portrait { display: none; visibility: hidden; }
+	}
+}
+
+@layer placement {
+	.full-width { width: 100%; }
+	.max-content { width: max-content; }
+	.min-content { width: min-content; }
+}
+
+@layer layout {
+	.scroll-x { overflow-x: auto; }
+	.scroll-y { overflow-y: auto; }
+
+	.hidden-x { overflow-x: hidden; }
+	.hidden-y { overflow-y: hidden; }
+}
+
+@layer styling {
+	.round { border-radius: var(--corner-radius); }
+}
+
+@layer typography {
+	[font~=tiny] { font-size: 0.2rem }
+	[font~=default] { font-size: 1rem }
+	[font~=massive] { font-size: 4rem }
+}
