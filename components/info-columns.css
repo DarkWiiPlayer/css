@@ -53,9 +53,8 @@ info-columns {
 		color: white;
 		background: black;
 
-		&:is(:hover, :not(:hover)>:focus-within) {
-			flex: 2 1 0
-		}
+		&:focus-within { outline: .2em solid var(--color-primary, purple); z-index: 1; }
+		&:is(:hover, :not(:hover)>:focus-within) { flex: 2 1 0; }
 
 		>img { transition: opacity var(--transition); }
 
