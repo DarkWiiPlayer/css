@@ -53,7 +53,7 @@ info-columns {
 		color: white;
 		background: black;
 
-		&:is(:hover, :focus, :focus-within) {
+		&:is(:hover, :not(:hover)>:focus-within) {
 			flex: 2 1 0
 		}
 
@@ -90,10 +90,10 @@ info-columns {
 
 		@container infocolumns (min-height: 1px) {
 			when-small { opacity: 1; width: calc(var(--info-columns-outer-width) / var(--column-count)) }
-			&:is(:hover, :focus, :focus-within)>when-small { opacity: 0; }
+			&:is(:hover, :not(:hover)>:focus-within)>when-small { opacity: 0; }
 
 			when-large { opacity: 0; width: calc(var(--info-columns-outer-width) / calc(var(--column-count) + 1) * 2) }
-			&:is(:hover, :focus, :focus-within)>when-large { opacity: 1; }
+			&:is(:hover, :not(:hover)>:focus-within)>when-large { opacity: 1; }
 		}
 
 		when-small > * {
