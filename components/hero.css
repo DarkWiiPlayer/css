@@ -19,6 +19,13 @@
 		margin-top: 2rem;
 	}
 
+	page-hero+.\+join-hero {
+		margin-top: 0;
+		&+* {
+			margin-top: 2rem;
+		}
+	}
+
 	/* Fallbacks until attr is widely supported */
 	page-hero[cover="40"] { min-height: 40vh; }
 	page-hero[cover="50"] { min-height: 50vh; }

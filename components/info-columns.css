@@ -9,13 +9,18 @@
 info-columns {
 	/* Positioning */
 	width: 100%;
-	max-height: 100vh;
 	/* Layout */
 	container-type: size;
 	container-name: infocolumns;
 	display: flex;
 	flex-flow: row nowrap;
 	/* Styling */
+
+	&[height="20vh"] { height: 20vh; }
+	&[height="40vh"] { height: 40vh; }
+	&[height="50vh"] { height: 50vh; }
+	&[height="60vh"] { height: 60vh; }
+	&[height="80vh"] { height: 80vh; }
 
 	> * { --info-columns-outer-width: 100cqw; }
 
