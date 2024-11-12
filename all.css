@@ -11,6 +11,7 @@
 @import url('components/box.css');
 @import url('components/breadcrumbs.css');
 @import url('components/button.css');
+@import url('components/card.css');
 @import url('components/code.css');
 @import url('components/details.css');
 @import url('components/drawer.css');
@@ -20,6 +21,7 @@
 @import url('components/header.css');
 @import url('components/hero.css');
 @import url('components/hr.css');
+@import url('components/info-columns.css');
 @import url('components/input.css');
 @import url('components/link.css');
 @import url('components/list.css');
@@ -28,7 +30,5 @@
 @import url('components/quote.css');
 @import url('components/spacer.css');
 @import url('components/table.css');
-@import url('components/card.css');
-@import url('components/info-columns.css');
 
 @import url('layout/helpers.css');

@@ -19,8 +19,8 @@
 	quote,
 	table,
 	details,
-	blob,
-	drawer;
+	drawer,
+	blob;
 
 @layer hero, spacer;
 @layer flex, grid;

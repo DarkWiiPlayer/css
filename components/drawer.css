@@ -37,7 +37,13 @@
 			visibility var(--drawer-animation) step-start;
 		}
 		details>drawer-box { display: block; }
-		details:is(:has(>drawer-box), .drawer-wrapper) { all: unset; }
+		details:is(:has(>drawer-box), .drawer-wrapper) {
+			all: unset;
+
+			&>summary::before, &>summary::after {
+				all: initial;
+			}
+		}
 		details:is(:has(>drawer-box), .drawer-wrapper) > summary {
 			all: unset;
 			cursor: pointer;
