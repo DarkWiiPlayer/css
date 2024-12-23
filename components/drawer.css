@@ -2,6 +2,7 @@
 	:root {
 		--drawer-animation: .5s;
 	}
+
 	@layer normal {
 		drawer-box {
 			--width: var(--drawer-width, min(60vw, 30em));
@@ -16,26 +17,23 @@
 			z-index: 100;
 			right: 100vw;
 			margin: 0px;
+
 			/* Layout */
 			display: flex;
 			gap: 1em;
 			flex-flow: column;
+
 			/* Styling */
 			box-sizing: border-box;
 			padding: 2em 1em;
 			background: var(--background, white);
-			/* Animation */
-			transition:
-			right var(--drawer-animation),
-			visibility var(--drawer-animation) step-end;
 		}
+
 		drawer-box:is([open], details[open]>*) {
 			right: calc(100% - var(--width));
 			visibility: visible;
-			transition:
-			right var(--drawer-animation),
-			visibility var(--drawer-animation) step-start;
 		}
+
 		details>drawer-box { display: block; }
 		details:is(:has(>drawer-box), .drawer-wrapper) {
 			all: unset;
@@ -44,10 +42,12 @@
 				all: initial;
 			}
 		}
+
 		details:is(:has(>drawer-box), .drawer-wrapper) > summary {
 			all: unset;
 			cursor: pointer;
 		}
+
 		details[open]:is(:has(>drawer-box), .drawer-wrapper)>summary::after {
 			content: '';
 			position: fixed;
@@ -68,16 +68,10 @@
 			right: unset;
 			left: 100vw;
 			/* Animation */
-			transition:
-			left var(--drawer-animation),
-			visibility var(--drawer-animation) step-end;
 		}
 		drawer-box[right]:is([open], details[open]>*) {
 			right: unset;
 			left: calc(100% - var(--width));
-			transition:
-			left var(--drawer-animation),
-			visibility var(--drawer-animation) step-start;
 		}
 	}
 }

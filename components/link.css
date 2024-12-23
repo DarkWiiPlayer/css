@@ -3,13 +3,16 @@
 		:any-link {
 			text-decoration: underline var(--color, orange);
 			text-decoration-thickness: .1em;
-			transition:
-				color var(--transition-duration-hover, .2s);
+			transition: color var(--transition-duration-hover, .2s);
 		}
 		:any-link:hover {
 			color: var(--color, orange);
 		}
+		a:is([onclick], [href]) {
+			cursor: pointer;
+		}
 	}
+
 	@layer headings {
 		:is(h1, h2, h3, h4, h5, h6)>:any-link {
 			all: unset;
