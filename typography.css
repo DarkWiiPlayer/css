@@ -189,7 +189,7 @@
 	}
 
 	@layer override {
-		details :is(:first-child:not(summary), summary~p) {
+		details>:is(:first-child:not(summary), summary~*) {
 			margin-top: .4rem;
 		}
 	}
