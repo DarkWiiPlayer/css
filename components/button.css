@@ -44,30 +44,33 @@
 				filter var(--duration),
 				text-shadow var(--duration);
 			box-shadow: var(--button-shadow, .1em .2em .3em #0003);
+
+			&:hover {
+				text-shadow: .1em .14em .2em #0004;
+				color: var(--color-contrast, white);
+				background: var(--color, orange);
+			}
+
+			&:focus {
+				outline: .2em solid var(--color-focus, var(--color, orange));
+			}
+
+			&.primary {
+				text-shadow: .1em .14em .2em #0004;
+				color: var(--color-contrast, white);
+				background: var(--color, orange);
+
+				&:hover {
+					--hover-color: color-mix(in srgb, var(--color, orange), #fff 20%);
+					@container style(--color-scheme: dark) {
+						--hover-color: color-mix(in srgb, var(--color, orange), #000 20%);
+					}
+					background: var(--hover-color);
+					border-color: var(--hover-color);
+				}
+			}
 		}
 	}
-
-	:is(
-		a.button,
-		button,
-		input[type="button"],
-		input[type="submit"],
-		input[type="reset"]
-	):hover {
-		text-shadow: .1em .14em .2em #0004;
-		color: var(--color-contrast, white);
-		background: var(--color, orange);
-	}
-	:is(
-		a.button,
-		button,
-		input[type="button"],
-		input[type="submit"],
-		input[type="reset"]
-	):focus {
-		outline: .2em solid var(--color-focus, var(--color, orange));
-	}
-
 
 	@layer button-group {
 		button-group {
@@ -79,34 +82,27 @@
 			box-shadow: var(--button-shadow, .1em .2em .3em #0003);
 		}
 
-		button-group>* {
+		button-group>:is(
+			a.button,
+			button,
+			input[type="button"],
+			input[type="submit"],
+			input[type="reset"]
+		) {
 			box-shadow: none;
-		}
 
-		button-group>:is(
-			a.button,
-			button,
-			input[type="button"],
-			input[type="submit"],
-			input[type="reset"]
-		):nth-child(n+2) {
-			border-left-width: 0;
-			border-top-left-radius: 0;
-			border-bottom-left-radius: 0;
-		}
+			&:nth-child(n+2) {
+				border-left-width: 0;
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
+			}
 
-		button-group>:is(
-			a.button,
-			button,
-			input[type="button"],
-			input[type="submit"],
-			input[type="reset"]
-		):nth-last-child(n+2) {
-			border-right-width: 0;
-			border-top-right-radius: 0;
-			border-bottom-right-radius: 0;
+			&:nth-last-child(n+2) {
+				border-right-width: 0;
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
+			}
 		}
-	}
 
 	@layer button-disabled {
 		a.button:not([href]),

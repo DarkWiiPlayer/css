@@ -192,8 +192,8 @@
 			<h2><a href="#features">Features</a></h2>
 			<ul class="big">
 				<li> <strong>Modular.</strong> Use it all, or just one module.
-				<li> <strong>Small.</strong> (insert size at some point) <span class="secondary small badge">Fixme</span>
-				<li> <strong>Pretty.</strong> Admittedly subjective, but I like it. <span class="secondary small badge">Rephrase!</span>
+				<li> <strong>Small.</strong> (insert size at some point) <span class="small badge">Fixme</span>
+				<li> <strong>Pretty.</strong> Admittedly subjective, but I like it. <span class="small badge">Rephrase!</span>
 				<li> <strong>Hackable.</strong> Built with customisation in mind. Resilient to overrides.
 				<li> <strong>Vanilla.</strong> No pre-processor needed; not even for theming.
 			</ul>
@@ -393,9 +393,9 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 					<b>An Article about CSS</b>
 					<div>
 						Tags:
-						<span class="badge">#Beginner</span>
-						<span class="badge secondary">#Tutorial</span>
-						<span class="badge contrast">#CSS</span>
+						<span class="badge" style="--color: hsl(230deg, 60%, 50%);">#Beginner</span>
+						<span class="badge" style="--color: hsl(260deg, 60%, 50%);">#Tutorial</span>
+						<span class="badge" style="--color: hsl(290deg, 60%, 50%);">#CSS</span>
 					</div>
 				</html-showcase>
 			</section>
@@ -448,6 +448,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 				</p>
 				<html-showcase>
 					<button>Click Me!</button>
+					<button class="primary">Main Button!</button>
 				</html-showcase>
 				<p>
 					Buttons can be grouped using the <code>button-group</code> custom element
@@ -831,7 +832,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 						to the beginning of the revealed content.
 					</p>
 
-					<p class="secondary info box">
+					<p class="info box">
 						"Slidy" has limited <a href="https://caniuse.com/css-cascade-scope">support</a> due to <code>@scope</code> usage.
 					</p>
 
@@ -880,7 +881,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 			<vertical-spacer></vertical-spacer>
 
 			<code-smaple>
-				<form class="box secondary full-width">
+				<form class="box full-width">
 					<label>
 						<span>Name</span>
 						<input type="text" placeholder="Talia"></input>
