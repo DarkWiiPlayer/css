@@ -63,7 +63,7 @@
 					this.list(document.body)
 				))
 			}
-			list(root) {
+			list(root, depth=0) {
 				const sections = Array.from(root.querySelectorAll('section[id]:not(:scope section[id] *)'))
 				if (sections.length > 0) {
 					return html.ul(sections.map(section => html.li(
@@ -71,8 +71,8 @@
 							section.querySelector(`:scope>:is(h1,h2,h3,h4,h5,h6)`)?.innerText ?? section.id,
 							{href: `#${section.id}`}
 						),
-						this.list(section)
-					)))
+						this.list(section, depth+1)
+					)), { style: `--nav-depth: ${depth}` })
 				} else {
 					return empty
 				}

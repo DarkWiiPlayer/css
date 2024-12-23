@@ -1,28 +1,43 @@
+@property --nav-depth {
+	syntax: <number>;
+	inherits: true;
+	initial-value: 0;
+}
+
 @layer nav {
-	nav {
-		--nav-border-style: var(--line-width, .2rem) solid var(--hr-color, #6662);
-		display: flex;
-		flex-flow: column;
-	}
+	@scope (nav:not(.bar)) to (nav) {
+		:scope {
+			display: flex;
+			flex-flow: column;
+			--nav-depth: -1;
 
-	nav :is(ul, ol, li) { display: contents; }
+			:is(ul, ol, li) { display: contents; }
 
-	nav a {
-		margin-left: .1em;
-		padding-left: 1.2em;
-		border-left: var(--nav-border-style);
-		transition:
-			color .2s;
-		color: inherit;
-		text-decoration: unset;
-	}
+			:is(ul, ol) {
+				/* --nav-depth: calc(inherit + 1); */
+				--nav-depth: 0;
+			}
+		}
 
-	nav a:hover {
-		color: var(--color, orange);
-	}
+		a {
+			line-height: 2em;
+			margin-left: .1em;
+			padding-left: calc(1em + calc(1.4em * var(--nav-depth, 0)));
+			border-left: var(--line-width, .2rem) solid var(--hr-color, #6662);
+			transition:
+				color .2s;
+			color: inherit;
+			text-decoration: unset;
 
-	nav .active {
-		border-color: var(--color, orange);
-		font-weight: bold;
+			&:hover {
+				border-color: var(--color, orange);
+				color: var(--color, orange);
+			}
+		}
+
+		.active {
+			border-color: var(--color, orange);
+			font-weight: bold;
+		}
 	}
 }

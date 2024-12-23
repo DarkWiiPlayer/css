@@ -1,35 +1,53 @@
 @layer navbar {
 	header > nav.bar { height: var(--header-height) }
 
-	nav.bar {
-		--nav-border-style: unset;
-		all: unset;
-		/* Placement */
-		flex: max-content;
-		/* Layout */
-		display: flex;
-		align-items: center;
+	@scope (nav.bar) to (nav) {
+		:scope {
+			all: unset;
+			/* Placement */
+			flex: max-content;
+			/* Layout */
+			display: flex;
+			align-items: center;
+
+			&.right {
+				justify-content: flex-end;
+			}
+
+			:is(ul, ol, li) { display: contents; }
+
+			a {
+				transition:
+					color .2s;
+				color: inherit;
+				text-decoration: unset;
+
+				&:hover {
+					color: var(--color, orange);
+				}
+			}
+
+			--line-style: .2em solid var(--hr-color)
+			&:underlined a { border-bottom: var(--line-style); }
+			&:underlined a:hover { border-bottom-color: var(--color); }
+
+			&:overlined a { border-top: var(--line-style); }
+			&:overlined a:hover { border-top: var(--color); }
+		}
+
+		a {
+			height: 100%;
+			padding: .6em;
+			margin: 0px;
+			display: flex;
+			align-items: center;
+		}
 	}
 
-	nav.bar a {
-		height: 100%;
-		padding: .6em;
-		margin: 0px;
-		display: flex;
-		align-items: center;
-	}
-
-	nav.bar.right {
-		justify-content: flex-end;
-	}
-
-	/* Dirty hack until @scope is a thing */
-	nav { --nav-underline-style: none; --nav-overline-style: none; }
-
-	nav.bar.underlined { --nav-underline-style: .2em solid var(--hr-color) }
+	nav.bar.underlined { --nav-underline-style:  }
 	nav.bar.overlined { --nav-overline-style: .2em solid var(--hr-color) }
 
-	nav.bar.underlined a { border-bottom: var(--nav-underline-style); }
+	nav.bar.underlined a {}
 	nav.bar.underlined a:hover { border-bottom-color: var(--color); }
 
 	nav.bar.overlined a { border-top: var(--nav-overline-style); }
