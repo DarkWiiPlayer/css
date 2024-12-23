@@ -14,7 +14,7 @@
 		border-radius: var(--corner-radius);
 		box-shadow: .2em .3em .4em #0003;
 		@container style(--color-scheme: dark) {
-			box-shadow: 0em .4em 1em color-mix(in lch, var(--color), 70% transparent);
+			box-shadow: 0em .2em .6em color-mix(in lch, var(--color), 80% transparent);
 		}
 		border: var(--hr-color, #6662) solid var(--border-width, .1em);
 
@@ -27,6 +27,7 @@
 		border-color: var(--color);
 		transform: translate(0px, -.6rem);
 		box-shadow: calc(.2em + .4rem) calc(.3em + .6rem) .8em #0003;
+
 		@container style(--color-scheme: dark) {
 			box-shadow: 0 .6em 1.4em color-mix(in lch, var(--color), 50% transparent);
 		}
