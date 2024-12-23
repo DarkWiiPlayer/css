@@ -21,7 +21,6 @@
 
 		a {
 			line-height: 2em;
-			margin-left: .1em;
 			padding-left: calc(1em + calc(1.4em * var(--nav-depth, 0)));
 			border-left: var(--line-width, .2rem) solid var(--hr-color, #6662);
 			transition:
