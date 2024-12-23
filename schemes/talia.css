@@ -1,7 +1,12 @@
 :root {
 	--corner-radius: .3em;
 	--line-width: .3rem;
+
+	color-scheme: light dark;
 }
+
+[color-scheme="light"] { color-scheme: only light; }
+[color-scheme="dark"] { color-scheme: only dark; }
 
 :root:not([color-scheme]), [color-scheme="light"] {
 	--color-scheme: light;
