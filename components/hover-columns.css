@@ -1,4 +1,4 @@
-@property --info-columns-outer-width {
+@property --hover-columns-outer-width {
 	syntax: "<length>";
 	inherits: true;
 	initial-value: 100vw;
@@ -6,7 +6,7 @@
 
 * { box-sizing: border-box; }
 
-info-columns {
+hover-columns {
 	/* Positioning */
 	width: 100%;
 	/* Layout */
@@ -22,7 +22,7 @@ info-columns {
 	&[height="60vh"] { height: 60vh; }
 	&[height="80vh"] { height: 80vh; }
 
-	> * { --info-columns-outer-width: 100cqw; }
+	> * { --hover-columns-outer-width: 100cqw; }
 
 	--column-count: 0;
 	&:has(> :nth-child(1)) { --column-count: 1 }
@@ -93,10 +93,10 @@ info-columns {
 		}
 
 		@container infocolumns (min-height: 1px) {
-			when-small { opacity: 1; width: calc(var(--info-columns-outer-width) / var(--column-count)) }
+			when-small { opacity: 1; width: calc(var(--hover-columns-outer-width) / var(--column-count)) }
 			&:is(:hover, :not(:hover)>:focus-within)>when-small { opacity: 0; }
 
-			when-large { opacity: 0; width: calc(var(--info-columns-outer-width) / calc(var(--column-count) + 1) * 2) }
+			when-large { opacity: 0; width: calc(var(--hover-columns-outer-width) / calc(var(--column-count) + 1) * 2) }
 			&:is(:hover, :not(:hover)>:focus-within)>when-large { opacity: 1; }
 		}
 
