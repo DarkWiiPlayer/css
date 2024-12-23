@@ -15,7 +15,6 @@
 		/* Styling */
 		border-bottom: var(--hr-width, .2rem) solid var(--hr-color, #6662);
 		background: var(--background, white);
-
 		transition:
 			background-color .3s,
 			border-bottom-color .3s;

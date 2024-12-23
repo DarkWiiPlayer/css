@@ -17,22 +17,25 @@
 			:is(ul, ol, li) { display: contents; }
 
 			a {
-				transition:
-					color .2s;
+				transition: color .2s;
 				color: inherit;
 				text-decoration: unset;
 
 				&:hover {
 					color: var(--color, orange);
+					border-color: var(--color, orange);
 				}
+
+				border: 0 solid var(--hr-color);
 			}
 
-			--line-style: .2em solid var(--hr-color)
-			&:underlined a { border-bottom: var(--line-style); }
-			&:underlined a:hover { border-bottom-color: var(--color); }
+			&.underlined a {
+				border-bottom-width: .2em;
+			}
 
-			&:overlined a { border-top: var(--line-style); }
-			&:overlined a:hover { border-top: var(--color); }
+			&.overlined a {
+				border-top-width: .2em;
+			}
 		}
 
 		a {
@@ -43,15 +46,6 @@
 			align-items: center;
 		}
 	}
-
-	nav.bar.underlined { --nav-underline-style:  }
-	nav.bar.overlined { --nav-overline-style: .2em solid var(--hr-color) }
-
-	nav.bar.underlined a {}
-	nav.bar.underlined a:hover { border-bottom-color: var(--color); }
-
-	nav.bar.overlined a { border-top: var(--nav-overline-style); }
-	nav.bar.overlined a:hover { border-top-color: var(--color); }
 }
 
 @layer scroll {

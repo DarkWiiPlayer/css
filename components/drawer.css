@@ -35,20 +35,18 @@
 		}
 
 		details>drawer-box { display: block; }
-		details:is(:has(>drawer-box), .drawer-wrapper) {
-			all: unset;
+		details:has(>drawer-box) {
+			&, &>summary {
+				all: unset;
+				display: contents;
+			}
 
 			&>summary::before, &>summary::after {
 				all: initial;
 			}
 		}
 
-		details:is(:has(>drawer-box), .drawer-wrapper) > summary {
-			all: unset;
-			cursor: pointer;
-		}
-
-		details[open]:is(:has(>drawer-box), .drawer-wrapper)>summary::after {
+		details[open]:has(>drawer-box)>summary::after {
 			content: '';
 			position: fixed;
 			top: 0;
