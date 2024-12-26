@@ -278,7 +278,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 				</ul>
 				<h4>Row</h4>
 				<p>Use <code>flex-row</code> to arrange items horizontally.</p>
-				<html-showcase>
+				<html-showcase hide-code>
 					<flex-row wrap gap=2>
 						<div class="blob">1</div>
 						<div class="blob">2</div>
@@ -289,7 +289,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 				</html-showcase>
 				<h4>Column</h4>
 				<p>Use <code>flex-column</code> to arrage items vertically in a column.</p>
-				<html-showcase>
+				<html-showcase hide-code>
 					<flex-column center gap=1>
 						<div class="blob">1</div>
 						<div class="blob">2</div>
@@ -315,7 +315,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 						<li> The <code>--column-width</code> can be used to specify a fixed column width.
 					</ul>
 				</p>
-				<html-showcase>
+				<html-showcase hide-code>
 					<flex-grid gap=1 columns=5@content>
 						<div><span class="blob-1">1</span></div>
 						<div><span class="blob-2">2</span></div>
@@ -344,7 +344,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 						<li> The <code>break</code> attribute works like for <code>flex-grid</code>s.
 					</ul>
 					<vertical-spacer></vertical-spacer>
-					<html-showcase>
+					<html-showcase hide-code>
 						<grid-box center columns=4 gap=1 break=mobile>
 							<div class="blob">1</div>
 							<div class="blob">2</div>
@@ -408,9 +408,15 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 					<b>An Article about CSS</b>
 					<div>
 						Tags:
-						<span class="badge" style="--color: hsl(230deg, 60%, 50%);">#Beginner</span>
-						<span class="badge" style="--color: hsl(260deg, 60%, 50%);">#Tutorial</span>
-						<span class="badge" style="--color: hsl(290deg, 60%, 50%);">#CSS</span>
+						<span class="badge" style="--color: hsl(230deg, 60%, 50%);">
+							#Beginner
+						</span>
+						<span class="badge" style="--color: hsl(260deg, 60%, 50%);">
+							#Tutorial
+						</span>
+						<span class="badge" style="--color: hsl(290deg, 60%, 50%);">
+							#CSS
+						</span>
 					</div>
 				</html-showcase>
 			</section>
@@ -449,8 +455,13 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 						Content in a box
 					</div>
 				</html-showcase>
+
+				<p>
+					The custom properties <code>--stripe-width</code> and <code>--stripe-color</code> can be used to add a coloured stripe to the left of the box.
+				</p>
+
 				<html-showcase>
-					<div class="floating box" style="--stripe-width: .3em; --stripe-color: rebeccapurple;">
+					<div class="floating box" style="--stripe-width: .2rem">
 						Content in a box
 					</div>
 				</html-showcase>
@@ -508,7 +519,10 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 						</item-card>
 						<item-card style="width: 20em">
 							<img src="https://picsum.photos/600/300?random=kwhah"></img>
-							<p>They draw more attention than other elements, specially if they have images.</p>
+							<p>
+								They draw more attention than other elements,
+								specially if they have images.
+							</p>
 						</item-card>
 					</flex-row>
 				</html-showcase>
@@ -531,7 +545,11 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 							</when-small>
 							<when-large>
 								<h2>Multi-Column Component</h2>
-								<p>Present different pieces of information in a multi-column layout where hovering over a column reveals more detailed information.</p>
+								<p>
+									Present different pieces of information in a
+									multi-column layout where hovering over a column
+									reveals more detailed information.
+								</p>
 							</when-large>
 						</section>
 						<section tabindex="0">
@@ -541,8 +559,14 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 							</when-small>
 							<when-large>
 								<h2>Expands for extra space</h2>
-								<p>So you can fit all the important information you need on each column.</p>
-								<p>Because images and slogans work best when you can back them up with facts.</p>
+								<p>
+									So you can fit all the important information
+									you need on each column.
+								</p>
+								<p>
+									Because images and slogans work best when you
+									can back them up with facts.
+								</p>
 							</when-large>
 						</section>
 						<section tabindex="0">
@@ -552,7 +576,10 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 							</when-small>
 							<when-large>
 								<h2>Cool Component for a Cool Site</h2>
-								<p>Use it to capture the user's attention in the first few seconds after opening your page.</p>
+								<p>
+									Use it to capture the user's attention in the
+									first few seconds after opening your page.
+								</p>
 							</when-large>
 						</section>
 					</hover-columns>
