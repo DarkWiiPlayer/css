@@ -29,6 +29,7 @@
 @import url('components/navbar.css');
 @import url('components/quote.css');
 @import url('components/spacer.css');
+@import url('components/spinner.css');
 @import url('components/table.css');
 
 @import url('layout/helpers.css');
