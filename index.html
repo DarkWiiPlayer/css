@@ -18,6 +18,7 @@
 		element(class HtmlShowcase extends HTMLElement {
 			constructor() {
 				super()
+				this.classList.add("floating", "box")
 				mutationNotifier.observe(this, {subtree: true, childList: true})
 				this.attachShadow({mode: "open"}).replaceChildren(
 					...Array.from(document.styleSheets).map(style => style.ownerNode.cloneNode(true)),
@@ -26,18 +27,28 @@
 					html.style("button:not(:hover) { opacity: .6; }"),
 					html.div (
 						html.slot(),
-						html.pre(
-							this.code = html.code(),
-							html.floatingActionButton({top: true, right: true},
-								html.button("copy", {click: event => {
-									navigator.clipboard.writeText(this.code.innerText)
-								}})
-							)
-						)
+						html.verticalSpacer(),
+						this.code = html.pre()
 					)
 				)
 				this.addEventListener("mutation", event => this.update())
 				this.update()
+			}
+
+			codeBox(code) {
+				const pre = html.pre({class: "stripe box"},
+					html.code(code),
+					html.floatingActionButton({top: true, right: true},
+						html.button("copy", {click: event => {
+							navigator.clipboard.writeText(this.code.innerText)
+						}})
+					),
+				)
+				if (this.hasAttribute("hide-code")) {
+					return html.details(html.summary("Code"), pre)
+				} else {
+					return pre
+				}
 			}
 
 			update() {
@@ -50,7 +61,7 @@
 					.map(line => line.replace(new RegExp(`^${indent}`), ''))
 					.slice(1, -1)
 					.join("\n")
-				this.code.replaceChildren(code)
+				this.code.replaceWith(this.codeBox(code))
 			}
 		})
 
@@ -113,16 +124,20 @@
 			margin: 1em 0em;
 		}
 
-		html-showcase.box {
+		.box.stripe {
 			--stripe-width: var(--line-width, .2rem);
-			--stripe-color: var(--hr-color, var(--neutral-5));
+			--stripe-color: var(--hr-color);
+			
+			&:is(pre:has(code)) {
+				--stripe-color: lch(50 35 240);
+			}
 		}
 
 		scheme-switcher {
 			display: contents;
 		}
 
-		[class|="blob"] { font-size: 1.4em; width: 3em; background: var(--color); color: var(--neutral-9); }
+		[class|="blob"] { font-size: 1.4em; width: 3em; background: var(--color); }
 	</style>
 
 	<page-hero cover=60>
@@ -136,8 +151,8 @@
 				<template><b style="color: teal">hackable 🖮</b></template>
 				<template><b style="color: salmon">vanilla 🍦</b></template>
 			</type-writer> CSS framework &amp; component library</p>
+			<p><small>(Still very much work in progress)</small></p>
 		</hgroup>
-		<p><small>(Still very much work in progress)</small></p>
 		<div>
 			<a hover-text="Get Started!" href="#getting-started" class="button">Interested?</a>
 		</div>
@@ -385,11 +400,11 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 				<h4>Usage examples</h4>
 
 				<p>Counter next to the name of some entity</p>
-				<html-showcase class="floating box">
+				<html-showcase>
 					Users <span class="small badge">315</span>
 				</html-showcase>
 				<p>Listing tags</p>
-				<html-showcase class="floating box">
+				<html-showcase>
 					<b>An Article about CSS</b>
 					<div>
 						Tags:
@@ -405,7 +420,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 				<p>
 					The <code>.blob</code> utility class makes an element blob-shaped and fixes is aspect-ratio to <code>1 / 1</code>.
 				</p>
-				<html-showcase class="floating box">
+				<html-showcase>
 					<div class="blob"></div>
 				</html-showcase>
 				<p>
@@ -439,6 +454,10 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 						Content in a box
 					</div>
 				</html-showcase>
+
+				<p>
+					The <code>stripe</code> class can be used to add only the stripe of a box without any of the other styles.
+				</p>
 			</section>
 
 			<section id="button">
@@ -658,7 +677,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 					As soon as this feature becomes available and somewhat widely supported, most of this framework will be updated to use it, but until then, nested nav elements might behave a bit weird.
 				</p>
 
-				<html-showcase class="floating box">
+				<html-showcase>
 					<nav>
 						<ul>
 							<li> <a href="#navigation">Foo</a>
@@ -673,7 +692,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 					<p>
 						Navigation breadcrumbs provide a way for displaying the users current location in a document hierarchy.
 					</p>
-					<html-showcase class="floating box">
+					<html-showcase>
 						<nav class="breadcrumbs">
 							<ul>
 								<li><a href="#breadcrumbs">DarkWiiPlayer</a></li>
@@ -689,7 +708,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 					<p>
 						Navigation bars are horizontally arranged navigation items usually put in a header.
 					</p>
-					<html-showcase class="floating box">
+					<html-showcase>
 						<nav class="bar">
 							<ul>
 								<li> <a href="#navbar">Foo</a>
@@ -698,7 +717,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 							</ul>
 						</nav>
 					</html-showcase>
-					<html-showcase class="floating box">
+					<html-showcase>
 						<nav class="bar underlined overlined">
 							<ul>
 								<li> <a href="#navbar">Foo</a>
@@ -874,7 +893,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 					</html-showcase>
 					<html-showcase>
 						<p>As a very dumb person once said:</p>
-						<blockquote>
+						<blockquote class="stripe">
 							<p>This is a longer quote with a citation at the bottom.</p>
 							<cite>Me, just now</cite>
 						</blockquote>

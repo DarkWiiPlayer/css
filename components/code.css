@@ -5,11 +5,9 @@ code, var, samp, kbd {
 }
 
 pre>:is(code, var, samp) {
-	overflow-x: auto;
+	overflow: auto;
 	display: block;
 	border-radius: var(--corner-radius, 0px);
-	padding: 1em 2em;
-	box-shadow: .0em .1em .2em #0002 inset;
 	line-height: 1.6em;
 }
 

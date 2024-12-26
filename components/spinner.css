@@ -13,6 +13,8 @@
 		width: 1em;
 		height: auto;
 
+		vertical-align: middle;
+
 		/* Styling */
 		color: var(--color);
 		border-radius: 50%;

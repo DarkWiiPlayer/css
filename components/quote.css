@@ -7,12 +7,6 @@
 		padding: var(--padding);
 		padding-left: calc(var(--padding) + var(--stripe-width));
 		position: relative;
-		background: linear-gradient(
-			to right,
-			var(--color, orange) 0%,
-			var(--color, orange) var(--stripe-width),
-			transparent var(--stripe-width)
-		);
 	}
 
 	blockquote cite {

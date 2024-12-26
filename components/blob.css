@@ -46,6 +46,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		color: white;
 	}
 
 	.circle { border-radius: 50%; aspect-ratio: 1 / 1 }

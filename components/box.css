@@ -10,12 +10,14 @@
 
 		contain: draw;
 
-		background-image: linear-gradient(
-			to right,
-			var(--stripe-color) 0%,
-			var(--stripe-color) var(--stripe-width),
-			transparent var(--stripe-width)
-		);
+		:is(&, .stripe) {
+			background-image: linear-gradient(
+				to right,
+				var(--stripe-color) 0%,
+				var(--stripe-color) var(--stripe-width),
+				transparent var(--stripe-width)
+			);
+		}
 	}
 
 	.box.floating {
