@@ -1,45 +1,47 @@
 @layer card {
 	item-card {
-		width: 24em;
-		margin: 1em;
-		/* Layout */
-		display: flex;
-		flex-flow: column;
-		--padding: 1em;
-		padding: var(--padding);
-		gap: var(--padding);
-		align-items: center;
-		contain: paint;
-		container: card / inline-size;
-		border-radius: var(--corner-radius);
-		box-shadow: .2em .3em .4em #0003;
-		@container style(--color-scheme: dark) {
-			box-shadow: 0em .2em .6em color-mix(in lch, var(--color), 80% transparent);
+		@layer base {
+			width: 24em;
+			margin: 1em;
+			/* Layout */
+			display: flex;
+			flex-flow: column;
+			--padding: 1em;
+			padding: var(--padding);
+			gap: var(--padding);
+			align-items: center;
+			contain: paint;
+			container: card / inline-size;
+			border-radius: var(--corner-radius);
+			box-shadow: .2em .3em .4em #0003;
+			@container style(--color-scheme: dark) {
+				box-shadow: 0em .2em .6em color-mix(in lch, var(--color), 80% transparent);
+			}
+			border: var(--hr-color, #6662) solid var(--border-width, .1em);
+
+			transition: box-shadow .3s, transform .3s, border-color .3s;
+
+			&:hover {
+				border-color: var(--color);
+				transform: translate(0px, -.6rem);
+				box-shadow: calc(.2em + .4rem) calc(.3em + .6rem) .8em #0003;
+
+				@container style(--color-scheme: dark) {
+					box-shadow: 0 .6em 1.4em color-mix(in lch, var(--color), 50% transparent);
+				}
+			}
+
+			> p { margin: 0 }
+
+			> img {
+				width: calc(100% + calc(2 * var(--padding)));
+				--margin: calc(-1 * var(--padding));
+				margin: 0 var(--margin);
+				border-radius: 0;
+				
+				&:first-child { margin-top: var(--margin); }
+				&:last-child { margin-bottom: var(--margin); }
+			}
 		}
-		border: var(--hr-color, #6662) solid var(--border-width, .1em);
-
-		transition: box-shadow .3s, transform .3s, border-color .3s;
-
-		> p { margin: 0 }
-	}
-
-	item-card:hover {
-		border-color: var(--color);
-		transform: translate(0px, -.6rem);
-		box-shadow: calc(.2em + .4rem) calc(.3em + .6rem) .8em #0003;
-
-		@container style(--color-scheme: dark) {
-			box-shadow: 0 .6em 1.4em color-mix(in lch, var(--color), 50% transparent);
-		}
-	}
-
-	item-card>img {
-		width: calc(100% + calc(2 * var(--padding)));
-		--margin: calc(-1 * var(--padding));
-		margin: 0 var(--margin);
-		border-radius: 0;
-		
-		&:first-child { margin-top: var(--margin); }
-		&:last-child { margin-bottom: var(--margin); }
 	}
 }

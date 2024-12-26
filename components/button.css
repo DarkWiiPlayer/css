@@ -1,12 +1,12 @@
 @layer button {
-	@layer base {
-		:is(
-			a.button,
-			button,
-			input[type="button"],
-			input[type="submit"],
-			input[type="reset"]
-		) {
+	:is(
+	a.button,
+	button,
+	input[type="button"],
+	input[type="submit"],
+	input[type="reset"]
+	) {
+		@layer base {
 			all: unset;
 			text-decoration: none;
 
@@ -54,7 +54,9 @@
 			&:focus {
 				outline: .2em solid var(--color-focus, var(--color, orange));
 			}
+		}
 
+		@layer primary {
 			&.primary {
 				text-shadow: .1em .14em .2em #0004;
 				color: var(--color-contrast, white);
@@ -70,47 +72,97 @@
 				}
 			}
 		}
+
+		@layer hover {
+			&[hover-text] {
+				position: relative;
+				background: none;
+
+				&:hover {
+					color: transparent;
+					text-shadow: none;
+				}
+
+				&::before {
+					content: attr(hover-text);
+
+					/* Position */
+					position: absolute;
+					height: 100%;
+					width: 0%;
+					left: 0;
+					top: 0;
+
+					/* Layout */
+					display: flex;
+					flex-flow: row nowrap;
+					justify-content: center;
+					align-items: center;
+
+					/* Styling */
+					border-radius: calc(var(--corner-radius, 0em) - var(--border));
+					color: white;
+					white-space: nowrap;
+					background: var(--color, orange);
+					overflow: hidden;
+
+					transition: width .3s;
+				}
+
+				&:hover::before {
+					width: 100%;
+				}
+
+				&.primary {
+					background-color: var(--color, orange);
+					&::before {
+						background-color: var(--hover-color);
+					}
+				}
+			}
+		}
+	}
+}
+
+@layer button-group {
+	button-group {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-around;
+		width: max-content;
+		border-radius: var(--corner-radius, 0em);
+		box-shadow: var(--button-shadow, .1em .2em .3em #0003);
 	}
 
-	@layer button-group {
-		button-group {
-			display: flex;
-			flex-flow: row nowrap;
-			justify-content: space-around;
-			width: max-content;
-			border-radius: var(--corner-radius, 0em);
-			box-shadow: var(--button-shadow, .1em .2em .3em #0003);
+	button-group>:is(
+	a.button,
+	button,
+	input[type="button"],
+	input[type="submit"],
+	input[type="reset"]
+	) {
+		box-shadow: none;
+
+		&:nth-child(n+2) {
+			border-left-width: 0;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
 		}
 
-		button-group>:is(
-			a.button,
-			button,
-			input[type="button"],
-			input[type="submit"],
-			input[type="reset"]
-		) {
-			box-shadow: none;
-
-			&:nth-child(n+2) {
-				border-left-width: 0;
-				border-top-left-radius: 0;
-				border-bottom-left-radius: 0;
-			}
-
-			&:nth-last-child(n+2) {
-				border-right-width: 0;
-				border-top-right-radius: 0;
-				border-bottom-right-radius: 0;
-			}
+		&:nth-last-child(n+2) {
+			border-right-width: 0;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
 		}
+	}
 
 	@layer button-disabled {
 		a.button:not([href]),
 		:is(
-			button,
-			input[type="button"],
-			input[type="submit"],
-			input[type="reset"]
+		button,
+		input[type="button"],
+		input[type="submit"],
+		input[type="reset"]
 		)[disabled] {
 			cursor: unset;
 			text-shadow: none;
