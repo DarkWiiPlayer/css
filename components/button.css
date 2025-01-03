@@ -78,13 +78,7 @@
 				position: relative;
 				background: none;
 
-				&:hover {
-					color: transparent;
-					text-shadow: none;
-				}
-
-				&::before {
-					content: attr(hover-text);
+				&:hover { color: transparent; text-shadow: none; } &::after { content: attr(hover-text);
 
 					/* Position */
 					position: absolute;
@@ -110,22 +104,22 @@
 					transition-duration: .3s;
 				}
 
-				&[slide-down]::before {
+				&[slide-down]::after {
 					top: 0;
 					bottom: 100%;
 				}
 
-				&[slide-right]::before {
+				&[slide-right]::after {
 					top: 0;
 					right: 100%;
 				}
 
-				&[slide-left]::before {
+				&[slide-left]::after {
 					top: 0;
 					left: 100%;
 				}
 
-				&:hover::before {
+				&:hover::after {
 					top: 0;
 					left: 0;
 					right: 0;
@@ -134,7 +128,7 @@
 
 				&.primary {
 					background-color: var(--color, orange);
-					&::before {
+					&::after {
 						background-color: var(--hover-color);
 					}
 				}

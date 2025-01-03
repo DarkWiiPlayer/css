@@ -22,6 +22,8 @@
 	:is(flex-row, flex-column):is([center], [centre]) {
 		align-items: center;
 	}
+	flex-row[start] { justify-content: flex-start; }
+	flex-row[end] { justify-content: flex-end; }
 
 	@media (max-width: 40rem) { flex-row[break="40"] { flex-direction: column } }
 	@media (max-width: 60rem) { flex-row[break="60"] { flex-direction: column } }

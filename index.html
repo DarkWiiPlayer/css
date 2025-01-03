@@ -405,8 +405,8 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 				</html-showcase>
 				<p>Listing tags</p>
 				<html-showcase>
-					<b>An Article about CSS</b>
-					<div>
+					<p><b>Some Article about CSS</b></p>
+					<flex-row center start gap=".4">
 						Tags:
 						<span class="badge" style="--color: hsl(230deg, 60%, 50%);">
 							#Beginner
@@ -417,7 +417,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 						<span class="badge" style="--color: hsl(290deg, 60%, 50%);">
 							#CSS
 						</span>
-					</div>
+					</flex-row>
 				</html-showcase>
 			</section>
 
@@ -479,9 +479,15 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 				<html-showcase>
 					<button>Click Me!</button>
 				</html-showcase>
+				<p>
+					"Primary" buttons draw more attention to indicate "primary" or "default" actions.
+				</p>
 				<html-showcase>
 					<button class="primary">Main Button!</button>
 				</html-showcase>
+				<p>
+					Buttons can have separate text to be shown when hovered.
+				</p>
 				<html-showcase>
 					<button hover-text="Extra text :D">Hover over me!</button>
 				</html-showcase>
@@ -492,7 +498,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 					<button-group>
 						<button>Click Me!</button>
 						<button>Or me!</button>
-						<button>Or how about me?</button>
+						<button class="primary">Or how about me?</button>
 					</button-group>
 				</html-showcase>
 			</section>
@@ -539,7 +545,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 				<html-showcase class="no-number">
 					<hover-columns style="height: 40vh">
 						<section tabindex="0">
-							<img src="https://picsum.photos/1200/1200?random=1">
+							<img src="https://picsum.photos/1200/1000?random=1">
 							<when-small>
 								<h2>Cool Column</h2>
 							</when-small>
@@ -553,7 +559,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 							</when-large>
 						</section>
 						<section tabindex="0">
-							<img src="https://picsum.photos/1200/1200?random=2">
+							<img src="https://picsum.photos/1200/1000?random=2">
 							<when-small>
 								<h2>Cool Information</h2>
 							</when-small>
@@ -570,7 +576,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 							</when-large>
 						</section>
 						<section tabindex="0">
-							<img src="https://picsum.photos/1200/1200?random=3">
+							<img src="https://picsum.photos/1200/1000?random=3">
 							<when-small>
 								<h2>Cool Website</h2>
 							</when-small>
@@ -714,6 +720,36 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 					</nav>
 				</html-showcase>
 
+				<section id="nav-groups">
+					<h4><a href="#nav-groups">Navigation Groups</a></h4>
+					<html-showcase>
+						<nav>
+							<details open>
+								<summary>Category</summary>
+								<ul>
+									<li><a href="#nav-groups">Foo</a></li>
+									<li><a href="#nav-groups">Bar</a></li>
+									<li><a href="#nav-groups">Baz</a></li>
+								</ul>
+							</details>
+							<details>
+								<summary>Group</summary>
+								<ul>
+									<li><a href="#nav-groups">Foo</a></li>
+									<li><a href="#nav-groups">Bar</a></li>
+								</ul>
+							</details>
+							<details>
+								<summary>Section</summary>
+								<ul>
+									<li><a href="#nav-groups">Foo</a></li>
+									<li><a href="#nav-groups">Bar</a></li>
+								</ul>
+							</details>
+						</nav>
+					</html-showcase>
+				</section>
+
 				<section id="breadcrumbs">
 					<h4><a href="#breadcrumbs">Breadcrumbs</a></h4>
 					<p>
@@ -730,39 +766,6 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 					</html-showcase>
 				</section>
 
-				<section id="nav-groups">
-					<h4><a href="#nav-groups">Navigation Groups</a></h4>
-					<html-showcase>
-						<nav>
-							<details open>
-								<summary>Category</summary>
-								<ul>
-									<li> <a href="#nav-groups">Foo</a>
-									<li> <a href="#nav-groups">Bar</a>
-									<li> <a href="#nav-groups">Baz</a>
-								</ul>
-							</details>
-							<details>
-								<summary>Group</summary>
-								<ul>
-									<li> <a href="#nav-groups">Foo</a>
-									<li> <a href="#nav-groups">Bar</a>
-									<li> <a href="#nav-groups">Baz</a>
-								</ul>
-							</details>
-							<details>
-								<summary>Section</summary>
-								<ul>
-									<li> <a href="#nav-groups">Foo</a>
-									<li> <a href="#nav-groups">Bar</a>
-									<li> <a href="#nav-groups">Baz</a>
-								</ul>
-							</details>
-						</nav>
-					</html-showcase>
-				</section>
-			</section>
-
 				<section id="navbar">
 					<h4><a href="#navbar">Navbar</a></h4>
 					<p>
@@ -771,18 +774,18 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 					<html-showcase>
 						<nav class="bar">
 							<ul>
-								<li> <a href="#navbar">Foo</a>
-								<li> <a href="#navbar">Bar</a>
-								<li> <a href="#navbar">Baz</a>
+								<li><a href="#navbar">Foo</a></li>
+								<li><a href="#navbar">Bar</a></li>
+								<li><a href="#navbar">Baz</a></li>
 							</ul>
 						</nav>
 					</html-showcase>
 					<html-showcase>
 						<nav class="bar underlined overlined">
 							<ul>
-								<li> <a href="#navbar">Foo</a>
-								<li> <a href="#navbar">Bar</a>
-								<li> <a href="#navbar">Baz</a>
+								<li><a href="#navbar">Foo</a></li>
+								<li><a href="#navbar">Bar</a></li>
+								<li><a href="#navbar">Baz</a></li>
 							</ul>
 						</nav>
 					</html-showcase>
