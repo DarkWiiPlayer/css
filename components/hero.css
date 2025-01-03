@@ -1,41 +1,39 @@
 @layer hero {
 	page-hero {
 		font-size: 1.4em;
-		min-height: 40vh;
 		display: flex;
 		flex-flow: column nowrap;
 		align-items: center;
 		justify-content: center;
-		min-height: attr(cover vh, 40vh)
-	}
 
-	@media (max-width: 60rem) {
-		page-hero {
+		min-height: attr(cover vh, 0em);
+		/* Fallbacks until attr is widely supported */
+		&[cover="40"] { min-height: 40vh; }
+		&[cover="50"] { min-height: 50vh; }
+		&[cover="60"] { min-height: 60vh; }
+		&[cover="70"] { min-height: 70vh; }
+		&[cover="80"] { min-height: 80vh; }
+		&[cover="90"] { min-height: 90vh; }
+		&[cover="100"] { min-height: 100vh; }
+
+		padding-block: 2em;
+		&[cover] { padding-block: 0; }
+
+		/* Special override for HEADER+HERO combinations */
+		header:not(.fixed)+&[cover="100"] { min-height: calc(100vh - var(--header-height, 5rem)); }
+
+		@media (max-width: 60rem) {
 			font-size: 1.2em;
 		}
-	}
 
-	page-hero+* {
-		margin-top: 2rem;
-	}
-
-	page-hero+.\+join-hero {
-		margin-top: 0;
-		&+* {
+		+*, +.\+join-hero+* {
 			margin-top: 2rem;
 		}
-	}
 
-	/* Fallbacks until attr is widely supported */
-	page-hero[cover="40"] { min-height: 40vh; }
-	page-hero[cover="50"] { min-height: 50vh; }
-	page-hero[cover="60"] { min-height: 60vh; }
-	page-hero[cover="70"] { min-height: 70vh; }
-	page-hero[cover="80"] { min-height: 80vh; }
-	page-hero[cover="90"] { min-height: 90vh; }
-	page-hero[cover="100"] { min-height: 100vh; }
-	/* Special override for HEADER+HERO combinations */
-	header:not(.fixed)+page-hero[cover="100"] { min-height: calc(100vh - var(--header-height, 5rem)); }
+		+.\+join-hero {
+			margin-top: 0;
+		}
+	}
 
 	page-hero > *+* { margin-top: 1.2em; }
 

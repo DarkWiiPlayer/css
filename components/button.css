@@ -88,10 +88,10 @@
 
 					/* Position */
 					position: absolute;
-					height: 100%;
-					width: 0%;
-					left: 0;
-					top: 0;
+					left: 0%;
+					top: 100%;
+					bottom: 0%;
+					right: 0%;
 
 					/* Layout */
 					display: flex;
@@ -106,11 +106,30 @@
 					background: var(--color, orange);
 					overflow: hidden;
 
-					transition: width .3s;
+					transition-property: top, left, right, bottom;
+					transition-duration: .3s;
+				}
+
+				&[slide-down]::before {
+					top: 0;
+					bottom: 100%;
+				}
+
+				&[slide-right]::before {
+					top: 0;
+					right: 100%;
+				}
+
+				&[slide-left]::before {
+					top: 0;
+					left: 100%;
 				}
 
 				&:hover::before {
-					width: 100%;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
 				}
 
 				&.primary {
