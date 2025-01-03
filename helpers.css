@@ -1,0 +1,9 @@
+@layer typography {
+	[font~=tiny] { font-size: 0.2rem }
+	[font~=default] { font-size: 1rem }
+	[font~=massive] { font-size: 4rem }
+}
+
+@layer shape {
+	.round { border-radius: var(--corner-radius); }
+}

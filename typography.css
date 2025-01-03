@@ -4,16 +4,12 @@
 	:root {
 		font-family: sans-serif;
 		line-height: 1.4em;
-	}
 
-	@media (max-width: 60rem) {
-		:root {
+		@media (max-width: 60rem) {
 			font-size: 0.8em;
 		}
-	}
 
-	@media (max-width: 40rem) {
-		:root {
+		@media (max-width: 40rem) {
 			font-size: 0.6em;
 		}
 	}
@@ -152,32 +148,13 @@
 		}
 	}
 
-	/* INDENTATION */
-
-	* { tab-size: inherit; }
-	:root { tab-size: 4; }
-	[tab-size="2"] { tab-size: 2; }
-	[tab-size="3"] { tab-size: 3; }
-	[tab-size="4"] { tab-size: 4; }
-	[tab-size="8"] { tab-size: 8; }
-
-	@layer content {
-		:root {
-			--content-width: min(60rem, calc(100vw - 4rem));
-		}
-
-		:is(article, .content-width, content-width) {
-			max-width: var(--content-width);
-			margin-left: auto;
-			margin-right: auto;
-		}
-
-		section + section { margin-top: 3em; }
-		p + section { margin-top: 2em; }
-
-		article img {
-			max-width: var(--content-width);
-		}
+	@layer indentation {
+		* { tab-size: inherit; }
+		:root { tab-size: 4; }
+		[tab-size="2"], .tab-2 { tab-size: 2; }
+		[tab-size="3"], .tab-3 { tab-size: 3; }
+		[tab-size="4"], .tab-4 { tab-size: 4; }
+		[tab-size="8"], .tab-8 { tab-size: 8; }
 	}
 
 	/* OTHER BLOCK ELEMENT MARGINS */

@@ -38,5 +38,10 @@
 			border-color: var(--color, orange);
 			font-weight: bold;
 		}
+
+		details {
+			> summary::before { display: none; }
+			display: flex;
+		}
 	}
 }

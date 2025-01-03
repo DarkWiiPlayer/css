@@ -13,12 +13,12 @@
 	header,
 	hr,
 	list,
-	nav,
+	details,
+	nav, /* Overrides details */
 	navbar,
 	breadcrumbs,
 	quote,
 	table,
-	details,
 	drawer,
 	blob;
 
