@@ -1,4 +1,4 @@
-@layer lists {
+@layer list {
 	:is(ul, ol) {
 		padding-left: 3ch;
 	}

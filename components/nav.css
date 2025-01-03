@@ -39,9 +39,13 @@
 			font-weight: bold;
 		}
 
-		details {
-			> summary::before { display: none; }
-			display: flex;
+		:scope details {
+			summary::before { display: none; }
+			:is(ul, ol) {
+				flex-flow: column;
+				display: flex;
+				padding-left: 0;
+			}
 		}
 	}
 }
