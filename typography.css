@@ -62,47 +62,56 @@
 		form h5 { font-size: 1.2em; }
 		form h6 { font-size: 1.1em; }
 
+		article {
+			width: var(--content-width);
+		}
+
+
 		@layer numbering {
-			article { counter-set: h1 h2 h3 h4 h5 h6 }
-			article h1::before { counter-increment: h1; counter-set: h2 h3 h4 h5 h6 }
-			article h2::before { counter-increment: h2; counter-set: h3 h4 h5 h6 }
-			article h3::before { counter-increment: h3; counter-set: h4 h5 h6 }
-			article h4::before { counter-increment: h4; counter-set: h5 h6 }
-			article h5::before { counter-increment: h5; counter-set: h6 }
-			article h6::before { counter-increment: h6; }
+			article:not(.no-numbering), .numbering {
+				& { counter-set: h1 h2 h3 h4 h5 h6 }
+				& h1::before { counter-increment: h1; counter-set: h2 h3 h4 h5 h6 }
+				& h2::before { counter-increment: h2; counter-set: h3 h4 h5 h6 }
+				& h3::before { counter-increment: h3; counter-set: h4 h5 h6 }
+				& h4::before { counter-increment: h4; counter-set: h5 h6 }
+				& h5::before { counter-increment: h5; counter-set: h6 }
+				& h6::before { counter-increment: h6; }
 
-			article :is(h2, h3, h4, h5, h6)::before {
-				--padding: .8rem;
-				margin-right: var(--padding);
-				display: none;
-				opacity: .6;
-				color: var(--color, orange);
-				font-size: .8em;
-			}
-			article :is(h2, h3, h4, h5, h6):hover::before {
-				opacity: 1;
-			}
+				:is(h2, h3, h4, h5, h6) {
+					&::before {
+						--padding: .8rem;
+						margin-right: var(--padding);
+						display: none;
+						opacity: .6;
+						color: var(--color, orange);
+						font-size: .8em;
+					}
 
-			/* --content-width + a bit */
-			/* This sadly has to be hard-coded :( */
-			@media (min-width: 74em) {
-				article :is(h2, h3, h4, h5, h6)::before {
-					position: absolute;
-					bottom: -.1em;
-					width: 5em;
-					left: calc(-5em - var(--padding));
-					text-align: right;
+					&:hover::before {
+						opacity: 1;
+					}
+
+					/* --content-width + a bit */
+					/* This sadly has to be hard-coded :( */
+					@media (min-width: 74em) {
+						&::before {
+							position: absolute;
+							bottom: -.1em;
+							width: 5em;
+							left: calc(-5em - var(--padding));
+							text-align: right;
+						}
+					}
 				}
+
+				:is(h2, h3, h4):not(.skip-number)::before { display: inline-block; }
+
+				h2::before { content: counter(h2) "."; }
+				h3::before { content: counter(h2) "." counter(h3) "."; }
+				h4::before { content: counter(h2) "." counter(h3) "." counter(h4) "."; }
+				h5::before { content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "."; }
+				h6::before { content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) "."; }
 			}
-
-			article
-			:is(h2, h3, h4):not(.skip-number)::before { display: inline-block; }
-
-			article h2::before { content: counter(h2) "."; }
-			article h3::before { content: counter(h2) "." counter(h3) "."; }
-			article h4::before { content: counter(h2) "." counter(h3) "." counter(h4) "."; }
-			article h5::before { content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "."; }
-			article h6::before { content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) "."; }
 		}
 
 		@layer numbering-override {

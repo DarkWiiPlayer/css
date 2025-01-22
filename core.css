@@ -73,12 +73,6 @@
 		--content-width: min(60rem, calc(100vw - 4rem));
 	}
 
-	:is(article, .content-width, content-width) {
-		max-width: var(--content-width);
-		margin-left: auto;
-		margin-right: auto;
-	}
-
 	section + section { margin-top: 3em; }
 	p + section { margin-top: 2em; }
 

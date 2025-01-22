@@ -20,7 +20,7 @@
 }
 
 @layer placement {
-	.full-width { width: 100%; }
+	.full-width {width: 100%;}
 	.max-content { width: max-content; }
 	.min-content { width: min-content; }
 }
@@ -31,4 +31,10 @@
 
 	.hidden-x { overflow-x: hidden; }
 	.hidden-y { overflow-y: hidden; }
+}
+
+:is(.content-width, content-width) {
+	max-width: var(--content-width);
+	margin-left: auto;
+	margin-right: auto;
 }
