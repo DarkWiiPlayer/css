@@ -51,7 +51,7 @@
 		--color: rebeccapurple;
 		--background: #222;
 		--background-inset: #0002;
-		--background-float: #2221;
+		--background-float: #8881;
 		--hr-color: #333;
 		background: var(--background);
 		color: var(--color-text);
@@ -64,9 +64,9 @@
 	--color-scheme: dark;
 	--color-text: white;
 	--color: color-mix(in hsl, rebeccapurple, 20% white);
-	--background: #111;
+	--background: #222;
 	--background-inset: #0002;
-	--background-float: #2221;
+	--background-float: #8881;
 	--hr-color: #333;
 	background: var(--background);
 	color: var(--color-text);
