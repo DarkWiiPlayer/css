@@ -62,11 +62,6 @@
 		form h5 { font-size: 1.2em; }
 		form h6 { font-size: 1.1em; }
 
-		article {
-			width: var(--content-width);
-		}
-
-
 		@layer numbering {
 			article:not(.no-numbering), .numbering {
 				& { counter-set: h1 h2 h3 h4 h5 h6 }
@@ -134,9 +129,10 @@
 
 	@layer base {
 		article {
+			width: var(--content-width);
+			container-type: inline-size;
 			margin-left: auto;
 			margin-right: auto;
-
 			font-size: 1.2rem;
 		}
 

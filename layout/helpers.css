@@ -80,4 +80,5 @@
 	max-width: var(--content-width);
 	margin-left: auto;
 	margin-right: auto;
+	container-type: inline-width;
 }
