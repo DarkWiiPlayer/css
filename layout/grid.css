@@ -46,61 +46,19 @@
 	}
 
 	@layer responsive {
-		/* Short Lua script to generate these rules
-		local base = [[grid-box[columns="%i@%i"] { grid-template-columns: repeat(%i, minmax(0, 1fr)); }]]
-		local step = [[@media (min-width: %4ipx) { grid-box[columns="%i@%i"] { grid-template-columns: repeat(%i, minmax(0, 1fr)); } }]]
-		local resolution = 1920
-		for _, number in ipairs { 2, 3, 4, 5, 6, 8 } do
-			print("", base:format(number, resolution, 1))
-			for i=1, number-1 do
-				print("", step:format(math.floor(resolution/(number-1)*i), number, resolution, i+1))
-			end
-			print()
-		end
-		*/
-		grid-box[columns="2@1920"] { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-		@media (min-width: 1920px) { grid-box[columns="2@1920"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-
-		grid-box[columns="3@1920"] { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-		@media (min-width:  960px) { grid-box[columns="3@1920"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-		@media (min-width: 1920px) { grid-box[columns="3@1920"] { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-
-		grid-box[columns="4@1920"] { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-		@media (min-width:  640px) { grid-box[columns="4@1920"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-		@media (min-width: 1280px) { grid-box[columns="4@1920"] { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-		@media (min-width: 1920px) { grid-box[columns="4@1920"] { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-
-		grid-box[columns="5@1920"] { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-		@media (min-width:  480px) { grid-box[columns="5@1920"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-		@media (min-width:  960px) { grid-box[columns="5@1920"] { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-		@media (min-width: 1440px) { grid-box[columns="5@1920"] { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-		@media (min-width: 1920px) { grid-box[columns="5@1920"] { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
-
-		grid-box[columns="6@1920"] { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-		@media (min-width:  384px) { grid-box[columns="6@1920"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-		@media (min-width:  768px) { grid-box[columns="6@1920"] { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-		@media (min-width: 1152px) { grid-box[columns="6@1920"] { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-		@media (min-width: 1536px) { grid-box[columns="6@1920"] { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
-		@media (min-width: 1920px) { grid-box[columns="6@1920"] { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
-
-		grid-box[columns="8@1920"] { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-		@media (min-width:  274px) { grid-box[columns="8@1920"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-		@media (min-width:  548px) { grid-box[columns="8@1920"] { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-		@media (min-width:  822px) { grid-box[columns="8@1920"] { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-		@media (min-width: 1097px) { grid-box[columns="8@1920"] { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
-		@media (min-width: 1371px) { grid-box[columns="8@1920"] { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
-		@media (min-width: 1645px) { grid-box[columns="8@1920"] { grid-template-columns: repeat(7, minmax(0, 1fr)); } }
-		@media (min-width: 1920px) { grid-box[columns="8@1920"] { grid-template-columns: repeat(8, minmax(0, 1fr)); } }
-
 		grid-box[wrap] { flex-flow: column nowrap }
 		grid-box[wrap][center] { align-items: center; }
-		@media (max-width: 40rem) { grid-box[break="40"] { display: flex; } }
-		@media (max-width: 60rem) { grid-box[break="60"] { display: flex; } }
-		@media (max-width: 80rem) { grid-box[break="80"] { display: flex; } }
-		@media (max-width: 100rem) { grid-box[break="100"] { display: flex; } }
-		@media (max-width: 120rem) { grid-box[break="120"] { display: flex; } }
-		@media (max-width: 500px) { grid-box[break="mobile"] { display: flex; } }
-		@media (max-width: 1500px) { grid-box[break="desktop"] { display: flex; } }
+
+		@container (width <= 40rem) { grid-box[break="40"] { display: flex; } }
+		@container (width <= 60rem) { grid-box[break="60"] { display: flex; } }
+		@container (width <= 80rem) { grid-box[break="80"] { display: flex; } }
+		@container (width <= 100rem) { grid-box[break="100"] { display: flex; } }
+		@container (width <= 120rem) { grid-box[break="120"] { display: flex; } }
+
+		@media (max-width: 360px) { grid-box[break="tiny"] { display: flex; } }
+		@media (max-width: 720px) { grid-box[break="small"] { display: flex; } }
+		@media (max-width: 1920px) { grid-box[break="medium"] { display: flex; } }
+
 		@media (orientation: portrait) { grid-box[break="portrait"] { display: flex; } }
 	}
 }

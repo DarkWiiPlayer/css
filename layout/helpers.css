@@ -1,21 +1,64 @@
+/*
+* Small: long edge <= 720p
+* Medium: 720px < long edge < 1920px
+* Large: long edge >= 1920px
+*
+* Narrow: width <= 720px
+* Medium Width: 720px < width < 1920px
+* Wide: width >= 1920px
+*/
+
 @layer presence {
-	@media not (max-width: 500px) {
-		only-mobile, .only-mobile { display: none; visibility: hidden; }
+	hide-small, .hide-small {
+		@media (orientation: landscape) and (width <= 720px) { display: none; visibility: hidden; }
+		@media (orientation: portrait) and (height <= 720px) { display: none; visibility: hidden; }
 	}
-	@media (max-width: 500px) {
-		no-mobile, .no-mobile {  display: none; visibility: hidden;  }
+	hide-medium, .hide-medium {
+		@media (orientation: landscape) and (720px < width < 1920px) { display: none; visibility: hidden; }
+		@media (orientation: portrait) and (720px < height < 1920px) { display: none; visibility: hidden; }
 	}
-	@media (min-width: 1500px) {
-		no-desktop, .no-desktop {  display: none; visibility: hidden;  }
+	hide-large, .hide-large {
+		@media (orientation: landscape) and (width >= 1920px) { display: none; visibility: hidden; }
+		@media (orientation: portrait) and (height >= 1920px) { display: none; visibility: hidden; }
 	}
-	@media not (min-width: 1500px) {
-		only-desktop, .only-desktop { display: none; visibility: hidden; }
+
+	only-small, .only-small {
+		@media not
+			(orientation: landscape) and (width <= 720px)
+			or (orientation: portrait) and (height <= 720px)
+			{ display: none; visibility: hidden; }
 	}
-	@media (orientation: landscape) {
-		only-landscape, .only-landscape { display: none; visibility: hidden; }
+	only-medium, .only-medium {
+		@media not
+			(orientation: landscape) and (720px < width < 1920px)
+			or (orientation: portrait) and (720px < height < 1920px)
+			{ display: none; visibility: hidden; }
 	}
-	@media (orientation: portrait) {
-		only-portrait, .only-portrait { display: none; visibility: hidden; }
+	only-large, .only-large {
+		@media not
+			(orientation: landscape) and (width >= 1920px)
+			or (orientation: portrait) and (height >= 1920px)
+			{ display: none; visibility: hidden; }
+	}
+
+	hide-width-small, .hide-width-small {
+		@media (width <= 720px) { display: none; visibility: hidden; }
+	}
+	hide-width-medium, .hide-width-medium {
+		@media (720px < width < 1920px) { display: none; visibility: hidden; }
+	}
+	hide-width-large, .hide-width-large {
+		@media (width >= 1920px) { display: none; visibility: hidden; }
+	}
+
+	only-width-small, .only-width-small {
+		@media not (width <= 720px) { display: none; visibility: hidden; }
+	}
+	only-width-medium, .only-width-medium {
+		@media not (720px < width < 1920px) { display: none; visibility: hidden; }
+	}
+	only-width-large, .only-width-large {
+		@media not (width >= 1920px) { display: none; visibility: hidden; }
 	}
 }
 

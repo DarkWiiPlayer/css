@@ -162,8 +162,8 @@
 		<h1>DarkWiiPlayer/CSS</h1>
 		<nav class="underlined bar right">
 			<ul>
-				<li class="no-mobile"><a href="playground.html">Playground</a></li>
-				<li class="no-mobile">
+				<li class="no-small"><a href="playground.html">Playground</a></li>
+				<li class="no-small">
 					<scheme-switcher>
 						<a onclick="this.parentElement.toggle()">Theme</a>
 					</scheme-switcher>
@@ -174,7 +174,7 @@
 							<a>Menu</a>
 						</summary>
 						<drawer-box right>
-							<only-mobile>
+							<only-small>
 								<nav>
 									<ul>
 										<li><a href="playground.html">Playground</a></li>
@@ -185,7 +185,7 @@
 									<a onclick="this.parentElement.toggle()">Theme</a>
 								</scheme-switcher>
 								<hr>
-							</only-mobile>
+							</only-small>
 							<auto-nav></auto-nav>
 						</drawer-box>
 					</details>
@@ -306,11 +306,6 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 					Use this element when you want to keep column-<strong>width</strong> consistent across resolutions.
 					<code>grid-box</code> element.
 					<ul>
-						<li> The <code>columns</code> attribute describes the target column count at a reference width.
-							<ul>
-								<li> The value <code>6@1920</code>, for example, means that at 1920px available space, the grid should have 6 columns.
-								<li> The value <code>3@content</code> means that at the default width of an <code>&lt;article&gt;</code> the grid should have 3 columns.
-							</ul>
 						<li> <code>gap</code> acts the same as with the other flex and grid layours.
 						<li> The <code>--column-width</code> can be used to specify a fixed column width.
 					</ul>
@@ -345,7 +340,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 					</ul>
 					<vertical-spacer></vertical-spacer>
 					<html-showcase hide-code>
-						<grid-box center columns=4 gap=1 break=mobile>
+						<grid-box center columns=4 gap=1 break=small>
 							<div class="blob">1</div>
 							<div class="blob">2</div>
 							<div class="blob">3</div>
@@ -370,14 +365,19 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 			<section id="layout-helpers">
 				<h3><a href="#layout-helpers">Layout Helpers</a></h3>
 
+				<h4>Dimensions</h4>
+				<p>
+					There are three main dimensions: Small, medium and large, with the boundaries at 700px and 1900px.<br>
+					For each of these dimensions, elements can be shown or hidden using either a class or a custom
+					element with a name like <code>hide-small</code> or <code>only-medium</code>.
+				</p>
+				<p>
+					Note that these are the same sizes as the break points for flex and grid elements,
+					except those have the additional <code>tiny</code> size at 300px.
+				</p>
+
+				<h4>Other</h4>
 				<ul>
-					<li><b>Only Mobile</b>: The <code>only-mobile</code> custom element and the <code>.only-mobile</code> class will hide an element on dipsplays <strong>wider than 500px</strong></li>
-					<li><b>No Mobile</b>: Similarly, the <code>no-mobile</code> element and class hide elements below this resolution.</li>
-					<li><b>No Desktop</b>: The element and class <code>no-desktop</code> hide elements at screen widths <strong>above 1500px</strong>.</li>
-					<li><b>Only Desktop</b>: The <code>only-desktop</code> class and element are hidden at any smaller screen-width.</li>
-					<li><b>Only Portrait</b>: The <code>only-portrait</code> class and element are hidden in landscape aspect ratio.</li>
-					<li><b>Only Landscape</b>: Likewise, <code>only-landscape</code> are hidden in portrait aspect ratio.</li>
-					<vertical-spacer></vertical-spacer>
 					<li><b>Full Width</b>: The <code>.full-width</code> class sets an elements <code>width</code> to 100%.</li>
 					<vertical-spacer></vertical-spacer>
 					<li><b>Vertical overflow</b>: The classes <code>.scroll-x</code> and <code>.hidden-x</code> set the <code>overflow-x</code> attribute of the element.</li>
@@ -514,7 +514,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 					Images have negtive padding applied to ignore the card's horizontal padding, and if they are the first or last child, they also ignore the top or bottom padding respectively.
 				</p>
 				<html-showcase>
-					<flex-row break="desktop">
+					<flex-row break="small">
 						<item-card style="width: 20em">
 							<img src="https://picsum.photos/600/300?random=ksjfh"></img>
 							<p>This is a card representing some item among many.</p>
@@ -678,7 +678,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 
 			<section id="lists">
 				<h3><a href="#lists">Lists</a></h3>
-				<grid-box break=mobile gap=1 columns=2>
+				<grid-box break=small gap=1 columns=2>
 					<div>
 						<h4>Ordered</h4>
 						<html-showcase>
@@ -855,7 +855,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 					and disabled by setting it to anything else (including the empty string).
 				</p>
 
-				<grid-box tab-size=2 gap=1 columns=2 break="mobile">
+				<grid-box tab-size=2 gap=1 columns=2 break="small">
 					<flex-column class="box">
 						<table borders="vertical">
 							<thead>

@@ -25,13 +25,15 @@
 	flex-row[start] { justify-content: flex-start; }
 	flex-row[end] { justify-content: flex-end; }
 
-	@media (max-width: 40rem) { flex-row[break="40"] { flex-direction: column } }
-	@media (max-width: 60rem) { flex-row[break="60"] { flex-direction: column } }
-	@media (max-width: 80rem) { flex-row[break="80"] { flex-direction: column } }
-	@media (max-width: 100rem) { flex-row[break="100"] { flex-direction: column } }
-	@media (max-width: 120rem) { flex-row[break="120"] { flex-direction: column } }
-	@media (max-width: 500px) { flex-row[break="mobile"] { flex-direction: column } }
-	@media (max-width: 1500px) { flex-row[break="desktop"] { flex-direction: column } }
+	@container (width <= 40rem) { flex-row[break="40"] { flex-direction: column } }
+	@container (width <= 60rem) { flex-row[break="60"] { flex-direction: column } }
+	@container (width <= 80rem) { flex-row[break="80"] { flex-direction: column } }
+	@container (width <= 100rem) { flex-row[break="100"] { flex-direction: column } }
+	@container (width <= 120rem) { flex-row[break="120"] { flex-direction: column } }
+
+	@media (max-width: 300px) { flex-row[break="tin"] { flex-direction: column } }
+	@media (max-width: 700px) { flex-row[break="small"] { flex-direction: column } }
+	@media (max-width: 1900px) { flex-row[break="medium"] { flex-direction: column } }
 	@media (orientation: portrait) { flex-row[break="portrait"] { flex-direction: column } }
 
 	/* FLEX GRID */
