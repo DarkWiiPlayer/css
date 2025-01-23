@@ -1,4 +1,4 @@
-@layer card {
+@layer item-card {
 	item-card {
 		@layer base {
 			width: 24em;
@@ -15,8 +15,11 @@
 			border-radius: var(--corner-radius);
 			box-shadow: .2em .3em .4em #0003;
 			@container style(--color-scheme: dark) {
-				box-shadow: 0em .2em .6em color-mix(in lch, var(--color), 80% transparent);
+				box-shadow:
+					0em .2em .4em #0006,
+					.2em .4em .8em .1em #0004;
 			}
+			background-color: var(--background);
 			border: var(--hr-color, #6662) solid var(--border-width, .1em);
 
 			transition: box-shadow .3s, transform .3s, border-color .3s;
@@ -27,7 +30,18 @@
 				box-shadow: calc(.2em + .4rem) calc(.3em + .6rem) .8em #0003;
 
 				@container style(--color-scheme: dark) {
-					box-shadow: 0 .6em 1.4em color-mix(in lch, var(--color), 50% transparent);
+					border-width: var(--border-width, .1em);
+					background-size: 100% 100%, 100% calc(100% + calc(2 * var(--border-width, .1em)));
+					background-position-y: 0px, calc(-1 * var(--border-width, .1em));
+					background-image:
+						linear-gradient(to top, var(--background), var(--background)),
+						linear-gradient(to top, white, var(--color), var(--color));
+					background-clip: padding-box, border-box;
+					border-color: transparent;
+					box-shadow:
+						0 .14em .4em .1em #fff4,
+						0 .2em .6em color-mix(in lch, var(--color), 60% transparent),
+						0 .6em 1.4em color-mix(in lch, var(--color), 40% transparent);
 				}
 			}
 
