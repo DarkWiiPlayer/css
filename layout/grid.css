@@ -1,21 +1,22 @@
 @layer grid {
 	@layer static {
 		grid-box {
-			--columns: 1; /* Fallback */
-			--columns: attr(columns, 1); /* Experimental */
+			--columns: 1;
+			--columns: attr(columns integer, 1);
 			display: grid;
 			grid-template-columns: repeat(var(--columns), 1fr);
 		}
 
 		grid-box[center] { justify-items: center; }
 
-		/* attr fallbacks */
-
 		grid-box[columns="2"] { --columns: 2; }
 		grid-box[columns="3"] { --columns: 3; }
 		grid-box[columns="4"] { --columns: 4; }
+		grid-box[columns="5"] { --columns: 5; }
 		grid-box[columns="6"] { --columns: 6; }
+		grid-box[columns="7"] { --columns: 7; }
 		grid-box[columns="8"] { --columns: 8; }
+		grid-box[columns="9"] { --columns: 9; }
 
 		grid-box[gap] {
 			gap: attr(gap em, 0em); /* Experimental */
@@ -48,6 +49,37 @@
 	@layer responsive {
 		grid-box[wrap] { flex-flow: column nowrap }
 		grid-box[wrap][center] { align-items: center; }
+
+		@property --grid-reference-width {
+			syntax: "<length>";
+			initial-value: 0px;
+			inherits: false;
+		}
+
+		@property --grid-actual-width {
+			syntax: "<length>";
+			initial-value: 0px;
+			inherits: false;
+		}
+
+		grid-box[reference] {
+			--grid-reference-width: attr(reference width, var(--content-width));
+			--grid-actual-width: 100cqw;
+			--computed-columns: calc(
+				tan(atan2(
+					var(--grid-actual-width), var(--grid-reference-width)
+				)) * var(--columns)
+			);
+			grid-template-columns: repeat(var(--computed-columns, var(--columnss, 2)), 1fr);
+		}
+
+		grid-box[reference="large"] { --grid-reference-width: 1900px; }
+		grid-box[reference="medium"] { --grid-reference-width: 700px; }
+		grid-box[reference="content"] { --grid-reference-width: var(--content-width); }
+		/* attr() Fallback */
+		grid-box[reference=""] { --grid-reference-width: var(--content-width); }
+		grid-box[reference="2000px"] { --grid-reference-width: 2000px; }
+		grid-box[reference="1000px"] { --grid-reference-width: 1000px; }
 
 		@container (width <= 40rem) { grid-box[break="40"] { display: flex; } }
 		@container (width <= 60rem) { grid-box[break="60"] { display: flex; } }
