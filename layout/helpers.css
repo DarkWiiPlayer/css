@@ -9,6 +9,7 @@
 */
 
 @layer presence {
+	hide-small, hide-medium, hide-large { display: contents }
 	hide-small, .hide-small {
 		@media (orientation: landscape) and (width <= 720px) { display: none; visibility: hidden; }
 		@media (orientation: portrait) and (height <= 720px) { display: none; visibility: hidden; }
@@ -22,25 +23,27 @@
 		@media (orientation: portrait) and (height >= 1920px) { display: none; visibility: hidden; }
 	}
 
+	only-small, only-medium, only-large { display: contents }
 	only-small, .only-small {
-		@media not
-			(orientation: landscape) and (width <= 720px)
-			or (orientation: portrait) and (height <= 720px)
+		@media
+			not ((orientation: landscape) and (width <= 720px)),
+			not ((orientation: portrait) and (height <= 720px))
 			{ display: none; visibility: hidden; }
 	}
 	only-medium, .only-medium {
-		@media not
-			(orientation: landscape) and (720px < width < 1920px)
-			or (orientation: portrait) and (720px < height < 1920px)
+		@media
+			not ((orientation: landscape) and (720px < width < 1920px)),
+			not ((orientation: portrait) and (720px < height < 1920px))
 			{ display: none; visibility: hidden; }
 	}
 	only-large, .only-large {
-		@media not
-			(orientation: landscape) and (width >= 1920px)
-			or (orientation: portrait) and (height >= 1920px)
+		@media
+			not ((orientation: landscape) and (width >= 1920px)),
+			not ((orientation: portrait) and (height >= 1920px))
 			{ display: none; visibility: hidden; }
 	}
 
+	hide-width-small, hide-width-medium, hide-width-large { display: contents }
 	hide-width-small, .hide-width-small {
 		@media (width <= 720px) { display: none; visibility: hidden; }
 	}
@@ -51,6 +54,7 @@
 		@media (width >= 1920px) { display: none; visibility: hidden; }
 	}
 
+	only-width-small, only-width-medium, only-width-large { display: contents }
 	only-width-small, .only-width-small {
 		@media not (width <= 720px) { display: none; visibility: hidden; }
 	}
