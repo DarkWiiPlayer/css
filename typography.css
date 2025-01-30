@@ -63,14 +63,14 @@
 		form h6 { font-size: 1.1em; }
 
 		@layer numbering {
-			article:not(.no-numbering), .numbering {
-				& { counter-set: h1 h2 h3 h4 h5 h6 }
-				& h1::before { counter-increment: h1; counter-set: h2 h3 h4 h5 h6 }
-				& h2::before { counter-increment: h2; counter-set: h3 h4 h5 h6 }
-				& h3::before { counter-increment: h3; counter-set: h4 h5 h6 }
-				& h4::before { counter-increment: h4; counter-set: h5 h6 }
-				& h5::before { counter-increment: h5; counter-set: h6 }
-				& h6::before { counter-increment: h6; }
+			:is(section):has(:is(h1, h2, h3, h4, h5, h6):first-child) { contain: style; counter-increment: heading; }
+
+			article.numbering {
+				counter-reset: heading;
+
+				:is(article, section) > :is(h2, h3, h4):first-child::before {
+					display: inline-block; content: counters(heading, ".")
+				}
 
 				:is(h2, h3, h4, h5, h6) {
 					&::before {
@@ -98,14 +98,6 @@
 						}
 					}
 				}
-
-				:is(h2, h3, h4):not(.skip-number)::before { display: inline-block; }
-
-				h2::before { content: counter(h2) "."; }
-				h3::before { content: counter(h2) "." counter(h3) "."; }
-				h4::before { content: counter(h2) "." counter(h3) "." counter(h4) "."; }
-				h5::before { content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "."; }
-				h6::before { content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) "."; }
 			}
 		}
 
@@ -130,7 +122,7 @@
 	@layer base {
 		article {
 			width: var(--content-width);
-			container-type: inline-size;
+			/* container-type: inline-size; */
 			margin-left: auto;
 			margin-right: auto;
 			font-size: 1.2rem;
