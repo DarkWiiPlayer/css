@@ -67,7 +67,7 @@
 	flex-grid[columns^="10@"] { --column-target-count: 10; }
 
 	flex-grid[columns$="@1920"] { --column-target-at: 1920px; }
-	flex-grid[columns$="@content"] { --column-target-at: var(--content-width); }
+	flex-grid[columns$="@content"] { --column-target-at: var(--content-width, 100vw); }
 
 	flex-grid[columns*="@"] {
 		--column-width: calc(

@@ -81,7 +81,7 @@
 }
 
 :is(.content-width, content-width) {
-	max-width: var(--content-width);
+	max-width: var(--content-width, 100vw);
 	margin-left: auto;
 	margin-right: auto;
 	container-type: inline-width;

@@ -1,8 +1,6 @@
-/* ============ */
 /* STYLE RESETS */
-/* ============ */
 
-@layer core {
+@layer resets {
 	:root, body {
 		scroll-behavior: smooth;
 	}
@@ -25,9 +23,19 @@
 	p { margin: 0; }
 }
 
+/* GLOBAL DEFINITIONS */
+
 :root {
 	--corner-radius: .2rem;
 	--line-width: .3rem;
+	--content-width: min(60rem, calc(100vw - 4rem));
+}
+
+/* THEMING */
+
+:root, [color-scheme] {
+	background: var(--background);
+	color: var(--color-text);
 }
 
 :root:not([color-scheme]), [color-scheme="light"] {
@@ -38,9 +46,6 @@
 	--background-inset: #00000006;
 	--color: rebeccapurple;
 	--hr-color: #ccc;
-	background: var(--background);
-	color: var(--color-text);
-
 	color-scheme: light;
 }
 
@@ -53,9 +58,6 @@
 		--background-inset: #0002;
 		--background-float: #8881;
 		--hr-color: #333;
-		background: var(--background);
-		color: var(--color-text);
-
 		color-scheme: dark;
 	}
 }
@@ -68,20 +70,5 @@
 	--background-inset: #0002;
 	--background-float: #8881;
 	--hr-color: #333;
-	background: var(--background);
-	color: var(--color-text);
 	color-scheme: dark;
-}
-
-@layer content {
-	:root {
-		--content-width: min(60rem, calc(100vw - 4rem));
-	}
-
-	section + section { margin-top: 3em; }
-	p + section { margin-top: 2em; }
-
-	article img {
-		max-width: var(--content-width);
-	}
 }

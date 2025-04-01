@@ -14,6 +14,14 @@
 		}
 	}
 
+	section + section { margin-top: 3em; }
+
+	p + section { margin-top: 2em; }
+
+	article img {
+		max-width: var(--content-width, 100vw);
+	}
+
 	/* MARKUP ELEMENTS */
 
 	b, strong, .b { font-weight: bold; }
@@ -121,7 +129,7 @@
 
 	@layer base {
 		article {
-			width: var(--content-width);
+			width: var(--content-width, 100vw);
 			/* container-type: inline-size; */
 			margin-left: auto;
 			margin-right: auto;

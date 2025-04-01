@@ -63,7 +63,7 @@
 		}
 
 		grid-box[reference] {
-			--grid-reference-width: attr(reference width, var(--content-width));
+			--grid-reference-width: attr(reference width, var(--content-width, 100vw));
 			--grid-actual-width: 100cqw;
 			--computed-columns: calc(
 				tan(atan2(
@@ -75,9 +75,9 @@
 
 		grid-box[reference="large"] { --grid-reference-width: 1900px; }
 		grid-box[reference="medium"] { --grid-reference-width: 700px; }
-		grid-box[reference="content"] { --grid-reference-width: var(--content-width); }
+		grid-box[reference="content"] { --grid-reference-width: var(--content-width, 100vw); }
 		/* attr() Fallback */
-		grid-box[reference=""] { --grid-reference-width: var(--content-width); }
+		grid-box[reference=""] { --grid-reference-width: var(--content-width, 100vw); }
 		grid-box[reference="2000px"] { --grid-reference-width: 2000px; }
 		grid-box[reference="1000px"] { --grid-reference-width: 1000px; }
 
