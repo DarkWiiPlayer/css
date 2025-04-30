@@ -225,12 +225,15 @@
 
 			<h3>Import from CDN</h3>
 			<pre><code>
+/* Import all the basic styles */
 @import
 	url('https://cdn.jsdelivr.net/gh/darkwiiplayer/css@main/all.css')
 	layer(framework);
+
+/* Some extra spacing so pages look nice out of the box */
 @import
-	url('https://cdn.jsdelivr.net/gh/darkwiiplayer/css@main/schemes/talia.css')
-	layer(theme);
+	url('https://cdn.jsdelivr.net/gh/darkwiiplayer/css@main/drop-in.css')
+	layer(framework);
 			</code></pre>
 			<p>
 				Or serve the files yourself from a git submodule
