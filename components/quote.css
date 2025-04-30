@@ -7,13 +7,54 @@
 		padding: var(--padding);
 		padding-left: calc(var(--padding) + var(--stripe-width));
 		position: relative;
-	}
 
-	blockquote cite {
-		display: block;
-		margin-top: 1em;
-		opacity: .8;
-		font-size: .8em;
+		font-style: italic;
+
+		cite {
+			display: block;
+			margin-top: 1em;
+			opacity: .8;
+			font-size: .8em;
+
+			&::before {
+				content: '\2014' ' ';
+				display: inline;
+			}
+		}
+
+		&.impact {
+			width: max-content;
+			margin-inline: auto;
+
+			text-align: center;
+			font-size: 1.6em;
+
+			position: relative;
+
+			cite {
+				text-align: right;
+			}
+
+			p + p { margin-top: .4em; }
+
+			&::before {
+				left: 0;
+				top: 1rem;
+				font-size: 6em;
+				transform: translate(-.1em, .4em);
+				z-index: -1;
+				opacity: .2;
+
+				display: inline-block;
+				position: absolute;
+				content: '\275D';
+			}
+
+			cite {
+				font-style: italic;
+				padding-right: 1em;
+			}
+		}
 	}
 
 	/* INLINE */
