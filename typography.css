@@ -18,10 +18,6 @@
 
 	p + section { margin-top: 2em; }
 
-	article img {
-		max-width: var(--content-width, 100vw);
-	}
-
 	/* MARKUP ELEMENTS */
 
 	b, strong, .b { font-weight: bold; }
@@ -48,10 +44,7 @@
 		h1, h2, h3, h4, h5, h6 {
 			letter-spacing: .04em; line-height: 1.2em;
 			position: relative;
-		}
 
-		/* If only nesting was a thing yet */
-		h1, h2, h3, h4, h5, h6 {
 			&:where(:not(:first-child)) {
 				margin-top: 1em;
 			}
@@ -119,23 +112,7 @@
 		}
 	}
 
-	/* MAIN */
-
-	main {
-		padding-bottom: 2rem;
-	}
-
-	/* ARTICLE */
-
 	@layer base {
-		article {
-			width: var(--content-width, 100vw);
-			/* container-type: inline-size; */
-			margin-left: auto;
-			margin-right: auto;
-			font-size: 1.2rem;
-		}
-
 		article p {
 			line-height: 1.6em;
 		}

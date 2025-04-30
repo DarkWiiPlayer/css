@@ -1,0 +1,20 @@
+@layer drop-in {
+	/* MAIN */
+	main {
+		padding-block: 2rem;
+	}
+
+	/* ARTICLE */
+	article {
+		width: var(--content-width, 100vw);
+
+		margin-left: auto;
+		margin-right: auto;
+
+		padding-block: 2rem;
+
+		font-size: 1.2rem;
+
+		article img { max-width: var(--content-width, 100vw); }
+	}
+}
