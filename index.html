@@ -38,7 +38,7 @@
 			codeBox(code) {
 				const pre = html.pre({class: "stripe box"},
 					html.code(code),
-					html.floatingActionButton({top: true, right: true},
+					html.floatingCorner({top: true, right: true},
 						html.button("copy", {click: event => {
 							navigator.clipboard.writeText(this.code.innerText)
 						}})
@@ -245,9 +245,9 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 			<vertical-spacer></vertical-spacer>
 
 			<div class="info box">
-				<floating-action-button top right>
+				<floating-corner top right>
 					<span class="badge">Warning</span>
-				</floating-action-button>
+				</floating-corner>
 				<strong>Layers</strong>
 				<p>
 					The <code>all.css</code> file makes use of import statements
@@ -354,7 +354,7 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 						</grid-box>
 					</html-showcase>
 					<div class="info box">
-						<floating-action-button top right><span class="badge">Warning</span></floating-action-button>
+						<floating-corner top right><span class="badge">Warning</span></floating-corner>
 						<p>
 							Native CSS grids are relatively static in their layout and
 							not as suited to generic responsive layouts. For grids with
@@ -624,17 +624,17 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 			<section id="fab">
 				<h3><a href="#fab">Floating Action Button</a></h3>
 				<p>
-					The <code>floating-action-button</code> custom element can be used to position an element in one of the corners of its parent element.
+					The <code>floating-corner</code> custom element can be used to position an element in one of the corners of its parent element.
 					The button itself will still have to be styled separately though.
 				</p>
 				<html-showcase>
 					<div class="box">
 						<p>Content in a box, button in the bottom right.</p>
-						<floating-action-button bottom right>
+						<floating-corner bottom right>
 							<button class="circle">
 								F
 							</button>
-						</floating-action-button>
+						</floating-corner>
 						<vertical-spacer triple></vertical-spacer>
 					</div>
 				</html-showcase>
@@ -1055,9 +1055,9 @@ git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
 
 			<vertical-spacer></vertical-spacer>
 			<div class="info box">
-				<floating-action-button top right>
+				<floating-corner top right>
 					<div class="badge">Hint</div>
-				</floating-action-button>
+				</floating-corner>
 				<p>You can use <code>flex-row</code> elements to break elements out of the two-column layout.</p>
 				<vertical-spacer double></vertical-spacer>
 				<code-smaple>

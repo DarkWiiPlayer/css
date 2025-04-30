@@ -1,0 +1,46 @@
+@layer floating-corner {
+	floating-corner, .floating-corner {
+		--spacing: .6em;
+		line-height: 1em;
+		position: absolute;
+		top: var(--spacing);
+		left: var(--spacing);
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		transition:
+			transform .5s,
+			opacity .5s;
+
+		&.subtle {
+			opacity: .4;
+		}
+		&.subtle:hover {
+			opacity: 1;
+		}
+
+		&[bottom] {
+			top: unset;
+			bottom: var(--spacing);
+		}
+
+		&[right] {
+			left: unset;
+			right: var(--spacing);
+		}
+
+		&[hidden] {
+			opacity: 0;
+			transform: rotate(120deg) scale(0.4);
+		}
+
+		&[spacing="0"] { --spacing: 0em; }
+		&[spacing="1"] { --spacing: 1em; }
+		&[spacing="2"] { --spacing: 2em; }
+		&[spacing="3"] { --spacing: 3em; }
+
+		&[fixed] { position: fixed; }
+	}
+}
