@@ -25,6 +25,10 @@
 		box-shadow: .1em .2em .4em .0em #0002;
 	}
 
+	.box[padding] {
+		padding: attr(padding type(<length>), 0) calc(var(--stripe-width) + attr(padding <length>, 0));
+	}
+
 	.box[padding="0"] {
 		padding: 0;
 	}
