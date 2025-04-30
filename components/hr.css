@@ -5,8 +5,11 @@
 		border: unset;
 		display: block;
 		width: calc(100% - calc(var(--padding) / 2));
-		margin: 2em var(--padding);
 		border-bottom: var(--hr-width, .2rem) solid var(--hr-color, #6662);
+
+		:is(p, section) + & {
+			margin: 2em var(--padding);
+		}
 	}
 
 	hr-label {
