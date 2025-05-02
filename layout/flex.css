@@ -49,35 +49,14 @@
 		flex: var(--column-width);
 		flex-grow: 0;
 	}
+
 	flex-grid > img {
 		width: 100%;
 		max-width: var(--column-width);
 		height: auto;
 	}
 
-	flex-grid[column-width] { --column-width: attr(column-width); }
-
-	flex-grid[columns^="1@"] { --column-target-count: 1; }
-	flex-grid[columns^="2@"] { --column-target-count: 2; }
-	flex-grid[columns^="3@"] { --column-target-count: 3; }
-	flex-grid[columns^="4@"] { --column-target-count: 4; }
-	flex-grid[columns^="5@"] { --column-target-count: 5; }
-	flex-grid[columns^="6@"] { --column-target-count: 6; }
-	flex-grid[columns^="8@"] { --column-target-count: 8; }
-	flex-grid[columns^="10@"] { --column-target-count: 10; }
-
-	flex-grid[columns$="@1920"] { --column-target-at: 1920px; }
-	flex-grid[columns$="@content"] { --column-target-at: var(--content-width, 100vw); }
-
-	flex-grid[columns*="@"] {
-		--column-width: calc(
-			calc(
-				var(--column-target-at) / var(--column-target-count)
-			) - calc(
-				var(--gap) * calc(calc(var(--column-target-count) - 1) / var(--column-target-count))
-			)
-		);
-	}
+	flex-grid[column-width] { --column-width: attr(column-width type(<length>)); }
 
 	:is(flex-row, flex-column, flex-grid) {
 		gap: var(--gap, 0px);

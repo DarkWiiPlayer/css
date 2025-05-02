@@ -1,14 +1,32 @@
 @layer grid {
+	grid-box[gap] {
+		gap: attr(gap em, 0em); /* Experimental */
+	}
+
+	/* attr fallbacks */
+	grid-box[gap=".1"] { gap: .1em; }
+	grid-box[gap=".2"] { gap: .2em; }
+	grid-box[gap=".4"] { gap: .4em; }
+	grid-box[gap=".6"] { gap: .6em; }
+	grid-box[gap=".8"] { gap: .8em; }
+	grid-box[gap="1"]  { gap:  1em; }
+	grid-box[gap="2"]  { gap:  2em; }
+	grid-box[gap="3"]  { gap:  3em; }
+
+	grid-box {
+		--columns: 1;
+		--columns: attr(columns integer, 1);
+		display: grid;
+		grid-template-columns: repeat(var(--columns), 1fr);
+	}
+
+	grid-box[center] { justify-items: center; }
+
+	[span] {
+		grid-column: span attr(span); /* Experimental */
+	}
+
 	@layer static {
-		grid-box {
-			--columns: 1;
-			--columns: attr(columns integer, 1);
-			display: grid;
-			grid-template-columns: repeat(var(--columns), 1fr);
-		}
-
-		grid-box[center] { justify-items: center; }
-
 		grid-box[columns="2"] { --columns: 2; }
 		grid-box[columns="3"] { --columns: 3; }
 		grid-box[columns="4"] { --columns: 4; }
@@ -17,24 +35,6 @@
 		grid-box[columns="7"] { --columns: 7; }
 		grid-box[columns="8"] { --columns: 8; }
 		grid-box[columns="9"] { --columns: 9; }
-
-		grid-box[gap] {
-			gap: attr(gap em, 0em); /* Experimental */
-		}
-
-		/* attr fallbacks */
-		grid-box[gap=".1"] { gap: .1em; }
-		grid-box[gap=".2"] { gap: .2em; }
-		grid-box[gap=".4"] { gap: .4em; }
-		grid-box[gap=".6"] { gap: .6em; }
-		grid-box[gap=".8"] { gap: .8em; }
-		grid-box[gap="1"]  { gap:  1em; }
-		grid-box[gap="2"]  { gap:  2em; }
-		grid-box[gap="3"]  { gap:  3em; }
-
-		[span] {
-			grid-column: span attr(span); /* Experimental */
-		}
 
 		[span="full"] { grid-column: 1/-1; }
 
@@ -47,9 +47,6 @@
 	}
 
 	@layer responsive {
-		grid-box[wrap] { flex-flow: column nowrap }
-		grid-box[wrap][center] { align-items: center; }
-
 		@property --grid-reference-width {
 			syntax: "<length>";
 			initial-value: 0px;
