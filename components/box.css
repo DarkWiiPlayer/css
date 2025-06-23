@@ -1,6 +1,5 @@
 @layer box {
 	.box {
-		--stripe-color: var(--color, orange);
 		border-radius: var(--corner-radius, 0px);
 		background-color: var(--background-inset, #66666606);
 		box-shadow: .0em .1em .2em #0002 inset;
@@ -10,26 +9,37 @@
 
 		contain: draw;
 
-		:is(&, .stripe) {
-			background-image: linear-gradient(
-				to right,
-				var(--stripe-color) 0%,
-				var(--stripe-color) var(--stripe-width),
-				transparent var(--stripe-width)
-			);
+		.box.floating {
+			background-color: var(--background-float, #fff8);
+			box-shadow: .1em .2em .4em .0em #0002;
+		}
+
+		.box[padding] {
+			padding: attr(padding type(<length>), 0) calc(var(--stripe-width) + attr(padding <length>, 0));
+		}
+
+		.box[padding="0"] {
+			padding: 0;
 		}
 	}
 
-	.box.floating {
-		background-color: var(--background-float, #fff8);
-		box-shadow: .1em .2em .4em .0em #0002;
-	}
+	:is(.stripe, [stripe]) {
+		--stripe-width: var(--line-width, .2rem);
+		--stripe-color: var(--hr-color);
 
-	.box[padding] {
-		padding: attr(padding type(<length>), 0) calc(var(--stripe-width) + attr(padding <length>, 0));
-	}
+		background-image: linear-gradient(
+			to right,
+			var(--stripe-color) 0%,
+			var(--stripe-color) var(--stripe-width),
+			transparent var(--stripe-width)
+		);
 
-	.box[padding="0"] {
-		padding: 0;
+		&[stripe="color"] {
+			--stripe-color: var(--color, orange);
+		}
+
+		&[stripe]:not([stripe=""], [stripe="color"]) {
+			--stripe-color: attr(stripe type(<color>), var(--hr-color));
+		}
 	}
 }

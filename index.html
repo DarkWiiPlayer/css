@@ -126,9 +126,6 @@
 		}
 
 		.box.stripe {
-			--stripe-width: var(--line-width, .2rem);
-			--stripe-color: var(--hr-color);
-			
 			&:is(pre:has(code)) {
 				--stripe-color: lch(50 35 240);
 			}
@@ -224,8 +221,7 @@
 			</p>
 
 			<h3>Import from CDN</h3>
-			<pre><code>
-/* Import all the basic styles */
+			<pre class="floating box" stripe=color><code>/* Import all the basic styles */
 @import
 	url('https://cdn.jsdelivr.net/gh/darkwiiplayer/css@main/all.css')
 	layer(framework);
@@ -233,15 +229,12 @@
 /* Some extra spacing so pages look nice out of the box */
 @import
 	url('https://cdn.jsdelivr.net/gh/darkwiiplayer/css@main/drop-in.css')
-	layer(framework);
-			</code></pre>
+	layer(framework);</code></pre>
 			<p>
 				Or serve the files yourself from a git submodule
 			</p>
 			<h3>Clone into your project</h3>
-			<pre><code>
-git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles
-			</code></pre>
+			<pre class="floating box" stripe="hsl(320deg 80% 30%)"><code>git submodule add git+https://github.com/darkwiiplayer/css /path/to/styles</code></pre>
 			<vertical-spacer></vertical-spacer>
 
 			<div class="info box">
