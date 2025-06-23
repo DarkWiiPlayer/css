@@ -1,29 +1,31 @@
 @layer grid {
-	grid-box[gap] {
-		gap: attr(gap em, 0em); /* Experimental */
-	}
+	@layer base {
+		grid-box[gap] {
+			gap: attr(gap em, 0em); /* Experimental */
+		}
 
-	/* attr fallbacks */
-	grid-box[gap=".1"] { gap: .1em; }
-	grid-box[gap=".2"] { gap: .2em; }
-	grid-box[gap=".4"] { gap: .4em; }
-	grid-box[gap=".6"] { gap: .6em; }
-	grid-box[gap=".8"] { gap: .8em; }
-	grid-box[gap="1"]  { gap:  1em; }
-	grid-box[gap="2"]  { gap:  2em; }
-	grid-box[gap="3"]  { gap:  3em; }
+		/* attr fallbacks */
+		grid-box[gap=".1"] { gap: .1em; }
+		grid-box[gap=".2"] { gap: .2em; }
+		grid-box[gap=".4"] { gap: .4em; }
+		grid-box[gap=".6"] { gap: .6em; }
+		grid-box[gap=".8"] { gap: .8em; }
+		grid-box[gap="1"]  { gap:  1em; }
+		grid-box[gap="2"]  { gap:  2em; }
+		grid-box[gap="3"]  { gap:  3em; }
 
-	grid-box {
-		--columns: 1;
-		--columns: attr(columns integer, 1);
-		display: grid;
-		grid-template-columns: repeat(var(--columns), 1fr);
-	}
+		grid-box {
+			--columns: 1;
+			--columns: attr(columns integer, 1);
+			display: grid;
+			grid-template-columns: repeat(var(--columns), 1fr);
+		}
 
-	grid-box[center] { justify-items: center; }
+		grid-box[center] { justify-items: center; }
 
-	[span] {
-		grid-column: span attr(span); /* Experimental */
+		[span] {
+			grid-column: span attr(span); /* Experimental */
+		}
 	}
 
 	@layer static {
