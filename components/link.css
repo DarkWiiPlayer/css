@@ -18,18 +18,15 @@
 			all: unset;
 			cursor: pointer;
 			position: relative;
-		}
-		:is(h1, h2, h3, h4, h5, h6)>:any-link::after {
-			position: absolute;
-			display: block;
-			content: '#';
-			top: 0;
-			right: -1.4ch;
-			opacity: 0;
-			color: var(--color, orange);
-		}
-		:is(h1, h2, h3, h4, h5, h6)>:any-link:hover::after {
-			opacity: .6;
+			&::after {
+				display: inline-block;
+				content: ' #';
+				opacity: 0;
+				color: var(--color, orange);
+			}
+			&:hover::after {
+				opacity: .6;
+			}
 		}
 	}
 }
