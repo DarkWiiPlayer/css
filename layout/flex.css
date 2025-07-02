@@ -44,7 +44,6 @@
 	/* FLEX GRID */
 
 	flex-grid {
-		--column-width: 20em;
 		display: flex;
 		flex-flow: row wrap;
 	}
