@@ -13,7 +13,7 @@
 	form label {
 		display: flex;
 		gap: .5em;
-		align-items: middle;
+		align-items: center;
 	}
 	form>label {
 		display: contents;
@@ -37,6 +37,7 @@
 		border: var(--border-width, .1em) solid var(--hr-color, #6662);
 		display: grid;
 		flex-flow: column;
+		align-items: center;
 		gap: .6em;
 		padding: 1em;
 		grid-template-columns: auto 1fr;
