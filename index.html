@@ -870,11 +870,10 @@
 						<tr><td>Greetings</td><td>Internet</td></tr>
 					</table>
 				</html-showcase>
-				<p>
-					Vertical tables also work
-				</p>
+				<p>Vertical tables also work.</p>
+				<p>The <code>muted</code> class changes the line colours to the text colour.</p>
 				<html-showcase class="box">
-					<table borders="">
+					<table class="muted">
 						<tr><th scope=row>Name</th><td>Talia</td></tr>
 						<tr><th scope=row>Hobbies</th><td>Writing CSS</td></tr>
 					</table>
@@ -894,6 +893,7 @@
 					This can be enabled explicitly by setting the <code>alternate</code> attribute to <code>rows</code>
 					and disabled by setting it to anything else (including the empty string).
 				</p>
+				<p>The <class>hover</class> class will highlight columns on hover.</p>
 
 				<grid-box tab-size=2 gap=1 columns=2 break="small">
 					<flex-column class="box">
@@ -907,7 +907,7 @@
 					</flex-column>
 
 					<flex-column class="box">
-						<table borders="horizontal">
+						<table class="hover" borders="horizontal" alternate="rows">
 							<thead>
 								<tr><th>Greeting</th><th>Name</th></tr>
 							</thead>
@@ -917,7 +917,7 @@
 					</flex-column>
 
 					<flex-column class="box">
-						<table borders="outline" alternate="">
+						<table borders="outline">
 							<thead>
 								<tr><th>Greeting</th><th>Name</th></tr>
 							</thead>

@@ -72,6 +72,10 @@
 			grid-template-columns: repeat(var(--computed-columns, var(--columnss, 2)), 1fr);
 		}
 
+		grid-box[break] {
+			flex-flow: column;
+		}
+
 		grid-box[reference="large"] { --grid-reference-width: 1900px; }
 		grid-box[reference="medium"] { --grid-reference-width: 700px; }
 		grid-box[reference="content"] { --grid-reference-width: var(--content-width, 100vw); }

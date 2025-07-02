@@ -1,7 +1,9 @@
 @layer table {
 	table {
 		all: unset;
-		--border: var(--border-width, .1em) solid var(--color, orange);
+		--border-color: var(--color, orange);
+		--border: var(--border-width, .1em) solid var(--border-color);
+		&.muted { --border-color: color-mix(in hsl, currentcolor, 60% transparent); }
 		box-sizing: border-box;
 		border-collapse: collapse;
 		display: table;
@@ -18,8 +20,6 @@
 	}
 
 	thead, tfoot {
-		color: white;
-		background: var(--color, orange);
 		text-shadow: .12em .16em .16em #0008;
 	}
 
@@ -31,12 +31,16 @@
 		text-align: right;
 	}
 
-	table:is([borders~="horizontal"], :not([borders])) tbody > tr:not(:last-child) {
-		border-bottom: var(--border);
+	table:is([borders~="horizontal"], :not([borders])) {
+		thead > tr, tbody > tr:not(:last-child) {
+			border-bottom: var(--border);
+		}
 	}
 
-	table[borders~="vertical"] > tbody :is(td, th):not(:last-child) {
-		border-right: var(--border);
+	table[borders~="vertical"] {
+		:is(td, th):not(:last-child) {
+			border-right: var(--border);
+		}
 	}
 
 	table[borders~="outline"] {
@@ -51,16 +55,17 @@
 		border-bottom: var(--border);
 	}
 
-	/* No fucking clue how to make this work with borders */
-	/* Seems like tables just don't accept border-radius because of the border-collapse shenanigans */
-	table:not([borders~="outline"]) thead tr:not(tr ~ *) th:first-child { border-top-left-radius: var(--corner-radius); }
-	table:not([borders~="outline"]) thead tr:not(tr ~ *) th:last-child { border-top-right-radius: var(--corner-radius); }
-
 	/* TODO: @scope (table:is(...)) to (table) */
-	table:is(:not([borders~="horizontal"], :not([borders])):is(:not([alternate]), [alternate~="rows"]), [alternate~="rows"])>*>tr:nth-child(2n) {
+	table[alternate~="rows"] >  tbody > tr:nth-child(2n) {
 		background: var(--table-2n, #6661);
 	}
 	table[alternate~="columns"]>*>tr>td:nth-child(2n) {
 		background: var(--table-2n, #6661);
+	}
+
+	/* TODO: @scope (table:is(...)) to (table) */
+	table.hover >  tbody > tr:hover {
+		background: var(--color, purple);
+		color: var(--color-contrast, white);
 	}
 }
