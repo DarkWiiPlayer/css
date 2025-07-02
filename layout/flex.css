@@ -27,6 +27,7 @@
 
 	flex-row[spread] { justify-content: space-between; }
 	flex-row[spread=around] { justify-content: space-around; }
+	flex-row[spread=evenly] { justify-content: space-evenly; }
 
 	@container (width <= 20rem) { flex-row[break="20"] { flex-direction: column } }
 	@container (width <= 40rem) { flex-row[break="40"] { flex-direction: column } }

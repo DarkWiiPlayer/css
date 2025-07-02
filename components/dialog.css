@@ -3,6 +3,13 @@ dialog {
 	padding: 1em;
 	border-radius: var(--corner-radius);
 
+	&[open] {
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
+		align-items: center;
+	}
+
 	&:not(:modal) {
 		z-index: var(--layer-dialog);
 		position: relative;
@@ -24,11 +31,11 @@ dialog {
 
 		&::backdrop {
 				backdrop-filter: blur(3px);
+		}
 
-			&.full-screen {
-				min-width: calc(100% - 8rem);
-				min-height: calc(100vh - 8rem);
-			}
+		&.full-screen {
+			min-width: calc(100% - 8rem);
+			min-height: calc(100vh - 8rem);
 		}
 	}
 }

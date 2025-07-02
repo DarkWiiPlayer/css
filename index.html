@@ -299,6 +299,13 @@
 						<div class="blob">3</div>
 					</flex-row>
 				</html-showcase>
+				<html-showcase hide-code>
+					<flex-row wrap gap=2 spread=evenly>
+						<div class="blob">1</div>
+						<div class="blob">2</div>
+						<div class="blob">3</div>
+					</flex-row>
+				</html-showcase>
 				<h4>Column</h4>
 				<p>Use <code>flex-column</code> to arrage items vertically in a column.</p>
 				<html-showcase hide-code>
@@ -724,7 +731,7 @@
 						<button onclick="dialog_test.showModal()">Show Modal</button>
 						<button onclick="dialog_test.show()">Show Normal</button>
 					</button-group>
-					<dialog id="dialog_test">
+					<dialog class="full-screen" id="dialog_test">
 						<h2>Dialogue</h2>
 						<button class="close" aria-label="close" onclick="this.closest('dialog').close()"></button>
 						<p>This is a dialogue.</p>
