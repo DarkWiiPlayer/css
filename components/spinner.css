@@ -1,11 +1,32 @@
+@property --spinner-inner {
+	syntax: "<angle>";
+	inherits: false;
+	initial-value: 0deg;
+}
+
+@property --spinner-outer {
+	syntax: "<angle>";
+	inherits: false;
+	initial-value: 0deg;
+}
+
 @layer spinner {
 	@keyframes spinner {
 		from { transform: rotate(0deg) }
 		to { transform: rotate(360deg) }
 	}
 
+	@keyframes spinner-inner {
+		from { --spinner-inner: 0deg }
+		to { --spinner-inner: 360deg }
+	}
+
+	@keyframes spinner-outer {
+		from { --spinner-outer: 0deg }
+		to { --spinner-outer: 360deg }
+	}
+
 	spin-spin {
-		--thickness: 1.4;
 		all: unset;
 
 		display: inline-block;
@@ -18,13 +39,29 @@
 		/* Styling */
 		color: var(--color);
 		border-radius: 50%;
-		border: calc(var(--thickness) * .14em) solid color-mix(in hsl, currentcolor, transparent 60%);
+		border: var(--thickness, .2em) solid color-mix(in hsl, currentcolor, transparent 60%);
 		border-top-color: currentcolor;
 
 		animation: spinner 1s infinite cubic-bezier(.4, .2, .6, .8);
 
-		&[thick] { --thickness: 2; }
-		&[thin] { --thickness: .8; }
+		&[linear] {
+			animation: spinner 1.6s infinite linear;
+		}
+
+		&[progressive] {
+			animation:
+				spinner-inner 1s infinite cubic-bezier(.4, .2, .6, .8),
+				spinner-outer 8.254866854s infinite linear;
+			transform: rotate(calc(var(--spinner-inner, 0deg) + var(--spinner-outer, 0deg)));
+		}
+
+		&[thick] { --thickness: .3em; }
+		&[thin] { --thickness: .14em; }
+		&[thickness] { --thickness: attr(thickness type(<length>))  }
+
+		&[color] { --color: attr(color type(<color>)); }
+
+		&[size] { font-size: attr(size type(<length>), 1em); }
 
 		&[size="2"] { font-size: 2em; }
 		&[size="3"] { font-size: 3em; }
