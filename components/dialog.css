@@ -1,0 +1,34 @@
+dialog {
+	border: none;
+	padding: 1em;
+	border-radius: var(--corner-radius);
+
+	&:not(:modal) {
+		z-index: var(--layer-dialog);
+		position: relative;
+		margin: .6em 0;
+
+		box-shadow:
+			.1em .2em .3em #0002,
+			.2em .3em .4em #0002;
+	}
+
+	&:modal {
+		margin: auto;
+		padding: 2em;
+
+		box-shadow:
+			.3em .5em .6em #0004,
+			.6em .8em 1.4em #0004,
+			1.4em 1.4em 2.4em #0002;
+
+		&::backdrop {
+				backdrop-filter: blur(3px);
+
+			&.full-screen {
+				min-width: calc(100% - 8rem);
+				min-height: calc(100vh - 8rem);
+			}
+		}
+	}
+}
