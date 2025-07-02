@@ -58,7 +58,11 @@ hover-columns {
 		color: white;
 		background: black;
 
-		&:focus-within { outline: .2em solid var(--color-primary, purple); z-index: 1; }
+		&:focus-within {
+			outline: .2em solid var(--color, purple);
+			z-index: 1;
+		}
+
 		&:is(:hover, :not(:hover)>:focus-within) { flex: 2 1 0; }
 
 		>img { transition: opacity var(--transition); }

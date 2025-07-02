@@ -29,6 +29,10 @@
 	--corner-radius: .2rem;
 	--line-width: .3rem;
 	--content-width: min(60rem, calc(100vw - 4rem));
+
+	--layer-dialog: 10;
+
+	--color-outline: color-mix(in hsl, var(--color, orange), 60% transparent);
 }
 
 /* THEMING */

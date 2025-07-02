@@ -17,8 +17,7 @@
 
 			/* Layout */
 
-			--v-padding: .8em;
-			padding: .6em var(--v-padding);
+			padding: .6em .8em;
 			text-align: center;
 
 			/* Styling */
@@ -52,11 +51,11 @@
 			}
 
 			&:focus {
-				outline: .2em solid var(--color-focus, var(--color, orange));
+				outline: .2em solid var(--color-outline);
 			}
 		}
 
-		@layer primary {
+		@layer variants {
 			&.primary {
 				text-shadow: .1em .14em .2em #0004;
 				color: var(--color-contrast, white);
@@ -71,9 +70,27 @@
 					border-color: var(--hover-color);
 				}
 			}
+
+			&.secondary {
+				text-shadow: .1em .14em .2em #0004;
+				color: currentcolor;
+
+				font-weight: normal;
+
+				border-color: color-mix(in hsl, currentcolor, 70% transparent);
+
+				&:hover {
+					border-color: currentcolor;
+					background: none;
+				}
+			}
+
+			&.compact {
+				padding: .4em;
+			}
 		}
 
-		@layer hover {
+		@layer hover-text {
 			&[hover-text] {
 				position: relative;
 				background: none;
@@ -131,6 +148,38 @@
 					&::after {
 						background-color: var(--hover-color);
 					}
+				}
+			}
+		}
+		@layer close {
+			&.close {
+				all: unset;
+
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 1em;
+				height: 1em;
+
+				border-radius: var(--corner-radius);
+				cursor: pointer;
+
+				margin: .8rem;
+
+				img, svg {
+					width: 100%;
+					height: 100%;
+				}
+
+				&:empty {
+					background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+Cgk8ZyBzdHJva2U9ImN1cnJlbnRjb2xvciIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj4KCQk8bGluZSB4MT0iMjAiIHkxPSIyMCIgeDI9IjgwIiB5Mj0iODAiIC8+CgkJPGxpbmUgeDE9IjIwIiB5MT0iODAiIHgyPSI4MCIgeTI9IjIwIiAvPgoJPC9nPgo8L3N2Zz4K');
+					background-size: contain;
+					background-repeat: no-repeat;
+				}
+
+				&:focus {
+					border: 1px solid var(--color);
+					outline: .2em solid color-mix(in hsl, var(--color), 80% transparent)
 				}
 			}
 		}

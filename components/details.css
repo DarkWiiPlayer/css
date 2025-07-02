@@ -5,6 +5,11 @@
 		font-weight: bold;
 		cursor: pointer;
 	}
+	details > summary:focus {
+		outline: .2em solid var(--color-outline);
+		outline-offset: .2em;
+		border-radius: var(--corner-radius);
+	}
 	details > summary::before {
 		transition: transform .3s;
 		display: inline-block;

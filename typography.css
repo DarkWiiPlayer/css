@@ -45,6 +45,8 @@
 			letter-spacing: .04em; line-height: 1.2em;
 			position: relative;
 
+			margin: 0;
+
 			&:where(:not(:first-child)) {
 				margin-top: 1em;
 			}

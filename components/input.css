@@ -1,3 +1,9 @@
+@property --circle-radius {
+	syntax: "<length-percentage>";
+	initial-value: 0%;
+	inherits: false;
+}
+
 @layer input {
 	@layer reset {
 		input, select {
@@ -10,7 +16,7 @@
 	}
 
 	input, select {
-		--focus-outline: .2rem solid color-mix(in srgb, var(--color, orange) 40%, transparent);
+		--focus-outline: .2rem solid var(--color-outline);
 	}
 
 	@layer text {
@@ -63,24 +69,13 @@
 				outline: var(--focus-outline);
 			}
 
-			&::before {
-				--ratio: .7;
-				width: calc(var(--size) * var(--ratio));
-				height: calc(var(--size) * var(--ratio));
-				content: '';
-				border-radius: calc(var(--radius) * .6);
-				position: absolute;
-				background: transparent;
-				transition:
-					background var(--transition-duration-hover, .2s);
-			}
+			transition: --circle-radius .1s;
+
+			background-image: radial-gradient(circle at center, var(--color) calc(var(--circle-radius) - 1pt), transparent var(--circle-radius));
 
 			&:checked {
+				--circle-radius: 50%;
 				border-color: var(--color, orange);
-
-				&::before {
-					background: var(--color, orange);
-				}
 			}
 
 			label:has(&) {

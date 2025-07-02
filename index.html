@@ -492,10 +492,13 @@
 					<button>Click Me!</button>
 				</html-showcase>
 				<p>
-					"Primary" buttons draw more attention to indicate "primary" or "default" actions.
+					"Primary" buttons draw more attention to indicate "primary" or "default" actions.<br>
+					"Secondary" draw less attention to actions that are less important to users.<br>
+					"Compact" buttons have reduced margins to take up less space.
 				</p>
 				<html-showcase>
 					<button class="primary">Main Button!</button>
+					<button class="compact secondary">Boring Button</button>
 				</html-showcase>
 				<p>
 					Buttons can have separate text to be shown when hovered.
@@ -510,7 +513,7 @@
 					<button-group>
 						<button>Click Me!</button>
 						<button>Or me!</button>
-						<button class="primary">Or how about me?</button>
+						<button class="primary" hover-text="Let's go!" slide-left>Or how about me?</button>
 					</button-group>
 				</html-showcase>
 			</section>
@@ -712,6 +715,21 @@
 						</html-showcase>
 					</div>
 				</grid-box>
+			</section>
+
+			<section id="dialog">
+				<h3><a href="#dialog">Dialogues</a></h3>
+				<html-showcase>
+					<button-group>
+						<button onclick="dialog_test.showModal()">Show Modal</button>
+						<button onclick="dialog_test.show()">Show Normal</button>
+					</button-group>
+					<dialog id="dialog_test">
+						<h2>Dialogue</h2>
+						<button class="close" aria-label="close" onclick="this.closest('dialog').close()"></button>
+						<p>This is a dialogue.</p>
+					</dialog>
+				</html-showcase>
 			</section>
 
 			<section id="navigation">

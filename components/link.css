@@ -14,16 +14,18 @@
 	}
 
 	@layer headings {
-		:is(h1, h2, h3, h4, h5, h6)>:any-link {
+		:is(h1, h2, h3, h4, h5, h6)>:any-link[href^="#"] {
 			all: unset;
 			cursor: pointer;
 			position: relative;
+
 			&::after {
 				display: inline-block;
 				content: ' #';
 				opacity: 0;
 				color: var(--color, orange);
 			}
+
 			&:hover::after {
 				opacity: .6;
 			}
