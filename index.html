@@ -731,12 +731,13 @@
 						<button onclick="dialog_test.showModal()">Show Modal</button>
 						<button onclick="dialog_test.show()">Show Normal</button>
 					</button-group>
-					<dialog class="full-screen" id="dialog_test">
+					<dialog id="dialog_test">
 						<h2>Dialogue</h2>
 						<button class="close" aria-label="close" onclick="this.closest('dialog').close()"></button>
 						<p>This is a dialogue.</p>
 					</dialog>
 				</html-showcase>
+				<p>The two utility-classes <code>full-screen</code> and <code>content-width</code> allow some more control over the size of the modal dialog.</p>
 			</section>
 
 			<section id="navigation">
