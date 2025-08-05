@@ -20,10 +20,10 @@
 
 	/* MARKUP ELEMENTS */
 
-	b, strong, .b { font-weight: bold; }
-	i, em, .i { font-style: italic; }
+	b, strong, .b { font-weight: bold !important; }
+	i, em, .i { font-style: italic !important; }
+	u, .u { text-decoration: underline !important; }
 	dfn { font-style: italic; }
-	u, .u { text-decoration: underline; }
 	del, .del { text-decoration: line-through }
 	ins, .ins { font-style: italic; }
 	mark, .mark { color: white; background: var(--color); padding: .2em .1em; line-height: 1.6em; }
@@ -33,125 +33,113 @@
 	/* This element is deprecated */
 	big, .big { font-size: 1.2em; }
 
-	@layer headings {
-		h1 { font-size: 2.2em }
-		h2 { font-size: 2.0em }
-		h3 { font-size: 1.8em }
-		h4 { font-size: 1.6em }
-		h5 { font-size: 1.4em }
-		h6 { font-size: 1.2em }
+	h1 { font-size: 2.2em }
+	h2 { font-size: 2.0em }
+	h3 { font-size: 1.8em }
+	h4 { font-size: 1.6em }
+	h5 { font-size: 1.4em }
+	h6 { font-size: 1.2em }
 
-		h1, h2, h3, h4, h5, h6 {
-			letter-spacing: .04em; line-height: 1.2em;
-			position: relative;
+	h1, h2, h3, h4, h5, h6 {
+		letter-spacing: .04em; line-height: 1.2em;
+		position: relative;
 
+		margin: 0;
+
+		&:where(:not(:first-child)) {
+			margin-top: 1em;
+		}
+		&:where(:not(:last-child)) {
+			margin-bottom: .4em;
+		}
+		&:is(hgroup>*) {
 			margin: 0;
-
-			&:where(:not(:first-child)) {
-				margin-top: 1em;
-			}
-			&:where(:not(:last-child)) {
-				margin-bottom: .4em;
-			}
-			&:is(hgroup>*) {
-				margin: 0;
-			}
-		}
-
-		form h1 { font-size: 1.6em; }
-		form h2 { font-size: 1.5em; }
-		form h3 { font-size: 1.4em; }
-		form h4 { font-size: 1.3em; }
-		form h5 { font-size: 1.2em; }
-		form h6 { font-size: 1.1em; }
-
-		@layer numbering {
-			:is(section):has(:is(h1, h2, h3, h4, h5, h6):first-child) { contain: style; counter-increment: heading; }
-
-			article.numbering {
-				counter-reset: heading;
-
-				:is(article, section) > :is(h2, h3, h4):first-child::before {
-					display: inline-block; content: counters(heading, ".")
-				}
-
-				:is(h2, h3, h4, h5, h6) {
-					&::before {
-						--padding: .8rem;
-						margin-right: var(--padding);
-						display: none;
-						opacity: .6;
-						color: var(--color, orange);
-						font-size: .8em;
-					}
-
-					&:hover::before {
-						opacity: 1;
-					}
-
-					/* --content-width + a bit */
-					/* This sadly has to be hard-coded :( */
-					@media (min-width: 74em) {
-						&::before {
-							position: absolute;
-							bottom: -.1em;
-							width: 5em;
-							left: calc(-5em - var(--padding));
-							text-align: right;
-						}
-					}
-				}
-			}
-		}
-
-		@layer numbering-override {
-			:is(h2, h3, h4, h5, h6):is(
-				/* Disable numbering inside certain containers */
-				:is(flex-row, flex-column, flex-grid, grid-box) *,
-				/* Disable numbering manually */
-				.no-number, :is(no-number, .no-number) *
-			)::before { display: none; }
 		}
 	}
 
-	@layer base {
-		article p {
-			line-height: 1.6em;
+	form h1 { font-size: 1.6em; }
+	form h2 { font-size: 1.5em; }
+	form h3 { font-size: 1.4em; }
+	form h4 { font-size: 1.3em; }
+	form h5 { font-size: 1.2em; }
+	form h6 { font-size: 1.1em; }
+
+	:is(section):has(:is(h1, h2, h3, h4, h5, h6):first-child) { contain: style; counter-increment: heading; }
+
+	article.numbering {
+		counter-reset: heading;
+
+		:is(article, section) > :is(h2, h3, h4):first-child::before {
+			display: inline-block; content: counters(heading, ".")
 		}
+
+		:is(h2, h3, h4, h5, h6) {
+			&::before {
+				--padding: .8rem;
+				margin-right: var(--padding);
+				display: none;
+				opacity: .6;
+				color: var(--color, orange);
+				font-size: .8em;
+			}
+
+			&:hover::before {
+				opacity: 1;
+			}
+
+			/* --content-width + a bit */
+			/* This sadly has to be hard-coded :( */
+			@media (min-width: 74em) {
+				&::before {
+					position: absolute;
+					bottom: -.1em;
+					width: 5em;
+					left: calc(-5em - var(--padding));
+					text-align: right;
+				}
+			}
+		}
+	}
+
+	:is(h2, h3, h4, h5, h6):is(
+		/* Disable numbering inside certain containers */
+		:is(flex-row, flex-column, flex-grid, grid-box) *,
+		/* Disable numbering manually */
+		.no-number, :is(no-number, .no-number) *
+	)::before { display: none; }
+
+	article p {
+		line-height: 1.6em;
 	}
 
 	/* PARAGRAPHS */
 
-	@layer base {
-		p { line-height: 1.4em; }
+	p { line-height: 1.4em; }
 
-		p ~ :not(p) { margin-top: 1em; }
+	p ~ :not(p) { margin-top: 1em; }
 
-		p:not(:first-child) {
-			margin-top: 1em;
-		}
+	p:not(:first-child) {
+		margin-top: 1em;
 	}
 
-	@layer indentation {
-		* { tab-size: inherit; }
-		:root { tab-size: 4; }
-		[tab-size="2"], .tab-2 { tab-size: 2; }
-		[tab-size="3"], .tab-3 { tab-size: 3; }
-		[tab-size="4"], .tab-4 { tab-size: 4; }
-		[tab-size="8"], .tab-8 { tab-size: 8; }
+	* { tab-size: inherit; }
+	:root { tab-size: 4; }
+	[tab-size="2"], .tab-2 { tab-size: 2; }
+	[tab-size="3"], .tab-3 { tab-size: 3; }
+	[tab-size="4"], .tab-4 { tab-size: 4; }
+	[tab-size="8"], .tab-8 { tab-size: 8; }
+
+	code, var, samp, kbd {
+		font-family: "Courier New", monospace;
 	}
 
 	/* OTHER BLOCK ELEMENT MARGINS */
 
-	@layer base {
-		:is(details, figure, pre):not(:first-child) {
-			margin-top: 1.2em;
-		}
+	:is(details, figure, pre):not(:first-child) {
+		margin-top: 1.2em;
 	}
 
-	@layer override {
-		details>:is(:first-child:not(summary), summary~*) {
-			margin-top: .4rem;
-		}
+	details>:is(:first-child:not(summary), summary~*) {
+		margin-top: .4rem;
 	}
 }

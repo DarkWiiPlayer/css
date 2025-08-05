@@ -1,22 +1,20 @@
 @property --nav-depth {
-	syntax: <number>;
+	syntax: '<number>';
 	inherits: true;
 	initial-value: 0;
 }
 
-@layer nav {
-	@scope (nav:not(.bar)) to (nav) {
-		:scope {
-			display: flex;
-			flex-flow: column;
-			--nav-depth: -1;
+@layer components {
+	nav {
+		display: flex;
+		flex-flow: column;
+		--nav-depth: -1;
 
-			:is(ul, ol, li) { display: contents; }
+		& :is(ul, ol, li) { display: contents; }
 
-			:is(ul, ol) {
-				/* --nav-depth: calc(inherit + 1); */
-				--nav-depth: 0;
-			}
+		& :is(ul, ol) {
+			/* --nav-depth: calc(inherit + 1); */
+			--nav-depth: 0;
 		}
 
 		a {
@@ -39,7 +37,7 @@
 			font-weight: bold;
 		}
 
-		:scope details {
+		& details {
 			summary::before { display: none; }
 			:is(ul, ol) {
 				flex-flow: column;
@@ -47,5 +45,53 @@
 				padding-left: 0;
 			}
 		}
+
+		&.bar {
+			header > & { height: var(--header-height) }
+
+			all: unset;
+			/* Placement */
+			flex: max-content;
+			/* Layout */
+			display: flex;
+			align-items: center;
+
+			&.right {
+				justify-content: flex-end;
+			}
+
+			:is(ul, ol, li) { display: contents; }
+
+			a {
+				transition: color .2s;
+				color: inherit;
+				text-decoration: unset;
+
+				&:hover {
+					color: var(--color, orange);
+					border-color: var(--color, orange);
+				}
+
+				border: 0 solid var(--hr-color);
+			}
+
+			&.underlined a {
+				border-bottom-width: .2em;
+			}
+
+			&.overlined a {
+				border-top-width: .2em;
+			}
+
+			a {
+				height: 100%;
+				padding: .6em;
+				margin: 0px;
+				display: flex;
+				align-items: center;
+			}
+		}
+
+		:is(html,body)[scroll="0"] header nav.bar.underlined a:not(:hover) { border-bottom-color: transparent }
 	}
 }

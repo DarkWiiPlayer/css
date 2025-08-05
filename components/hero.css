@@ -1,4 +1,4 @@
-@layer hero {
+@layer components {
 	page-hero {
 		font-size: 1.4em;
 		display: flex;

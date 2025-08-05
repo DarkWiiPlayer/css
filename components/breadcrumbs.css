@@ -1,4 +1,4 @@
-@layer breadcrumbs {
+@layer components {
 	nav.breadcrumbs {
 		display: flex;
 		flex-flow: row wrap;

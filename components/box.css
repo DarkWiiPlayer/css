@@ -1,4 +1,4 @@
-@layer box {
+@layer components {
 	.box {
 		border-radius: var(--corner-radius, 0px);
 		background-color: var(--background-inset, #66666606);

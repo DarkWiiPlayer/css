@@ -1,4 +1,4 @@
-@layer spacer {
+@layer layer {
 	vertical-spacer, horizontal-spacer {
 		display: block;
 		padding: 0 !important;

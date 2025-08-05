@@ -1,4 +1,4 @@
-@layer button {
+@layer components {
 	:is(
 	a.button,
 	button,
@@ -6,195 +6,185 @@
 	input[type="submit"],
 	input[type="reset"]
 	) {
-		@layer base {
-			all: unset;
-			text-decoration: none;
+		all: unset;
+		text-decoration: none;
 
-			/* Positioning */
+		/* Positioning */
 
-			display: inline-block;
-			flex: max-content;
+		display: inline-block;
+		flex: max-content;
 
-			/* Layout */
+		/* Layout */
 
-			padding: .6em .8em;
-			text-align: center;
+		padding: .6em .8em;
+		text-align: center;
 
-			/* Styling */
+		/* Styling */
 
-			--border: var(--button-border, max(2pt, .1em));
-			border: var(--border) solid var(--color, orange);
-			border-radius: var(--corner-radius, 0em);
+		--border: var(--button-border, max(2pt, .1em));
+		border: var(--border) solid var(--color, orange);
+		border-radius: var(--corner-radius, 0em);
 
-			cursor: pointer;
+		cursor: pointer;
 
-			color: var(--color, orange);
-			font-weight: bold;
-			text-shadow: .04em .08em .14em #0002;
+		color: var(--color, orange);
+		font-weight: bold;
+		text-shadow: .04em .08em .14em #0002;
 
-			color: var(--color, orange);
-			background: transparent;
+		color: var(--color, orange);
+		background: transparent;
 
-			--duration: var(--transition-duration-hover, .2s);
-			transition:
-				background var(--duration),
-				border-color var(--duration),
-				color var(--duration),
-				filter var(--duration),
-				text-shadow var(--duration);
-			box-shadow: var(--button-shadow, .1em .2em .3em #0003);
+		--duration: var(--transition-duration-hover, .2s);
+		transition:
+			background var(--duration),
+			border-color var(--duration),
+			color var(--duration),
+			filter var(--duration),
+			text-shadow var(--duration);
+		box-shadow: var(--button-shadow, .1em .2em .3em #0003);
+
+		&:hover {
+			text-shadow: .1em .14em .2em #0004;
+			color: var(--color-contrast, white);
+			background: var(--color, orange);
+		}
+
+		&:focus {
+			outline: .2em solid var(--color-outline);
+		}
+
+		&.primary {
+			text-shadow: .1em .14em .2em #0004;
+			color: var(--color-contrast, white);
+			background: var(--color, orange);
 
 			&:hover {
-				text-shadow: .1em .14em .2em #0004;
-				color: var(--color-contrast, white);
+				--hover-color: color-mix(in srgb, var(--color, orange), #fff 20%);
+				@container style(--color-scheme: dark) {
+					--hover-color: color-mix(in srgb, var(--color, orange), #000 20%);
+				}
+				background: var(--hover-color);
+				border-color: var(--hover-color);
+			}
+		}
+
+		&.secondary {
+			text-shadow: .1em .14em .2em #0004;
+			color: currentcolor;
+
+			font-weight: normal;
+
+			border-color: color-mix(in hsl, currentcolor, 70% transparent);
+		}
+
+		&:hover {
+			border-color: currentcolor;
+			background: none;
+		}
+
+		&.compact {
+			padding: .4em;
+		}
+
+		&[hover-text] {
+			position: relative;
+			background: none;
+
+			&:hover { color: transparent; text-shadow: none; } &::after { content: attr(hover-text);
+
+				/* Position */
+				position: absolute;
+				left: 0%;
+				top: 100%;
+				bottom: 0%;
+				right: 0%;
+
+				/* Layout */
+				display: flex;
+				flex-flow: row nowrap;
+				justify-content: center;
+				align-items: center;
+
+				/* Styling */
+				border-radius: calc(var(--corner-radius, 0em) - var(--border));
+				color: white;
+				white-space: nowrap;
 				background: var(--color, orange);
+				overflow: hidden;
+
+				transition-property: top, left, right, bottom;
+				transition-duration: .3s;
+			}
+
+			&[slide-down]::after {
+				top: 0;
+				bottom: 100%;
+			}
+
+			&[slide-right]::after {
+				top: 0;
+				right: 100%;
+			}
+
+			&[slide-left]::after {
+				top: 0;
+				left: 100%;
+			}
+
+			&:hover::after {
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+			}
+
+			&.primary {
+				background-color: var(--color, orange);
+				&::after {
+					background-color: var(--hover-color);
+				}
+			}
+		}
+		&.close {
+			all: unset;
+
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 1em;
+			height: 1em;
+
+			margin: .8rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			overflow: visible;
+			border-radius: var(--corner-radius);
+			cursor: pointer;
+
+			img, svg {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+
+			&:empty::after {
+				display: block;
+				content: '+';
+				font-size: 1.6em;
+				transform: rotate(45deg);
 			}
 
 			&:focus {
-				outline: .2em solid var(--color-outline);
-			}
-		}
-
-		@layer variants {
-			&.primary {
-				text-shadow: .1em .14em .2em #0004;
-				color: var(--color-contrast, white);
-				background: var(--color, orange);
-
-				&:hover {
-					--hover-color: color-mix(in srgb, var(--color, orange), #fff 20%);
-					@container style(--color-scheme: dark) {
-						--hover-color: color-mix(in srgb, var(--color, orange), #000 20%);
-					}
-					background: var(--hover-color);
-					border-color: var(--hover-color);
-				}
-			}
-
-			&.secondary {
-				text-shadow: .1em .14em .2em #0004;
-				color: currentcolor;
-
-				font-weight: normal;
-
-				border-color: color-mix(in hsl, currentcolor, 70% transparent);
-
-				&:hover {
-					border-color: currentcolor;
-					background: none;
-				}
-			}
-
-			&.compact {
-				padding: .4em;
-			}
-		}
-
-		@layer hover-text {
-			&[hover-text] {
-				position: relative;
-				background: none;
-
-				&:hover { color: transparent; text-shadow: none; } &::after { content: attr(hover-text);
-
-					/* Position */
-					position: absolute;
-					left: 0%;
-					top: 100%;
-					bottom: 0%;
-					right: 0%;
-
-					/* Layout */
-					display: flex;
-					flex-flow: row nowrap;
-					justify-content: center;
-					align-items: center;
-
-					/* Styling */
-					border-radius: calc(var(--corner-radius, 0em) - var(--border));
-					color: white;
-					white-space: nowrap;
-					background: var(--color, orange);
-					overflow: hidden;
-
-					transition-property: top, left, right, bottom;
-					transition-duration: .3s;
-				}
-
-				&[slide-down]::after {
-					top: 0;
-					bottom: 100%;
-				}
-
-				&[slide-right]::after {
-					top: 0;
-					right: 100%;
-				}
-
-				&[slide-left]::after {
-					top: 0;
-					left: 100%;
-				}
-
-				&:hover::after {
-					top: 0;
-					left: 0;
-					right: 0;
-					bottom: 0;
-				}
-
-				&.primary {
-					background-color: var(--color, orange);
-					&::after {
-						background-color: var(--hover-color);
-					}
-				}
-			}
-		}
-		@layer close {
-			&.close {
-				all: unset;
-
-				position: absolute;
-				right: 0;
-				top: 0;
-				width: 1em;
-				height: 1em;
-
-				margin: .8rem;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-
-				overflow: visible;
-				border-radius: var(--corner-radius);
-				cursor: pointer;
-
-				img, svg {
-					position: absolute;
-					top: 0;
-					left: 0;
-					width: 100%;
-					height: 100%;
-				}
-
-				&:empty::after {
-					display: block;
-					content: '+';
-					font-size: 1.6em;
-					transform: rotate(45deg);
-				}
-
-				&:focus {
-					border: 1px solid var(--color);
-					outline: .2em solid color-mix(in hsl, var(--color), 80% transparent)
-				}
+				border: 1px solid var(--color);
+				outline: .2em solid color-mix(in hsl, var(--color), 80% transparent)
 			}
 		}
 	}
-}
 
-@layer button-group {
 	button-group {
 		display: flex;
 		flex-flow: row nowrap;
@@ -226,19 +216,16 @@
 		}
 	}
 
-	@layer button-disabled {
-		a.button:not([href]),
-		:is(
-		button,
-		input[type="button"],
-		input[type="submit"],
-		input[type="reset"]
-		)[disabled] {
-			cursor: unset;
-			text-shadow: none;
-			background: var(--color, orange);
-			filter: saturate(0%) opacity(0.6);
-			color: white;
-		}
+	a.button:not([href]),
+	:is(
+	button,
+	input[type="button"],
+	input[type="submit"],
+	input[type="reset"]
+	)[disabled] {
+		cursor: unset;
+		text-shadow: none;
+		background: var(--color, orange);
+		filter: saturate(0%) opacity(0.6);
+		color: white;
 	}
-}

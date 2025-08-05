@@ -1,4 +1,4 @@
-@layer details {
+@layer components {
 	details > summary {
 		all: unset;
 		display: block;
@@ -21,6 +21,7 @@
 	}
 
 	.dim-open { transition: opacity .3s; }
+
 	@scope (details[open]) to (details) {
 		.dim-open {
 			opacity: var(--details-dim-opacity, .4);

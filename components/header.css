@@ -1,4 +1,4 @@
-@layer header {
+@layer components {
 	:root {
 		--header-height: 4rem;
 	}

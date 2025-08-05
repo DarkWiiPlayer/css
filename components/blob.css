@@ -1,4 +1,4 @@
-@layer blob {
+@layer components {
 	:root {
 		/*        Tl  Tr  Br  Bl  / Lt  Rt  Rb  Lb*/
 		--blob-1: 30% 70% 60% 40% / 30% 50% 50% 70%;

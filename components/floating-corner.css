@@ -1,4 +1,4 @@
-@layer floating-corner {
+@layer components {
 	floating-corner, .floating-corner {
 		--spacing: .6em;
 		line-height: 1em;

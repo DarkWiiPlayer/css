@@ -1,4 +1,4 @@
-@layer list {
+@layer components {
 	:is(ul, ol) {
 		padding-left: 3ch;
 	}

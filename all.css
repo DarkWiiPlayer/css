@@ -1,5 +1,3 @@
-@import url('layers.css');
-
 @import url('core.css');
 @import url('typography.css');
 
@@ -27,7 +25,6 @@
 @import url('components/link.css');
 @import url('components/list.css');
 @import url('components/nav.css');
-@import url('components/navbar.css');
 @import url('components/quote.css');
 @import url('components/spacer.css');
 @import url('components/spinner.css');

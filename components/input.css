@@ -4,87 +4,83 @@
 	inherits: false;
 }
 
-@layer input {
-	@layer reset {
-		input, select {
-			appearance: none;
-		}
-		input::placeholder {
-			all: unset;
-			opacity: .6;
-		}
+@layer reset {
+	input, select {
+		appearance: none;
 	}
+	input::placeholder {
+		all: unset;
+		opacity: .6;
+	}
+}
 
+@layer components {
 	input, select {
 		--focus-outline: .2rem solid var(--color-outline);
 	}
 
-	@layer text {
-		input:is(
-			[type="date"],
-			[type="datetime-local"],
-			[type="email"],
-			[type="month"],
-			[type="number"],
-			[type="password"],
-			[type="search"],
-			[type="tel"],
-			[type="text"],
-			[type="time"],
-			[type="week"],
-		), select {
-			padding: .6em;
-			border-radius: var(--corner-radius);
-			border: var(--border-width, .1em) solid var(--hr-color, #6662);
+	input:is(
+		[type="date"],
+		[type="datetime-local"],
+		[type="email"],
+		[type="month"],
+		[type="number"],
+		[type="password"],
+		[type="search"],
+		[type="tel"],
+		[type="text"],
+		[type="time"],
+		[type="week"],
+	), select {
+		padding: .6em;
+		border-radius: var(--corner-radius);
+		border: var(--border-width, .1em) solid var(--hr-color, #6662);
 
-			&:focus-within {
-				border-color: var(--color, orange);
-				outline: var(--focus-outline);
-			}
-		}
-		select {
-			background: var(--background);
+		&:focus-within {
+			border-color: var(--color, orange);
+			outline: var(--focus-outline);
 		}
 	}
+	select {
+		background: var(--background);
+	}
 
-	@layer check {
-		input:is(
-			[type="checkbox"],
-			[type="radio"],
-		) {
-			--radius: max(var(--corner-radius), .2em);
-			--size: 1.2em;
-			border-radius: var(--radius);
-			vertical-align: text-bottom;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			width: var(--size);
-			height: var(--size);
-			border: var(--border-width, .1em) solid var(--hr-color, #6662);
-			position: relative;
+	input:is(
+		[type="checkbox"],
+		[type="radio"],
+	) {
+		--radius: max(var(--corner-radius), .2em);
+		--size: 1.2em;
+		border-radius: var(--radius);
+		vertical-align: text-bottom;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: var(--size);
+		height: var(--size);
+		border: var(--border-width, .1em) solid var(--hr-color, #6662);
+		position: relative;
 
-			&:focus {
-				border-color: var(--color, orange);
-				outline: var(--focus-outline);
-			}
-
-			transition: --circle-radius .1s;
-
-			background-image: radial-gradient(circle at center, var(--color) calc(var(--circle-radius) - 1pt), transparent var(--circle-radius));
-
-			&:checked {
-				--circle-radius: 50%;
-				border-color: var(--color, orange);
-			}
-
-			label:has(&) {
-				cursor: pointer;
-			}
+		&:focus {
+			border-color: var(--color, orange);
+			outline: var(--focus-outline);
 		}
-		input[type="radio"], input[type="radio"]::before {
-			--ratio: .5;
-			border-radius: 100%;
+
+		transition: --circle-radius .1s;
+
+		background-image: radial-gradient(circle at center, var(--color) calc(var(--circle-radius) - 1pt), transparent var(--circle-radius));
+
+		&:checked {
+			--circle-radius: 50%;
+			border-color: var(--color, orange);
 		}
+
+		label:has(&) {
+			cursor: pointer;
+		}
+	}
+	input[type="radio"], input[type="radio"]::before {
+		--ratio: .5;
+		border-radius: 100%;
 	}
 }

@@ -1,16 +1,16 @@
-code, var, samp, kbd {
-	all: unset;
-	box-sizing: border-box;
-	font-family: "Courier New", monospace;
-}
+@layer components {
+	code, var, samp, kbd {
+		box-sizing: border-box;
+	}
 
-pre>:is(code, var, samp) {
-	overflow: auto;
-	display: block;
-	border-radius: var(--corner-radius, 0px);
-	line-height: 1.6em;
-}
+	pre>:is(code, var, samp) {
+		overflow: auto;
+		display: block;
+		border-radius: var(--corner-radius, 0px);
+		line-height: 1.6em;
+	}
 
-var, kbd {
-	white-space: nowrap;
+	var, kbd {
+		white-space: nowrap;
+	}
 }

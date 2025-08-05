@@ -1,34 +1,30 @@
-@layer link {
-	@layer base {
-		:any-link {
-			text-decoration: underline var(--color, orange);
-			text-decoration-thickness: .1em;
-			transition: color var(--transition-duration-hover, .2s);
-		}
-		:any-link:hover {
-			color: var(--color, orange);
-		}
-		a:is([onclick], [href]) {
-			cursor: pointer;
-		}
+@layer components {
+	:any-link {
+		text-decoration: underline var(--color, orange);
+		text-decoration-thickness: .1em;
+		transition: color var(--transition-duration-hover, .2s);
+	}
+	:any-link:hover {
+		color: var(--color, orange);
+	}
+	a:is([onclick], [href]) {
+		cursor: pointer;
 	}
 
-	@layer headings {
-		:is(h1, h2, h3, h4, h5, h6)>:any-link[href^="#"] {
-			all: unset;
-			cursor: pointer;
-			position: relative;
+	:is(h1, h2, h3, h4, h5, h6)>:any-link[href^="#"] {
+		all: unset;
+		cursor: pointer;
+		position: relative;
 
-			&::after {
-				display: inline-block;
-				content: ' #';
-				opacity: 0;
-				color: var(--color, orange);
-			}
+		&::after {
+			display: inline-block;
+			content: ' #';
+			opacity: 0;
+			color: var(--color, orange);
+		}
 
-			&:hover::after {
-				opacity: .6;
-			}
+		&:hover::after {
+			opacity: .6;
 		}
 	}
 }
