@@ -59,9 +59,6 @@
 			&.parallax {
 				--parallax-offset: 40vh;
 				top: 0;
-				height: auto;
-				min-height: 100cqh;
-				width: 100cqw;
 
 				animation-timeline: view(block auto 100vh);
 				animation-name: hero-parallax-scroll;
