@@ -1,3 +1,8 @@
+@keyframes hero-parallax-scroll {
+	from { transform: translate(0, 0); }
+	to   { transform: translate(0, var(--parallax-offset, 40vh)); }
+}
+
 @layer components {
 	page-hero {
 		font-size: 1.4em;
@@ -5,6 +10,9 @@
 		flex-flow: column nowrap;
 		align-items: center;
 		justify-content: center;
+
+		container-type: size;
+		contain: paint;
 
 		min-height: attr(cover vh, 0em);
 		/* Fallbacks until attr is widely supported */
@@ -33,36 +41,51 @@
 		+.\+join-hero {
 			margin-top: 0;
 		}
-	}
 
-	page-hero > *+* { margin-top: 1.2em; }
+		z-index: 0;
+		position: relative;
 
-	page-hero { z-index: 0; position: relative; }
+		> *+* { margin-top: 1.2em; }
 
-	page-hero>img:first-child {
-		position: absolute;
-		z-index: -1;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		margin: 0;
-		object-fit: cover;
-	}
+		> img:first-child {
+			position: absolute;
+			z-index: -1;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			margin: 0;
+			object-fit: cover;
 
-	page-hero>img:first-child+* {
-		margin-top: 0;
-	}
+			&.parallax {
+				--parallax-offset: 40vh;
+				top: 0;
+				height: auto;
+				min-height: 100cqh;
+				width: 100cqw;
 
-	page-hero hgroup {
-		display: flex;
-		flex-flow: column;
-		align-items: center;
+				animation-timeline: view(block auto 100vh);
+				animation-name: hero-parallax-scroll;
+				animation-fill-mode: both;
+				animation-duration: 1ms; /* Firefox requires this to apply the animation */
+				animation-timing-function: linear;
+			}
 
-		text-align: center;
-		text-wrap: balance;
-	}
+			&+* {
+				margin-top: 0;
+			}
+		}
 
-	page-hero+header {
-		margin-top: 0;
+		hgroup {
+			display: flex;
+			flex-flow: column;
+			align-items: center;
+
+			text-align: center;
+			text-wrap: balance;
+		}
+
+		& + header {
+			margin-top: 0;
+		}
 	}
 }
