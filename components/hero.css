@@ -60,11 +60,13 @@
 				--parallax-offset: 40vh;
 				top: 0;
 
-				animation-timeline: view(block auto 100vh);
-				animation-name: hero-parallax-scroll;
-				animation-fill-mode: both;
-				animation-duration: 1ms; /* Firefox requires this to apply the animation */
-				animation-timing-function: linear;
+				@supports (animation-timeline: view(block auto 100vh)) {
+					animation-timeline: view(block auto 100vh);
+					animation-name: hero-parallax-scroll;
+					animation-fill-mode: both;
+					animation-duration: 1ms; /* Firefox requires this to apply the animation */
+					animation-timing-function: linear;
+				}
 			}
 
 			&+* {
