@@ -47,7 +47,23 @@
 
 		> *+* { margin-top: 1.2em; }
 
+		> .parallax {
+			--parallax-offset: 30vh;
+			position: absolute;
+			height: 100%;
+
+			@supports (animation-timeline: view(block auto 100vh)) {
+				animation-timeline: view(block auto 100vh);
+				animation-name: hero-parallax-scroll;
+				animation-fill-mode: both;
+				animation-duration: 1ms; /* Firefox requires this to apply the animation */
+				animation-timing-function: linear;
+			}
+		}
+
 		> img:first-child {
+			--parallax-offset: 40vh;
+
 			position: absolute;
 			z-index: -1;
 			width: 100%;
@@ -55,19 +71,6 @@
 			top: 0;
 			margin: 0;
 			object-fit: cover;
-
-			&.parallax {
-				--parallax-offset: 40vh;
-				top: 0;
-
-				@supports (animation-timeline: view(block auto 100vh)) {
-					animation-timeline: view(block auto 100vh);
-					animation-name: hero-parallax-scroll;
-					animation-fill-mode: both;
-					animation-duration: 1ms; /* Firefox requires this to apply the animation */
-					animation-timing-function: linear;
-				}
-			}
 
 			&+* {
 				margin-top: 0;
