@@ -5,14 +5,18 @@
 
 @layer components {
 	page-hero {
-		font-size: 1.4em;
+		/* Layout */
 		display: flex;
 		flex-flow: column nowrap;
 		align-items: center;
 		justify-content: center;
 
+		/* Styling */
+		font-size: 1.4em;
 		container-type: size;
 		contain: paint;
+		text-wrap: balanced;
+		text-wrap: pretty;
 
 		min-height: attr(cover vh, 0em);
 		/* Fallbacks until attr is widely supported */
