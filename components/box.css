@@ -7,7 +7,7 @@
 		position: relative;
 		line-height: 1.2em;
 
-		contain: draw;
+		contain: paint;
 
 		&.floating {
 			background-color: var(--background-float, #fff8);
