@@ -52,9 +52,6 @@
 		&:where(:not(:last-child)) {
 			margin-bottom: .4em;
 		}
-		&:is(hgroup>*) {
-			margin: 0;
-		}
 	}
 
 	form h1 { font-size: 1.6em; }

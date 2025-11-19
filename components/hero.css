@@ -88,6 +88,11 @@
 
 			text-align: center;
 			text-wrap: balance;
+			gap: 1em;
+
+			* {
+				margin: 0;
+			}
 		}
 
 		& + header {
