@@ -148,14 +148,11 @@
 		&.close {
 			all: unset;
 
-			position: absolute;
-			right: 0;
-			top: 0;
 			width: 1em;
 			height: 1em;
 
-			margin: .8rem;
-			display: flex;
+			margin-inline: .4em;
+			display: inline-flex;
 			align-items: center;
 			justify-content: center;
 
@@ -181,6 +178,13 @@
 			&:focus {
 				border: 1px solid var(--color);
 				outline: .2em solid color-mix(in hsl, var(--color), 80% transparent)
+			}
+
+			&.float {
+				margin: .8rem;
+				position: absolute;
+				right: 0;
+				top: 0;
 			}
 		}
 	}
