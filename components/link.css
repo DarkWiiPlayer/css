@@ -1,8 +1,9 @@
 @layer components {
 	:any-link {
 		text-decoration: underline var(--color, orange);
-		text-decoration-thickness: .1em;
+		text-decoration-thickness: .14em;
 		transition: color var(--transition-duration-hover, .2s);
+		color: color-mix(in hsl, currentcolor, 30% var(--color, orange));
 	}
 	:any-link:hover {
 		color: var(--color, orange);
