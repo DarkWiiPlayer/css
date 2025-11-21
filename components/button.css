@@ -75,11 +75,11 @@
 			font-weight: normal;
 
 			border-color: color-mix(in hsl, currentcolor, 70% transparent);
-		}
 
-		&:hover {
-			border-color: currentcolor;
-			background: none;
+			&:hover {
+				border-color: currentcolor;
+				background: none;
+			}
 		}
 
 		&.compact {
