@@ -6,7 +6,7 @@
 		padding: .4em;
 		margin: .2em;
 		font-size: .6em;
-		vertical-align: top;
+		vertical-align: super;
 		border-radius: var(--corner-radius, 0px);
 	}
 
