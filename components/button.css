@@ -1,10 +1,10 @@
 @layer components {
 	:is(
-	a.button,
-	button,
-	input[type="button"],
-	input[type="submit"],
-	input[type="reset"]
+		a.button,
+		button,
+		input[type="button"],
+		input[type="submit"],
+		input[type="reset"]
 	) {
 		all: unset;
 		text-decoration: none;
@@ -90,7 +90,15 @@
 			position: relative;
 			background: none;
 
-			&:hover { color: transparent; text-shadow: none; } &::after { content: attr(hover-text);
+			&:hover {
+				color: transparent;
+				text-shadow: none;
+
+				border-color: var(--color, orange);
+			}
+
+			&::after {
+				content: attr(hover-text);
 
 				/* Position */
 				position: absolute;
