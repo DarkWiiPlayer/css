@@ -44,6 +44,7 @@
 
 :root:not([color-scheme]), [color-scheme="light"] {
 	--color-scheme: light;
+
 	--color-text: black;
 	--background: #eee;
 	--background-float: #fff1;
@@ -56,8 +57,9 @@
 @media (prefers-color-scheme: dark) {
 	:root:not([color-scheme]) {
 		--color-scheme: dark;
+
 		--color-text: white;
-		--color: rebeccapurple;
+		--color: color-mix(in hsl, rebeccapurple, 20% white);
 		--background: #222;
 		--background-inset: #0002;
 		--background-float: #8881;
@@ -68,6 +70,7 @@
 
 [color-scheme="dark"] {
 	--color-scheme: dark;
+
 	--color-text: white;
 	--color: color-mix(in hsl, rebeccapurple, 20% white);
 	--background: #222;
