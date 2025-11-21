@@ -5,9 +5,9 @@
 		/* Layout */
 		display: flex;
 		flex-flow: column;
-		--padding: 1em;
-		padding: var(--padding);
-		gap: var(--padding);
+		--card-padding: 1em;
+		padding: var(--card-padding);
+		gap: var(--card-padding);
 		align-items: center;
 		contain: paint;
 		container: card / inline-size;
@@ -47,8 +47,8 @@
 		> p { margin: 0 }
 
 		> img {
-			width: calc(100% + calc(2 * var(--padding)));
-			--margin: calc(-1 * var(--padding));
+			width: calc(100% + calc(2 * var(--card-padding)));
+			--margin: calc(-1 * var(--card-padding));
 			margin: 0 var(--margin);
 			border-radius: 0;
 			
